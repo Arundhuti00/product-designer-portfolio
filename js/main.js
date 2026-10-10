@@ -6,7 +6,9 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { buildMaterials } from './materials.js';
 
 // ---------- config: change these ----------
-const ROWS = ['ARUNDHUTI'];          // your name; add more strings here to split it over several lines
+const NAME = 'ARUNDHUTI';
+const SPLIT_WIDE = [9];              // one line on desktop
+const SPLIT_NARROW = [4, 5];         // ARUN / DHUTI on phones
 const LETTER_SIZE = 1.6;              // world units
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -62,55 +64,64 @@ const rowHeight = probe.boundingBox.getSize(new THREE.Vector3()).y * 1.02;
 probe.dispose();
 let materialIndex = 0;
 
-ROWS.forEach((word, row) => {
-  const items = [...word].map((char) => {
-    const geo = new TextGeometry(char, textOpts);
-    geo.center();
-    const smooth = toCreasedNormals(geo, Math.PI / 2.2);
-    geo.dispose();
-    smooth.computeBoundingBox();
-    const size = smooth.boundingBox.getSize(new THREE.Vector3());
-    const material = materials[materialIndex++ % materials.length];
-    const mesh = new THREE.Mesh(smooth, material);
-    // fur is drawn as stacked shells (see materials.js) so it has real depth and soft edges
-    if (material.userData.furShells) mesh.add(...material.userData.furShells.map((m) => new THREE.Mesh(smooth, m)));
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
-    scene.add(mesh);
-    return { mesh, fur: material.userData.furShells ? material.userData : null, w: size.x, h: size.y, r: 0.5 * Math.max(size.x, size.y) * 0.8 };
-  });
-
-  // lay the row out left to right, centred on x = 0
-  let cursor = 0;
-  items.forEach((it, i) => {
-    if (i > 0) {
-      const prev = items[i - 1];
-      cursor += Math.max((prev.w + it.w) / 2 + gaps, prev.r + it.r);
-    }
-    it.homeX = cursor;
-  });
-  const rowWidth = cursor;
-  const y = ((ROWS.length - 1) / 2 - row) * rowHeight;
-  items.forEach((it, i) => {
-    const jitter = ((i * 7 + row * 3) % 5 - 2) / 2;       // deterministic, -1..1
-    bodies.push({
-      ...it,
-      homeX: it.homeX - rowWidth / 2 + (row % 2 ? 0.1 : -0.1),
-      homeY: y + jitter * 0.04,
-      homeRz: jitter * 0.09,
-      x: 0, y: 0, vx: 0, vy: 0,
-      rz: 0, vrz: 0, ry: 0, vry: 0, rx: 0, vrx: 0,
-      z: 0, scale: 1, phase: bodies.length * 1.7, index: bodies.length,
-      jig: JIGGLE[bodies.length] ?? 0,            // how soft/jiggly this letter is (0 = rigid)
-      ex: 0, vex: 0, ey: 0, vey: 0, pvx: 0, pvy: 0,   // jiggle springs + last velocity
-      pop: 0, vpop: 0, fb: 0, vfb: 0, shake: 0, gravity: 0,
-    });
+// build the nine letters once; where they sit is decided by layout()
+[...NAME].forEach((char) => {
+  const geo = new TextGeometry(char, textOpts);
+  geo.center();
+  const smooth = toCreasedNormals(geo, Math.PI / 2.2);
+  geo.dispose();
+  smooth.computeBoundingBox();
+  const size = smooth.boundingBox.getSize(new THREE.Vector3());
+  const material = materials[materialIndex++ % materials.length];
+  const mesh = new THREE.Mesh(smooth, material);
+  // fur is drawn as stacked shells (see materials.js) so it has real depth and soft edges
+  if (material.userData.furShells) mesh.add(...material.userData.furShells.map((m) => new THREE.Mesh(smooth, m)));
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+  bodies.push({
+    mesh, fur: material.userData.furShells ? material.userData : null,
+    w: size.x, h: size.y, r: 0.5 * Math.max(size.x, size.y) * 0.8,
+    homeX: 0, homeY: 0, homeRz: 0,
+    x: 0, y: 0, vx: 0, vy: 0,
+    rz: 0, vrz: 0, ry: 0, vry: 0, rx: 0, vrx: 0,
+    z: 0, scale: 1, phase: bodies.length * 1.7, index: bodies.length,
+    jig: JIGGLE[bodies.length] ?? 0,            // how soft/jiggly this letter is (0 = rigid)
+    ex: 0, vex: 0, ey: 0, vey: 0, pvx: 0, pvy: 0,   // jiggle springs + last velocity
+    pop: 0, vpop: 0, fb: 0, vfb: 0, shake: 0, gravity: 0,
   });
 });
 
-const contentW = 2 * Math.max(...bodies.map((b) => Math.abs(b.homeX) + b.w / 2));
-const contentH = ROWS.length * rowHeight + 0.6;
-
+// Arrange the letters into rows, e.g. [9] = one line, [4, 5] = ARUN / DHUTI.
+let split = SPLIT_WIDE, contentW = 0, contentH = 0;
+function layout(rowSizes) {
+  split = rowSizes;
+  let start = 0;
+  rowSizes.forEach((count, row) => {
+    const items = bodies.slice(start, start + count);
+    let cursor = 0;
+    items.forEach((it, i) => {
+      if (i > 0) {
+        const prev = items[i - 1];
+        cursor += Math.max((prev.w + it.w) / 2 + gaps, prev.r + it.r);
+      }
+      it.homeX = cursor;
+    });
+    const rowWidth = cursor;
+    const y = ((rowSizes.length - 1) / 2 - row) * rowHeight;
+    items.forEach((it, i) => {
+      const jitter = ((i * 7 + row * 3) % 5 - 2) / 2;       // deterministic, -1..1
+      it.homeX += -rowWidth / 2 + (row % 2 ? 0.1 : -0.1);
+      it.homeY = y + jitter * 0.04;
+      it.homeRz = jitter * 0.09;
+    });
+    start += count;
+  });
+  contentW = 2 * Math.max(...bodies.map((b) => Math.abs(b.homeX) + b.w / 2));
+  contentH = rowSizes.length * rowHeight + 0.6;
+}
+layout(SPLIT_WIDE);
+const wideContentW = contentW;      // remembered: phones size the two-line name relative to the one-line width
 bodies.forEach((b) => { b.x = b.homeX; b.y = b.homeY; b.rz = b.homeRz; });
 
 // ---------- sizing ----------
@@ -124,10 +135,20 @@ function resize() {
   const w = hero.clientWidth, h = hero.clientHeight;
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
-  const dist = Math.max((contentH * 4) / (2 * tanHalf), (contentW * (camera.aspect < 1 ? 1.65 : 1.75)) / (2 * tanHalf * camera.aspect));
+  const narrow = w < 700;
+  if (narrow !== (split === SPLIT_NARROW)) {                 // crossing the phone breakpoint: re-arrange the name
+    layout(narrow ? SPLIT_NARROW : SPLIT_WIDE);
+    bodies.forEach((b) => { b.x = b.homeX; b.y = b.homeY; b.vx = b.vy = 0; });
+  }
+  // phones: the two-line name is sized so its letters are 10% bigger than the old one-line version was
+  const visibleW = narrow ? wideContentW * 1.65 / 1.1 : contentW * 1.75;
+  const widthFit = visibleW / (2 * tanHalf * camera.aspect);
+  const dist = narrow ? widthFit : Math.max((contentH * 4) / (2 * tanHalf), widthFit);   // phones: width only, so the hero can be any height
   halfH = tanHalf * dist;
   halfW = halfH * camera.aspect;
-  camY = halfH * 0.2;                     // look slightly below centre so the name sits higher on the page
+  // wide: look slightly below centre so the name sits higher. phones: pin the name 190px from the top, so the layout
+  // doesn't depend on how tall the hero is (the hero is then sized to fit its content, see placeTags)
+  camY = narrow ? halfH * (1 - (2 * 190) / h) : halfH * 0.2;
   camera.position.set(0, -camY, dist);
   camera.updateProjectionMatrix();
   placeTags();
@@ -141,21 +162,32 @@ function toScreen(x, y) {
 function placeTags() {
     const first = bodies[0];
   // greeting: centred over the name, with a clear gap above the top row
-  const top = Math.max(...bodies.slice(0, ROWS[0].length).map((b) => b.homeY + b.h / 2));
+  const top = Math.max(...bodies.slice(0, split[0]).map((b) => b.homeY + b.h / 2));
   const a = toScreen(0, top);
   // size labels from the on-screen width of the name, so they shrink with it on phones
-  const last = bodies[bodies.length - 1];
-  const left = toScreen(first.homeX - first.w * 0.5, 0).x, right = toScreen(last.homeX + last.w * 0.5, 0).x;
+  const left = toScreen(Math.min(...bodies.map((b) => b.homeX - b.w / 2)), 0).x;
+  const right = toScreen(Math.max(...bodies.map((b) => b.homeX + b.w / 2)), 0).x;
   hero.style.setProperty('--name-w', `${right - left}px`);
-  // floating tag over the top-left corner of the name (flush with the corner on narrow screens)
-  const p = toScreen(first.homeX - first.w * 0.5, first.homeY + first.h * 0.5);
+  // floating tag: over the top-left corner of the name on wide screens; centred just below the name on phones
   const narrow = hero.clientWidth < 700;
-  const shiftX = narrow ? '0%' : '-30%', shiftY = narrow ? '-135%' : '-110%';
-  tagBadge.style.transform = `translate(${p.x}px, ${p.y}px) translate(${shiftX}, ${shiftY}) translateY(4px)`;
+  let tagExtra = 0;
+  if (narrow) {
+    const nameBottom = toScreen(0, Math.min(...bodies.map((b) => b.homeY - b.h / 2))).y;
+    tagBadge.style.transform = `translate(${hero.clientWidth / 2}px, ${nameBottom + 10}px) translate(-50%, 0)`;
+    tagExtra = tagBadge.offsetHeight + 4;
+  } else {
+    const p = toScreen(first.homeX - first.w * 0.5, first.homeY + first.h * 0.5);
+    tagBadge.style.transform = `translate(${p.x}px, ${p.y}px) translate(-30%, -110%) translateY(4px)`;
+  }
   // where the tagline docks (just under the name) after Reset
-  const bottom = Math.min(...bodies.slice(-ROWS[ROWS.length - 1].length).map((b) => b.homeY - b.h / 2));
-  reveal.style.setProperty('--dock-y', `${toScreen(0, bottom).y + 40}px`);
-  tagArc.style.transform = `translate(${a.x}px, ${a.y - (narrow ? 46 : 26)}px) translate(-50%, -100%)`;
+  const bottom = Math.min(...bodies.slice(-split[split.length - 1]).map((b) => b.homeY - b.h / 2));
+  const dockY = toScreen(0, bottom).y + 40 + tagExtra;
+  reveal.style.setProperty('--dock-y', `${dockY}px`);
+  if (narrow) {                                            // phones: hero hugs its content, no big gap before the next section
+    const want = Math.round(dockY + reveal.offsetHeight + 28);
+    if (Math.abs(hero.clientHeight - want) > 1) hero.style.height = `${want}px`;
+  } else if (hero.style.height) hero.style.height = '';
+  tagArc.style.transform = `translate(${a.x}px, ${a.y - 26}px) translate(-50%, -100%)`;
 }
 new ResizeObserver(resize).observe(hero);
 resize();
