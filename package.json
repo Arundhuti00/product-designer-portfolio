@@ -1,0 +1,5 @@
+{
+  "name": "arundhuti-portfolio",
+  "private": true,
+  "scripts": { "start": "npx serve -l 4321 ." }
+}
