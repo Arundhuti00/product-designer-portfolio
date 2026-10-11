@@ -293,8 +293,7 @@ a { color: inherit; text-decoration: none; }
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .card {
   position: relative; overflow: hidden;
-  /* subgrid: all cards share the same four rows (top / title / tags / media), so the media edges line up across cards */
-  display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0;
+  display: flex; flex-direction: column;
   padding: 22px 22px 0;
   background: var(--surface-card); border: 1px solid var(--border-card); border-radius: 28px;
   text-align: center;
@@ -304,23 +303,22 @@ a { color: inherit; text-decoration: none; }
 .card-top { display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 14px; font-weight: 500; }
 .card-arrow { transition: transform 0.3s; }
 .card:hover .card-arrow { transform: translate(3px, -3px); color: var(--accent-secondary); }   /* pink on hover */
-.card-head { padding-top: 30px; }
+.card-head { padding-top: 30px; min-height: 120px; }   /* room for a 2-line title (or logo + 1 line), so the rows line up across cards */
 .card-logo { display: block; width: 28px; height: 28px; margin: 0 auto 14px; border-radius: 7px; box-shadow: 0 8px 18px -8px rgba(17, 17, 18, 0.4); }
 .card-title { margin: 0; font-size: clamp(24px, 2.3vw, 32px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; text-wrap: balance; }
-.card-tags { list-style: none; margin: 12px 0 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; color: var(--text-muted); font-size: 15px; }
+.card-tags { list-style: none; margin: 12px 0 28px; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; color: var(--text-muted); font-size: 15px; }
 .card-tags li { padding: 0 12px; }
 .card-tags li + li { border-left: 1px solid var(--border-subtle); }
 /* mockup slot: sits at the bottom and bleeds off the card edge, like the reference */
 .card-media {
-  margin: 28px -22px -1px; align-self: stretch; min-height: 170px;
+  margin: auto 0 -1px -22px; width: calc(100% + 44px); flex: none; aspect-ratio: 1 / 0.8; min-height: 0;   /* explicit width: the media must never size itself from its height */
   display: grid; place-items: center;
   background: var(--surface-card-media); border-top: 1px dashed var(--border-card);
   color: var(--text-muted); font-size: 14px;
 }
 /* a card with a real mockup: screen bleeding off the bottom edge of the grey media area */
 .card-media.has-image {
-  position: relative; display: block; overflow: hidden; min-height: 0; padding: 28px 0 0;
-  aspect-ratio: 1 / 0.8;   /* shorter than the screen on purpose: the bottom ~20% of the mockup is cropped */
+  position: relative; display: block; overflow: hidden; padding: 28px 0 0;   /* the bottom ~20% of the mockup is cropped on purpose */
   background: var(--surface-card-media); border-top: 1px dashed var(--border-card);
 }
 .card-media .mockup {
@@ -330,7 +328,7 @@ a { color: inherit; text-decoration: none; }
 }
 .card:hover .card-media .mockup { transform: translateY(-8px); }
 img.card-media { display: block; width: calc(100% + 44px); height: auto; min-height: 0; border: 0; background: none; object-fit: cover; }
-@media (max-width: 900px) { .cards { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .cards { grid-template-columns: 1fr; } .card-head { min-height: 0; } }
 
 /* ---------- content sections ---------- */
 .intro-section, .about, .contact { max-width: 1100px; margin: 0 auto; padding: 96px var(--gutter) 24px; text-align: center; scroll-margin-top: 20px; }
