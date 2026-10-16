@@ -44,6 +44,8 @@
   --surface-card: linear-gradient(180deg, var(--color-neutral-50), var(--color-neutral-100));
   --surface-card-media: rgba(17, 17, 18, 0.045);   /* mockup placeholder fill */
   --border-card: rgba(17, 17, 18, 0.08);
+  --border-card-hover: rgba(17, 17, 18, 0.2);      /* card outline while hovered */
+  --shadow-lift: 0 18px 30px -22px rgba(17, 17, 18, 0.4);   /* soft shadow under a lifted card */
 
   /* semantic: text */
   --text-primary: var(--color-neutral-900);      /* name, greeting, nav brand, headings */
@@ -290,7 +292,7 @@ a { color: inherit; text-decoration: none; }
 /* ---------- work ---------- */
 .work { padding: 96px var(--gutter) 40px; max-width: 1280px; margin: 0 auto; scroll-margin-top: 20px; }
 .section-title { text-align: center; margin: 0 0 24px; font-size: clamp(32px, 5vw, 56px); font-weight: 700; letter-spacing: -0.02em; }
-.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }   /* two per row */
 .card {
   position: relative; overflow: hidden;
   display: flex; flex-direction: column;
@@ -318,7 +320,7 @@ a { color: inherit; text-decoration: none; }
   background: var(--surface-card-media); border-top: 1px dashed var(--border-card);
   color: var(--text-muted); font-size: 14px;
 }
-.card-media::before { content: ""; display: block; padding-top: 80%; }
+.card-media::before { content: ""; display: block; padding-top: 70%; }
 .card-media > span { position: absolute; inset: 0; display: grid; place-items: center; }
 /* a card with a real mockup: the screen bleeds off the bottom edge (the bottom ~20% is cropped on purpose) */
 .card-media .mockup {
@@ -409,3 +411,23 @@ img.card-media { display: block; width: calc(100% + 44px); height: auto; min-hei
 }
 .cat-bubble.show { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .cat, .cat-sclera { transition: none; animation: none; } }
+
+/* ---------- subtle hover interactions (mouse only) ---------- */
+.chips li, .fact, .cs-stat, .cs-stage, .cs-flow li, .cs-pains li, .cs-tldr, .cs-ph, .cs-rules li, .cs-landed li {
+  transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s, border-color 0.3s, background 0.3s, color 0.3s;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .chips li:hover { transform: translateY(-2px); border-color: var(--border-card-hover); background: var(--surface-card); }
+  .fact:hover, .cs-stat:hover, .cs-stage:hover, .cs-tldr:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); border-color: var(--border-card-hover); }
+  .cs-flow li:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); border-color: var(--border-card-hover); }
+  .cs-pains li:hover { transform: translateY(-2px); background: var(--surface-card); border-color: var(--border-card-hover); }
+  .cs-ph:hover { background: rgba(17, 17, 18, 0.07); border-color: var(--border-card-hover); }
+  .cs-rules li:hover { transform: translateX(5px); border-color: var(--border-card-hover); }
+  .cs-landed li:hover { transform: translateX(6px); }
+  .cs-landed li:hover strong, .cs-stage:hover .cs-big, .cs-stat:hover strong { color: var(--accent-secondary); }
+  .cs-cover:hover img { transform: translateX(-50%) translateY(-8px); }
+  .socials a { display: inline-block; transition: transform 0.25s, color 0.25s; }
+  .socials a:hover { transform: translateY(-2px); }
+}
+.cs-cover img { transition: transform 0.45s cubic-bezier(.2,.8,.2,1); }
+.cs-stage .cs-big, .cs-stat strong, .cs-landed strong { transition: color 0.3s; }

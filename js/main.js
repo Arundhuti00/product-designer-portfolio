@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
-import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 import { toCreasedNormals } from 'three/addons/utils/BufferGeometryUtils.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { buildMaterials } from './materials.js';
@@ -53,12 +52,51 @@ const bodies = [];
 const gaps = 0.14;
 // jiggle strength per letter, in order A R U N D H U T I
 const JIGGLE = [1, 0.15, 0.6, 0.9, 0.1, 0.55, 0, 0.45, 0.25];
-const textOpts = {
-  font, size: LETTER_SIZE, depth: 0.4, curveSegments: 24,
-  bevelEnabled: true, bevelThickness: 0.42, bevelSize: 0.24, bevelSegments: 28,   // big bevel = soft, rounded corners
+const BEVEL = 0.24;
+const extrudeOpts = {
+  depth: 0.4, curveSegments: 24,
+  bevelEnabled: true, bevelThickness: 0.42, bevelSize: BEVEL, bevelSegments: 28,   // big bevel = soft, rounded edges
 };
+
+// Round the corners of a letter outline (where two straight edges meet), before it is extruded.
+// Smooth curves are left alone; only real corners get an arc. Concave (inside) corners get a bigger
+// radius, because the bevel pushes the outline outwards and would otherwise sharpen them again.
+function roundCorners(points, convexR, concaveR, minTurnDeg = 25) {
+  const p = points.filter((pt, i) => i === 0 || pt.distanceTo(points[i - 1]) > 1e-5);
+  if (p.length > 1 && p[0].distanceTo(p[p.length - 1]) < 1e-5) p.pop();
+  const n = p.length;
+  let area = 0;
+  for (let i = 0; i < n; i++) { const a = p[i], b = p[(i + 1) % n]; area += a.x * b.y - b.x * a.y; }
+  const orient = Math.sign(area) || 1;
+  const out = [];
+  for (let i = 0; i < n; i++) {
+    const prev = p[(i - 1 + n) % n], cur = p[i], next = p[(i + 1) % n];
+    const a = cur.clone().sub(prev), b = next.clone().sub(cur);
+    const la = a.length(), lb = b.length();
+    const turn = THREE.MathUtils.radToDeg(Math.acos(THREE.MathUtils.clamp(a.dot(b) / (la * lb), -1, 1)));
+    if (turn < minTurnDeg) { out.push(cur); continue; }
+    const convex = (a.x * b.y - a.y * b.x) * orient > 0;
+    const c = Math.min(convex ? convexR : concaveR, la * 0.45, lb * 0.45);
+    const A = cur.clone().addScaledVector(a, -c / la), B = cur.clone().addScaledVector(b, c / lb);
+    for (let s = 0; s <= 8; s++) {                       // quadratic curve from A to B, bent towards the corner
+      const t = s / 8, u = 1 - t;
+      out.push(new THREE.Vector2(u * u * A.x + 2 * u * t * cur.x + t * t * B.x, u * u * A.y + 2 * u * t * cur.y + t * t * B.y));
+    }
+  }
+  return out;
+}
+function letterGeometry(char) {
+  const shapes = font.generateShapes(char, LETTER_SIZE).map((sh) => {
+    const { shape, holes } = sh.extractPoints(12);
+    const rounded = new THREE.Shape(roundCorners(shape, 0.16, 0.16 + BEVEL));
+    rounded.holes = holes.map((h) => new THREE.Path(roundCorners(h, 0.16, 0.16 + BEVEL)));
+    return rounded;
+  });
+  return new THREE.ExtrudeGeometry(shapes, extrudeOpts);
+}
+
 // row pitch = real glyph height (cap height + bevel), so rows sit snug without overlapping
-const probe = new TextGeometry('H', textOpts);
+const probe = letterGeometry('H');
 probe.computeBoundingBox();
 const rowHeight = probe.boundingBox.getSize(new THREE.Vector3()).y * 1.02;
 probe.dispose();
@@ -66,7 +104,7 @@ let materialIndex = 0;
 
 // build the nine letters once; where they sit is decided by layout()
 [...NAME].forEach((char) => {
-  const geo = new TextGeometry(char, textOpts);
+  const geo = letterGeometry(char);
   geo.center();
   const smooth = toCreasedNormals(geo, Math.PI / 2.2);
   geo.dispose();

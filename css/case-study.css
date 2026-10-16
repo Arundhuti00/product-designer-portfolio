@@ -1,0 +1,105 @@
+/* Case study pages. Uses only the design tokens from style.css. */
+.cs-page main { padding-top: 96px; }
+.cs-section { max-width: 1040px; margin: 0 auto; padding: 72px var(--gutter) 0; }
+
+.cs-kicker { margin: 0 0 14px; font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+.cs-section h2 { margin: 0 0 18px; font-size: clamp(28px, 4vw, 46px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; text-wrap: balance; max-width: 22ch; }
+.cs-body { max-width: 62ch; margin: 0; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.6; color: var(--text-body); }
+.cs-caption { margin: 14px 0 0; color: var(--text-muted); font-size: 15px; }
+
+/* hero */
+.cs-hero { max-width: 900px; margin: 0 auto; padding: 40px var(--gutter) 0; text-align: center; }
+.cs-back { display: inline-block; margin-bottom: 28px; color: var(--text-muted); font-size: 15px; font-weight: 500; transition: color 0.2s, transform 0.2s; }
+.cs-back:hover { color: var(--accent-secondary); transform: translateX(-3px); }
+.cs-eyebrow { margin: 0 0 18px; font-size: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.cs-eyebrow span { margin: 0 8px; opacity: 0.5; }
+.cs-hero h1 { margin: 0; font-size: clamp(34px, 5.6vw, 66px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 700; text-wrap: balance; }
+.cs-lede { max-width: 58ch; margin: 22px auto 0; font-size: clamp(17px, 1.7vw, 21px); line-height: 1.55; color: var(--text-body); }
+/* project facts: plain text, no frame. Columns size to their content and spread edge to edge, so each value stays on one line. */
+.cs-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px 32px; width: calc(100% - 2 * var(--gutter)); max-width: calc(1040px - 2 * var(--gutter)); margin: 26px auto 0; padding: 0; text-align: left; }
+.cs-meta dt { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+.cs-meta dd { margin: 4px 0 0; font-size: 14px; font-weight: 500; line-height: 1.4; color: var(--text-body); white-space: nowrap; }
+
+/* cover: the mockup on a grey stage, bleeding off the bottom */
+.cs-cover {
+  position: relative; max-width: calc(1040px - 2 * var(--gutter)); height: clamp(300px, 52vw, 560px); margin: 44px auto 0; overflow: hidden;
+  background: var(--surface-card-media); border: 1px solid var(--border-card); border-radius: 24px; width: calc(100% - 2 * var(--gutter));
+}
+.cs-cover img { position: absolute; top: 36px; left: 50%; width: min(70%, 520px); height: auto; transform: translateX(-50%); border-radius: 16px 16px 0 0; box-shadow: 0 -8px 40px -12px rgba(17, 17, 18, 0.35); }
+
+/* tl;dr */
+.cs-tldr { padding: 30px 32px; background: var(--surface-card); border: 1px solid var(--border-card); border-radius: 24px; }
+.cs-tldr p:last-child { margin: 0; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; color: var(--text-body); }
+.cs-tldr strong { color: var(--text-primary); }
+
+/* problem */
+.cs-pains { list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.cs-pains li { padding: 10px 18px; border: 1px solid var(--border-card); border-radius: 999px; font-weight: 500; background: var(--surface-page); }
+.cs-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 32px; }
+.cs-stat { padding: 26px; background: var(--surface-card); border: 1px solid var(--border-card); border-radius: 24px; }
+.cs-stat strong { display: block; font-size: clamp(40px, 5vw, 60px); line-height: 1; letter-spacing: -0.03em; color: var(--accent); }
+.cs-stat p { margin: 14px 0 12px; line-height: 1.45; color: var(--text-body); }
+.cs-stat small { color: var(--text-muted); font-size: 13px; }
+
+/* pipeline flow */
+.cs-flow { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: step; }
+.cs-flow li { position: relative; padding: 20px 18px; background: var(--surface-card); border: 1px solid var(--border-card); border-radius: 20px; }
+.cs-flow li:not(:last-child)::after { content: "\2192"; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); z-index: 1; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: var(--surface-page); border: 1px solid var(--border-card); font-size: 13px; color: var(--text-muted); }
+.cs-flow span { display: block; font-size: 19px; font-weight: 700; }
+.cs-flow small { display: block; margin-top: 6px; color: var(--text-muted); font-size: 14px; }
+
+/* stages */
+.cs-stages { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 32px; }
+.cs-stage { padding: 28px; background: var(--surface-card); border: 1px solid var(--border-card); border-radius: 24px; }
+.cs-num { margin: 0 0 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+.cs-big { margin: 0 0 14px; font-size: clamp(30px, 3.4vw, 42px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+.cs-big span { display: block; margin-top: 6px; font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--text-muted); }
+.cs-stage h3 { margin: 0 0 8px; font-size: 21px; line-height: 1.2; }
+.cs-stage p:last-child { margin: 0; color: var(--text-body); line-height: 1.5; }
+
+/* insight: a dark band for contrast */
+.cs-insight { padding: clamp(32px, 5vw, 60px); background: var(--text-primary); color: var(--surface-page); border-radius: 32px; text-align: center; }
+.cs-insight h2 { max-width: 20ch; margin: 0 auto 18px; color: var(--surface-page); }
+.cs-insight p:last-child { max-width: 62ch; margin: 0 auto; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.6; color: rgba(255, 255, 255, 0.78); }
+.cs-insight .cs-kicker { color: var(--color-pink-300); }
+
+/* strategy */
+.cs-pillar { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border-subtle); }
+.cs-pillar-text .cs-num { color: var(--accent); }
+.cs-pillar h3 { margin: 0 0 12px; font-size: clamp(24px, 2.6vw, 32px); letter-spacing: -0.02em; }
+.cs-pillar p { color: var(--text-body); line-height: 1.6; }
+.cs-steps, .cs-rules, .cs-landed { list-style: none; margin: 18px 0 0; padding: 0; }
+.cs-steps li { padding: 12px 0; border-top: 1px solid var(--border-subtle); color: var(--text-body); line-height: 1.5; }
+.cs-steps strong { display: block; margin-bottom: 2px; color: var(--text-primary); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+.cs-rules li { margin-top: 10px; padding: 12px 16px; border-radius: 14px; background: var(--surface-card); border: 1px solid var(--border-card); font-weight: 500; }
+.cs-badge { display: inline-block; margin: 6px 0 0; padding: 7px 14px; border-radius: 999px; background: var(--surface-card-media); font-size: 14px; font-weight: 500; color: var(--text-body) !important; }
+.cs-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* image placeholders (swap for real screens) */
+.cs-ph { position: relative; overflow: hidden; border-radius: 22px; background: var(--surface-card-media); border: 1px dashed var(--border-card); color: var(--text-muted); font-size: 14px; }
+.cs-ph::before { content: ""; display: block; padding-top: 118%; }
+.cs-pillar > .cs-ph::before { padding-top: 78%; }
+.cs-ph span { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 12px; }
+
+/* outcome */
+.cs-landed li { display: grid; gap: 4px; padding: 18px 0; border-top: 1px solid var(--border-subtle); color: var(--text-body); }
+.cs-landed li:last-child { border-bottom: 1px solid var(--border-subtle); }
+.cs-landed strong { color: var(--text-primary); font-size: 19px; }
+
+/* up next */
+.cs-next { max-width: 780px; margin: 0 auto; padding: 84px var(--gutter) 72px; text-align: center; }
+.cs-next-card { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 26px 28px; text-align: left; font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; letter-spacing: -0.02em; background: var(--surface-card); border: 1px solid var(--border-card); border-radius: 24px; transition: transform 0.3s, box-shadow 0.3s; }
+.cs-next-card:hover { transform: translateY(-4px); box-shadow: 0 22px 36px -24px rgba(17, 17, 18, 0.35); }
+.cs-next-card svg { flex: none; transition: transform 0.3s, color 0.3s; }
+.cs-next-card:hover svg { transform: translate(3px, -3px); color: var(--accent-secondary); }
+.cs-cta { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.cs-cta .btn { display: inline-block; }
+
+@media (max-width: 800px) {
+  .cs-meta dd { white-space: normal; }
+  .cs-meta > div { flex: 1 1 40%; }
+  .cs-stats, .cs-stages { grid-template-columns: 1fr; }
+  .cs-flow { grid-template-columns: 1fr 1fr; }
+  .cs-flow li:not(:last-child)::after { display: none; }
+  .cs-pillar { grid-template-columns: 1fr; gap: 22px; }
+}
