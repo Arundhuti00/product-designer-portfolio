@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Icon Studio: A Skill That Builds Icon Libraries — Arundhuti</title>
-  <meta name="description" content="I built a Claude skill that turns a style and an icon list into a consistent, production-ready icon set, then used it to make three sets in three very different styles.">
+  <meta name="description" content="I built a Claude skill that turns a style and an icon list into a consistent icon set, then used it to make three libraries in three very different styles.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=8">
-  <link rel="stylesheet" href="../css/case-study.css?v=11">
+  <link rel="stylesheet" href="../css/case-study.css?v=17">
 </head>
 <body class="cs-page">
   <header class="nav">
@@ -23,250 +23,144 @@
   </header>
 
   <main>
-    <!-- 1. Hero -->
+    <!-- Hero -->
     <section class="cs-hero">
       <a class="cs-back" href="../index.html#work">&larr; My Work</a>
-      <p class="cs-eyebrow">Claude skill <span>|</span> AI workflow <span>|</span> Design systems</p>
+      <p class="cs-eyebrow">Claude skill <span>&middot;</span> AI workflow <span>&middot;</span> Design systems</p>
       <h1>Icon Studio: A Skill That Builds Icon Libraries</h1>
-      <p class="cs-lede">Getting AI to produce <em>consistent</em> design output is a systems problem, not a prompting problem. I built the skill that encodes that system, then used it to make three icon sets in three very different styles.</p>
+      <p class="cs-lede">I built a Claude skill that turns a style and an icon list into a consistent icon set, then used it to make three libraries in three very different styles.</p>
+      <div class="cs-hero-actions">
+        <a class="btn btn-primary btn-gh" href="https://github.com/Arundhuti00/icon-studio" target="_blank" rel="noopener" data-cat="The skill itself. Open source. I checked: no fish."><svg class="gh-mark" viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> Get the skill on GitHub</a>
+        <a class="btn-link" href="#live">Browse the libraries &darr;</a>
+      </div>
     </section>
 
-    <div class="cs-cover cs-cover-ph" role="img" aria-label="Image placeholder: the three sets side by side on one strip" data-cat="Three sets. One skill. Zero drifting icons.">
-      <span>Hero: the three sets side by side on one strip</span>
-    </div>
-    <dl class="cs-meta">
+    <dl class="cs-meta cs-meta-top">
       <div><dt>Role</dt><dd>Solo</dd></div>
-      <div><dt>Timeline</dt><dd>Four days, 14&ndash;17 Oct 2026</dd></div>
-      <div><dt>Tools</dt><dd>Claude, Node + resvg, Figma, GitHub</dd></div>
-      <div><dt>Output</dt><dd>282 icons, 3 sets</dd></div>
+      <div><dt>Timeline</dt><dd>4 days, Oct 2026</dd></div>
+      <div><dt>Tools</dt><dd>Claude, Node, Figma, GitHub</dd></div>
+      <div><dt>Output</dt><dd>282 icons, 3 libraries</dd></div>
     </dl>
 
-    <!-- 2. TL;DR -->
+    <!-- 01 Problem -->
     <section class="cs-section">
-      <div class="cs-tldr" data-cat="The 30-second version. I approve.">
-        <p class="cs-kicker">TL;DR</p>
-        <p>I built <strong>icon-studio</strong>, a Claude skill that turns a style (rules or reference images) and an icon list into a consistent, production-ready icon set: hand-written SVGs, checked by script against a locked rules file, previewed on a fixed house-style page and exported as SVG + PNG. I then used it to make three sets in three very different styles.</p>
-      </div>
+      <p class="cs-kicker">01 &middot; Problem</p>
+      <h2>Designers need icons that match. Almost nothing on offer does.</h2>
+      <p class="cs-body">A designer pulls icons from many places: packs, plugins, stock sites, one-off downloads. Put together, they never match: different strokes, different detail, different sizes. Only a few open-source libraries get this right, and they rarely fit the style of your own product.</p>
 
-      <div class="cs-tablewrap">
-        <table class="cs-table">
-          <thead><tr><th></th><th>Restaurant Folk Icons</th><th>Travel Ink</th><th>Celestial Glass</th></tr></thead>
-          <tbody>
-            <tr><th>Icons</th><td>128</td><td>90</td><td>64</td></tr>
-            <tr><th>Categories</th><td>9</td><td>9</td><td>7</td></tr>
-            <tr><th>Style</th><td>Flat two-tone folk, translucent layers</td><td>Hand-drawn ink line, two accents</td><td>Gradients, blur, grain, brown + blue</td></tr>
-            <tr><th>Grid</th><td>64 px</td><td>48 px</td><td>64 px</td></tr>
-            <tr><th>Rule versions</th><td>v1 &rarr; v2.2</td><td>v1.0 &rarr; v2.1</td><td>v1 &rarr; v2.2</td></tr>
-            <tr><th>Live preview</th><td><a class="cs-tlink" href="https://arundhuti00.github.io/icon-studio/examples/restaurant-folk-icons/" target="_blank" rel="noopener">Open &#8599;</a></td><td><a class="cs-tlink" href="https://arundhuti00.github.io/icon-studio/examples/travel-ink-icons/" target="_blank" rel="noopener">Open &#8599;</a></td><td><a class="cs-tlink" href="https://arundhuti00.github.io/icon-studio/examples/celestial-glass-icons/" target="_blank" rel="noopener">Open &#8599;</a></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="cs-try">
-        <p class="cs-kicker">Try it</p>
-        <p class="cs-body">The skill is open source on GitHub under an MIT licence, with a README, install steps and all three sets as examples. <a class="cs-inline" href="#live">Or preview them right here &darr;</a></p>
-        <ul class="cs-links">
-          <li><a href="https://github.com/Arundhuti00/icon-studio" target="_blank" rel="noopener" data-cat="The skill itself. Open source. I checked: no fish.">icon-studio <span>GitHub</span></a></li>
-          <li><a href="https://arundhuti00.github.io/icon-studio/examples/restaurant-folk-icons/" target="_blank" rel="noopener">Restaurant <span>Live preview</span></a></li>
-          <li><a href="https://arundhuti00.github.io/icon-studio/examples/travel-ink-icons/" target="_blank" rel="noopener">Travel <span>Live preview</span></a></li>
-          <li><a href="https://arundhuti00.github.io/icon-studio/examples/celestial-glass-icons/" target="_blank" rel="noopener">Celestial <span>Live preview</span></a></li>
-        </ul>
+      <div class="cs-problem-2" data-cat="Hallucinated icons. I once hallucinated a mouse. It was a sock.">
+        <p class="cs-kicker">And AI doesn't fix it</p>
+        <p class="cs-body">Ask an AI for &ldquo;icons in this style&rdquo; and it hallucinates: every icon invents its own stroke, detail and size. By the tenth icon, the family no longer looks like one person drew it. Better prompts don't fix this. Consistency has to be built into the process.</p>
       </div>
     </section>
 
-    <!-- 3. The problem -->
+    <!-- 02 Solution -->
     <section class="cs-section">
-      <p class="cs-kicker">The problem</p>
-      <h2>A nice first icon, then a drifting set.</h2>
-      <p class="cs-body">Asking an AI for &ldquo;icons in this style&rdquo; gets you a nice first icon and a drifting set. Each icon invents its own stroke, detail level, colours and size, so the family stops looking like one person drew it.</p>
+      <p class="cs-kicker">02 &middot; Solution</p>
+      <h2>Make the rules the product.</h2>
+      <p class="cs-body">icon-studio is a Claude skill that writes every style decision into one locked rules file and checks each icon against it before it ships, so the AI can't improvise its way off-style.</p>
 
-      <h3 class="cs-sub">What I wanted instead</h3>
-      <div class="cs-duo">
-        <article class="cs-stage"><p class="cs-num">01</p><h3>Consistency by construction</h3><p>Every number (grid, stroke, palette, shape budget) lives in one file, and no icon gets an exception.</p></article>
-        <article class="cs-stage"><p class="cs-num">02</p><h3>Verifiable output</h3><p>Checks a script can run, not just &ldquo;looks fine to me&rdquo;.</p></article>
-        <article class="cs-stage"><p class="cs-num">03</p><h3>Reusable across styles</h3><p>The same process should work for a flat folk set and a sketchy line set.</p></article>
-        <article class="cs-stage"><p class="cs-num">04</p><h3>Designer-ready delivery</h3><p>Real SVGs I can copy into Figma, PNGs, and a page to review them on.</p></article>
+      <div class="cs-insight cs-hl" data-cat="The one rule that holds the whole library up.">
+        <p class="cs-kicker">The critical rule</p>
+        <h2>Anchors first.</h2>
+        <p>Four of the hardest icons are drawn and approved before the rules lock.</p>
       </div>
+
+      <ul class="cs-rules3">
+        <li><h3>One rules file.</h3><p>Grid, stroke, palette and shape budget live in one place. No icon gets an exception.</p></li>
+        <li><h3>Automatic checks.</h3><p>A script lints every icon, and contact sheets show each one at 16 px and in silhouette.</p></li>
+        <li><h3>Ready for Figma.</h3><p>A preview page with copy per icon and &ldquo;Copy all&rdquo;, which pastes into Figma as named frames.</p></li>
+      </ul>
+
+      <figure class="cs-wf" aria-label="icon-studio workflow: two review gates">
+        <ol>
+          <li><small>Input</small><span>Style + icon list</span></li>
+          <li><small>Step 1</small><span>Draw the 4 anchors</span></li>
+          <li class="is-gate"><small>Gate A</small><span>Check anchors against the references</span></li>
+          <li><small>Step 2</small><span>Rules lock</span></li>
+          <li><small>Step 3</small><span>Draw in batches</span></li>
+          <li><small>Step 4</small><span>Lint + contact sheets</span></li>
+          <li class="is-gate"><small>Gate B</small><span>Check every batch</span></li>
+          <li><small>Ship</small><span>SVG + PNG + preview page</span></li>
+        </ol>
+        <figcaption class="cs-caption">Rules lock only after the anchors pass; every batch is checked before it ships.</figcaption>
+      </figure>
     </section>
 
-    <!-- 5. Building the skill -->
+    <!-- 03 Process -->
     <section class="cs-section">
-      <p class="cs-kicker">Building the skill</p>
-      <h2>The rules are the product.</h2>
-      <p class="cs-body">A set stays consistent because every decision is written down once and checked mechanically.</p>
-
-      <div class="cs-ph cs-wide" role="img" aria-label="Image placeholder: icon-studio workflow: two review gates"><span>icon-studio workflow: two review gates</span></div>
-      <p class="cs-caption">Gate A checks the four anchors against the references before anything else is drawn; Gate B repeats the checks for every batch.</p>
-
-      <h3 class="cs-sub">Key decisions, and the failure each one prevents</h3>
-      <div class="cs-decs" role="table" aria-label="Key decisions">
-        <div class="cs-dec cs-dec-head" role="row"><p role="columnheader">Decision</p><p role="columnheader">What it does</p><p role="columnheader">Prevents</p></div>
-        <div class="cs-dec" role="row"><p class="cs-dec-name" role="cell"><code>rules.json</code> as the single source of truth</p><p role="cell"><small>What it does</small>Grid, stroke, palette, keylines, shape budget live in one file; a matching <code>RULES.md</code> for humans, with a do-not-copy list per reference</p><p role="cell"><small>Prevents</small>Icons inventing their own exceptions; copying the reference instead of its style</p></div>
-        <div class="cs-dec" role="row"><p class="cs-dec-name" role="cell">Anchors before the set (Gate A)</p><p role="cell"><small>What it does</small>4 icons spanning the hardest shapes are drawn first; rules lock only after they pass</p><p role="cell"><small>Prevents</small>Rules being decided halfway through, which is where sets drift</p></div>
-        <div class="cs-dec" role="row"><p class="cs-dec-name" role="cell">Lint script</p><p role="cell"><small>What it does</small>Checks viewBox, colours, grid snapping, stroke widths, shape count, forbidden elements</p><p role="cell"><small>Prevents</small>Off-palette colours, off-grid points, over-detailed icons</p></div>
-        <div class="cs-dec" role="row"><p class="cs-dec-name" role="cell">Contact sheets (Gate B)</p><p role="cell"><small>What it does</small>Every icon at 72, 24 and 16 px, in light, dark and silhouette</p><p role="cell"><small>Prevents</small>Icons that only read at large sizes, uneven optical weight</p></div>
-        <div class="cs-dec" role="row"><p class="cs-dec-name" role="cell">Every rule tied to a failure</p><p role="cell"><small>What it does</small>Each numbered rule names the mistake it exists to stop</p><p role="cell"><small>Prevents</small>Vague guidance the AI ignores</p></div>
-        <div class="cs-dec" role="row"><p class="cs-dec-name" role="cell">Render destination is always asked</p><p role="cell"><small>What it does</small>Preview page, Figma, or both; never picked silently</p><p role="cell"><small>Prevents</small>Work landing somewhere I didn't want it</p></div>
-        <div class="cs-dec" role="row"><p class="cs-dec-name" role="cell">Fixed preview page</p><p role="cell"><small>What it does</small>A verbatim build script produces the same grayscale, Open Sans page for every set, with sticky controls, copy per icon and &ldquo;Copy all&rdquo; for Figma</p><p role="cell"><small>Prevents</small>Every set getting a different, restyled page</p></div>
-        <div class="cs-dec" role="row"><p class="cs-dec-name" role="cell">Honesty rule</p><p role="cell"><small>What it does</small>The AI says it can't judge real-screen hinting and asks me to check on a device</p><p role="cell"><small>Prevents</small>Overclaiming quality</p></div>
-      </div>
-
-      <h3 class="cs-sub">Added after launch: 16 px variants</h3>
-      <p class="cs-body">I noticed the skill never produced icons that held up at 16 px. The cause: icons were drawn once at 24 px and scaled down, so details blurred. I chose the proper fix over lowering the export size: a dedicated, hand-drawn 16 px version of every icon.</p>
-      <div class="cs-duo">
-        <article class="cs-stage"><p class="cs-num">01</p><h3>Separate small-size rules</h3><p>A lighter 1 px stroke and a budget of 5 shapes, in their own block of the rules file (rule 13).</p></article>
-        <article class="cs-stage"><p class="cs-num">02</p><h3>Redrawn, not scaled</h3><p>Each 16 px icon is drawn fresh, then checked against its 24 px master.</p></article>
-        <article class="cs-stage"><p class="cs-num">03</p><h3>New checks</h3><p>The lint script checks the 16 px set too, and a pair sheet shows each 16 px icon beside its 24 px version.</p></article>
-        <article class="cs-stage"><p class="cs-num">04</p><h3>Preview and Figma</h3><p>A 24 px / 16 px switch in the sticky bar, and the two sizes become variants of one Figma component.</p></article>
-      </div>
-      <p class="cs-caption">The three example sets were made before this update, so they ship at their main size only.</p>
-    </section>
-
-    <!-- 6. Three sets -->
-    <section class="cs-section">
-      <p class="cs-kicker">Three sets, three styles</p>
-      <h2>Each set stress-tested a different part of the system.</h2>
-      <p class="cs-body">The rule version history is the clearest record of what I caught and fixed.</p>
-
-      <article class="cs-set">
-        <header>
-          <p class="cs-num">Set 1 &middot; 128 icons</p>
-          <h3>Restaurant Folk Icons</h3>
-          <p class="cs-set-style">Flat two-tone folk</p>
-        </header>
-        <p class="cs-body"><strong>Brief:</strong> Indian-folk menu icons (burgers, chai, biryani handi, utensils), palette sampled from a pink/red/orange cocktail-menu reference.</p>
-        <p class="cs-sub2">What changed</p>
-        <ul class="cs-changes">
-          <li><span class="cs-ver">v1 &rarr; v2</span><p>The first pass came out as spot illustration (19&ndash;31 shapes per icon, sparkles, shadows, tilt). I cut it to 12 shapes, two tones per part and no decoration, so it reads as icons.</p></li>
-          <li><span class="cs-ver">v2.1</span><p>Added translucent layering from the reference, capped at 3 overlaps and only on six named icons.</p></li>
-          <li><span class="cs-ver">v2.2</span><p>Every shade must start and end on the object's own edge or seam. Driven by a croissant that took three redraws before it read as five segments rather than overlapping blobs. This became a rule in the skill itself.</p></li>
-          <li><span class="cs-ver">Bug</span><p>The page script stripped <code>width</code>/<code>height</code> from inner rects, so the burger patty and cocktail stem vanished on the page and in copied SVG. Fixed in the skill's build script.</p></li>
-        </ul>
-        <p class="cs-sub2">After v1 of this case study</p>
-        <ul class="cs-changes">
-          <li><span class="cs-ver">128 icons</span><p><strong>Scaled to 128 icons in 9 categories:</strong> Food, Drinks, Dietary tags, Service, Ordering and payment, Amenities, Info and contact, Staff and kitchen, Utility. Grouped by category on the page, never by drawing batch.</p></li>
-          <li><span class="cs-ver">3 fixes</span><p><strong>Three fixes from my review:</strong> the ice-cream cone's waffle lines stopped short, so they now run edge to edge; the tandoori chicken leg had no bone, so the meat shrank to reveal one; the smoothie's band and straw were misaligned with the tapered cup.</p></li>
-        </ul>
-        <div class="cs-pair cs-pair-wide">
-          <div class="cs-ph " role="img" aria-label="Image placeholder: Restaurant v1 vs v2: illustration vs icon"><span>Restaurant v1 vs v2: illustration vs icon</span></div>
-          <div class="cs-ph " role="img" aria-label="Image placeholder: Croissant redraws, 1 to 3"><span>Croissant redraws, 1 to 3</span></div>
+      <p class="cs-kicker">03 &middot; Process</p>
+      <h2>Three styles to stress-test it.</h2>
+      <p class="cs-body">I ran the skill on three very different styles. Each one pushed me to fix the system, not just the icons.</p>
+      <div class="cs-explore" id="live" data-cat="Three libraries, one view. Scroll it. I dare you.">
+        <div class="cs-setcards">
+        <article class="cs-setcard">
+          <span class="cs-setcard-img"><img src="https://arundhuti00.github.io/icon-studio/examples/restaurant-folk-icons/preview.png" alt="Restaurant Folk Icons preview" loading="lazy" onerror="this.parentNode.remove()"></span>
+          <span class="cs-setcard-body">
+            <span class="cs-setcard-name">Restaurant Folk Icons</span>
+            <span class="cs-setcard-meta"><span>128 icons</span><span>Flat two-tone folk</span></span>
+            <span class="cs-setcard-line">The first pass came out as illustrations, with sparkles, shadows and tilt. I capped each icon at 12 shapes and two tones so it reads as an icon.</span>
+          </span>
+        </article>
+        <article class="cs-setcard">
+          <span class="cs-setcard-img"><img src="https://arundhuti00.github.io/icon-studio/examples/travel-ink-icons/preview.png" alt="Travel Ink preview" loading="lazy" onerror="this.parentNode.remove()"></span>
+          <span class="cs-setcard-body">
+            <span class="cs-setcard-name">Travel Ink</span>
+            <span class="cs-setcard-meta"><span>90 icons</span><span>Hand-drawn ink line</span></span>
+            <span class="cs-setcard-line">Icons are drawn clean on the grid, then a script adds the hand-drawn wobble, so the line stays consistent and editable.</span>
+          </span>
+        </article>
+        <article class="cs-setcard">
+          <span class="cs-setcard-img"><img src="https://arundhuti00.github.io/icon-studio/examples/celestial-glass-icons/preview.png" alt="Celestial Glass preview" loading="lazy" onerror="this.parentNode.remove()"></span>
+          <span class="cs-setcard-body">
+            <span class="cs-setcard-name">Celestial Glass</span>
+            <span class="cs-setcard-meta"><span>64 icons</span><span>Gradients and grain</span></span>
+            <span class="cs-setcard-line">I cut the palette to brown and blue only, then added soft gradients and grain so it feels like glass and ceramic.</span>
+          </span>
+        </article>
         </div>
-      </article>
 
-      <article class="cs-set">
-        <header>
-          <p class="cs-num">Set 2 &middot; 90 icons</p>
-          <h3>Travel Ink</h3>
-          <p class="cs-set-style">Hand-drawn line</p>
-        </header>
-        <p class="cs-body"><strong>Brief:</strong> a full travel library, starting with luggage and documents, in the style of a bike illustration: dark grey ink with pop accents.</p>
-        <p class="cs-sub2">What changed</p>
-        <ul class="cs-changes">
-          <li><span class="cs-ver">v1.1</span><p>I spotted the passport was the only filled icon. It traced back to a one-off rule exception, so I removed the exception rather than patching the icon.</p></li>
-          <li><span class="cs-ver">v2.0</span><p>Added a hand-drawn line. Icons are drawn clean on the grid, then a script generates the sketched version, so the wobble is consistent and the source stays editable.</p></li>
-          <li><span class="cs-ver">v2.1</span><p>Dropped yellow; every icon must use both green and tangerine.</p></li>
-          <li><span class="cs-ver">Flagged</span><p>The striped duffel read as a basket; the boarding pass and ID card shared a silhouette.</p></li>
-        </ul>
-        <p class="cs-sub2">After v1 of this case study</p>
-        <ul class="cs-changes">
-          <li><span class="cs-ver">90 icons</span><p><strong>Scaled from 10 to 90 icons in 9 categories:</strong> Luggage and documents, Transport, Navigation, Stay, Places and landmarks, Gear and essentials, Activities, Booking and money, Weather. All 80 new icons follow v2.1, with both accents in every icon.</p></li>
-          <li><span class="cs-ver">Metaphors</span><p><strong>Hard metaphors under the rules:</strong> departure and arrival use a level plane with an up or down arrow, because the rules forbid rotation; delay became an hourglass so it doesn't clash with the clock; the waterfall took the most attempts.</p></li>
-        </ul>
-        <div class="cs-pair cs-pair-wide">
-          <div class="cs-ph " role="img" aria-label="Image placeholder: Travel: clean source vs sketched output"><span>Travel: clean source vs sketched output</span></div>
-          <div class="cs-ph " role="img" aria-label="Image placeholder: Travel Ink set"><span>Travel Ink set</span></div>
-        </div>
-      </article>
-
-      <article class="cs-set">
-        <header>
-          <p class="cs-num">Set 3 &middot; 64 icons</p>
-          <h3>Celestial Glass Icons</h3>
-          <p class="cs-set-style">Gradients and grain</p>
-        </header>
-        <p class="cs-body"><strong>Brief:</strong> space icons from two references, a glass cocktail illustration and blue ceramics.</p>
-        <p class="cs-sub2">What changed</p>
-        <ul class="cs-changes">
-          <li><span class="cs-ver">v2</span><p>Stronger gradients, blended interiors, soft edges, glow on luminous objects, fractal grain, and a palette cut to brown and blue only.</p></li>
-          <li><span class="cs-ver">v2.1</span><p>Browns shifted golden.</p></li>
-          <li><span class="cs-ver">Known limit</span><p>Figma imports the blur but drops the grain, so the rules file says so.</p></li>
-        </ul>
-        <p class="cs-sub2">After v1 of this case study</p>
-        <ul class="cs-changes">
-          <li><span class="cs-ver">64 icons</span><p><strong>Scaled from 17 to 64 icons in 7 categories:</strong> the original celestial bodies plus Spacecraft, Astronaut gear, Observation and science, Launch and mission, Life in space, Sci-fi and fun.</p></li>
-          <li><span class="cs-ver">v2.2</span><p><strong>A scoped exception:</strong> simple eyes are allowed only on the alien, robot and space dog, because without them those icons didn't read. The no-faces rule stays for everything else.</p></li>
-          <li><span class="cs-ver">Redraws</span><p><strong>From my review:</strong> space boots read as one boot, and re-entry read as a swing.</p></li>
-          <li><span class="cs-ver">Bug</span><p><strong>Caught at scale:</strong> with 60+ icons on one page, gradient and clip-path ids collided and silently hid interior details. Fixed by giving each kind its own id prefix.</p></li>
-        </ul>
-        <div class="cs-pair cs-pair-wide">
-          <div class="cs-ph " role="img" aria-label="Image placeholder: Celestial v1 vs v2: palette and gradients"><span>Celestial v1 vs v2: palette and gradients</span></div>
-          <div class="cs-ph " role="img" aria-label="Image placeholder: Celestial Glass set"><span>Celestial Glass set</span></div>
-        </div>
-      </article>
-    </section>
-
-    <!-- Live preview: the real icon libraries, scrollable right here -->
-    <section class="cs-section" id="live">
-      <p class="cs-kicker">Live preview</p>
-      <h2>Scroll the libraries right here.</h2>
-      <p class="cs-body">These are the real preview pages, running live from GitHub Pages. Switch sets, scroll, search, copy an icon.</p>
-
-      <div class="cs-viewer" data-cat="A whole library, living inside a page. Scroll it. I dare you.">
-        <div class="cs-viewer-bar">
-          <div class="cs-tabs" role="tablist" aria-label="Icon sets">
-            <button type="button" role="tab" aria-selected="true" data-src="https://arundhuti00.github.io/icon-studio/examples/restaurant-folk-icons/">Restaurant <small>128</small></button>
-            <button type="button" role="tab" aria-selected="false" data-src="https://arundhuti00.github.io/icon-studio/examples/travel-ink-icons/">Travel <small>90</small></button>
-            <button type="button" role="tab" aria-selected="false" data-src="https://arundhuti00.github.io/icon-studio/examples/celestial-glass-icons/">Celestial <small>64</small></button>
+        <div class="cs-viewer cs-viewer-attached">
+          <div class="cs-viewer-bar">
+            <div class="cs-tabs" role="tablist" aria-label="Icon sets">
+              <button type="button" role="tab" aria-selected="true" data-src="https://arundhuti00.github.io/icon-studio/examples/restaurant-folk-icons/">Restaurant <small>128</small></button>
+              <button type="button" role="tab" aria-selected="false" data-src="https://arundhuti00.github.io/icon-studio/examples/travel-ink-icons/">Travel <small>90</small></button>
+              <button type="button" role="tab" aria-selected="false" data-src="https://arundhuti00.github.io/icon-studio/examples/celestial-glass-icons/">Celestial <small>64</small></button>
+            </div>
+            <a class="cs-viewer-open" id="viewer-open" href="https://arundhuti00.github.io/icon-studio/examples/restaurant-folk-icons/" target="_blank" rel="noopener">Open in a new tab &#8599;</a>
           </div>
-          <a class="cs-viewer-open" id="viewer-open" href="https://arundhuti00.github.io/icon-studio/examples/restaurant-folk-icons/" target="_blank" rel="noopener">Open in a new tab &#8599;</a>
-        </div>
-        <div class="cs-viewer-stage">
-          <p class="cs-viewer-loading">Loading the live preview&hellip;</p>
-          <iframe id="viewer-frame" title="Live icon library preview" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <div class="cs-viewer-stage">
+            <p class="cs-viewer-loading">Loading the live preview&hellip;</p>
+            <iframe id="viewer-frame" title="Live icon library preview" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- 7. How I directed the AI -->
-    <section class="cs-section">
-      <p class="cs-kicker">How I directed the AI</p>
-      <h2>Five habits made it a system, not a one-off.</h2>
+      <h3 class="cs-sub">How I worked with the AI</h3>
       <ol class="cs-habits">
-        <li><h3>Fix the rule, not the icon.</h3><p>When something looked wrong, I asked whether it was a one-off or a gap in the rules. The passport exception and the croissant both became rule changes that apply to every future set.</p></li>
-        <li><h3>Review rendered output, not code.</h3><p>I judged contact sheets, silhouettes and the live page. That is how I caught the missing burger patty, which no lint check would have found.</p></li>
-        <li><h3>Write taste down as constraints.</h3><p>&ldquo;Fewest parts when unsure&rdquo;, &ldquo;no beige&rdquo;, &ldquo;group by category, never by batch&rdquo; are subjective calls turned into checkable rules.</p></li>
-        <li><h3>Feed lessons back into the tool.</h3><p>Each set improved the skill: the layering rule, the fixed preview page, the rect bug fix and the &ldquo;Copy all&rdquo; for Figma all came from using it.</p></li>
-        <li><h3>Ship it as a product.</h3><p>I published the skill with a README, install steps, a licence and worked examples, and checked the public files for private details first, such as reference sources and my own feedback notes.</p></li>
+        <li><h3>Fix the rule, not the icon.</h3><p>A croissant took three redraws, so I added a rule: every shade follows the object's own edges. It now applies to every set.</p></li>
+        <li><h3>Review renders, not code.</h3><p>I caught a burger patty that vanished from the page because of a build bug. No automated check had flagged it.</p></li>
+        <li><h3>Feed lessons back into the skill.</h3><p>The layering rule, the preview page and Figma &ldquo;Copy all&rdquo; all came from using the skill on real sets.</p></li>
       </ol>
     </section>
 
-    <!-- 8. Outcome -->
+    <!-- 04 Outcome -->
     <section class="cs-section">
-      <div class="cs-insight" data-cat="Two hundred and eighty-two icons. Still no fish.">
-        <p class="cs-kicker">Outcome</p>
-        <h2>282 icons across three styles, from one skill.</h2>
-        <p>282 icons across three styles and 25 categories, all produced by the same skill. Per set, only the rules file and page config changed, plus one set-specific script (the sketch generator for Travel). The skill and all three libraries are public on GitHub, each library with its SVGs, rules file and a live preview page.</p>
-      </div>
+      <p class="cs-kicker">04 &middot; Outcome</p>
+      <h2>One skill, as many libraries as you want to build.</h2>
+      <p class="cs-body">All three libraries here came from the same skill; only the rules file changed between them. Give it a different style and it builds a different library, as many as you need. The skill is open source, with a README, install steps and the three sets as examples.</p>
 
-      <h3 class="cs-sub">The tool in use</h3>
-      <div class="cs-trio">
-        <div class="cs-ph " role="img" aria-label="Image placeholder: Preview page with the sticky bar"><span>Preview page with the sticky bar</span></div>
-        <div class="cs-ph " role="img" aria-label="Image placeholder: Contact sheet with silhouette view"><span>Contact sheet with silhouette view</span></div>
-        <div class="cs-ph " role="img" aria-label="Image placeholder: Copy all pasting into Figma (clip)"><span>Copy all pasting into Figma (clip)</span></div>
-        <div class="cs-ph " role="img" aria-label="Image placeholder: 16 px vs 24 px pair sheet"><span>16 px vs 24 px pair sheet</span></div>
-        <div class="cs-ph " role="img" aria-label="Image placeholder: GitHub repo README"><span>GitHub repo README</span></div>
-      </div>
+      <aside class="cs-cta-card" data-cat="Go on. Install it. Make me an icon of a fish.">
+        <h3>Use icon-studio in your own Claude</h3>
+        <p>Give it a style and an icon list, and it builds a consistent set you can paste into Figma.</p>
+        <a class="btn btn-primary btn-gh" href="https://github.com/Arundhuti00/icon-studio" target="_blank" rel="noopener"><svg class="gh-mark" viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> Get the skill on GitHub</a>
+        <small>MIT licence &middot; Works in Claude.ai and Claude Code</small>
+      </aside>
 
-      <h3 class="cs-sub">Status and what's next</h3>
-      <ul class="cs-landed">
-        <li><strong>Published</strong> <a class="cs-inline" href="https://github.com/Arundhuti00/icon-studio" target="_blank" rel="noopener">github.com/Arundhuti00/icon-studio</a>, MIT licence, with live previews on GitHub Pages.</li>
-        <li><strong>Figma hand-off tested</strong> &ldquo;Copy all&rdquo; pastes as a grid of frames, one per icon, named and spaced correctly.</li>
-        <li><strong>16 px</strong> Built into the skill; the three example sets predate it and ship at their main size only.</li>
-        <li><strong>Still open</strong> A real-device check of the icons at 16&ndash;24 px; the skill can't judge screen hinting itself.</li>
-      </ul>
+      <p class="cs-feedback" data-cat="Be kind. She reads every single one.">Tried icon-studio? I'd love to hear how you found it: what worked, what didn't, and what you'd build with it. <a class="cs-inline" href="mailto:ad.arundhuti@gmail.com?subject=icon-studio%20feedback">Share your feedback &#8599;</a></p>
     </section>
 
-    <!-- 9. Up next -->
+    <!-- Up next -->
     <section class="cs-next">
       <p class="cs-kicker">Up next</p>
       <a class="cs-next-card" href="splitshare.html" data-cat="Next: splitting bills without the maths.">
@@ -293,25 +187,21 @@
     })();
   </script>
   <script>
-    // live preview viewer: loads the iframe when it scrolls into view, tabs switch sets
+    // the toggle in the preview bar switches which library is shown
     (function () {
       var frame = document.getElementById('viewer-frame'), open = document.getElementById('viewer-open');
       var tabs = [].slice.call(document.querySelectorAll('.cs-tabs button')), loaded = false, current = tabs[0].dataset.src;
-      function load(src) {
-        current = src; open.href = src;
-        frame.parentNode.classList.add('is-loading');
-        frame.src = src;
-      }
+      function load() { frame.parentNode.classList.add('is-loading'); frame.src = current; }
       frame.addEventListener('load', function () { frame.parentNode.classList.remove('is-loading'); });
       tabs.forEach(function (t) {
         t.addEventListener('click', function () {
           tabs.forEach(function (o) { o.setAttribute('aria-selected', o === t); });
-          loaded = true; load(t.dataset.src);
+          current = t.dataset.src; open.href = current; loaded = true; load();
         });
       });
       new IntersectionObserver(function (e, io) {
-        if (e[0].isIntersecting && !loaded) { loaded = true; load(current); io.disconnect(); }
-      }, { rootMargin: '300px' }).observe(document.querySelector('.cs-viewer'));
+        if (e[0].isIntersecting && !loaded) { loaded = true; load(); io.disconnect(); }
+      }, { rootMargin: '300px' }).observe(document.querySelector('.cs-explore'));
     })();
   </script>
   <script type="module" src="../js/cat.js?v=3"></script>

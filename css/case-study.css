@@ -225,7 +225,7 @@
 .cs-tabs button { font: inherit; font-size: 14px; font-weight: 500; padding: 8px 16px; border: 0; border-radius: 999px; background: transparent; color: var(--text-body); cursor: pointer; transition: background 0.25s, color 0.25s, box-shadow 0.25s; }
 .cs-tabs button small { margin-left: 4px; color: var(--text-muted); font-size: 12px; }
 .cs-tabs button:hover { color: var(--text-primary); }
-.cs-tabs button[aria-selected="true"] { background: var(--surface-page); color: var(--text-primary); font-weight: 700; box-shadow: 0 2px 8px -3px rgba(17, 17, 18, 0.3); }
+.cs-tabs button[aria-selected="true"] { background: rgba(17, 17, 18, 0.09); color: var(--text-primary); font-weight: 700; box-shadow: none; }
 .cs-viewer-open { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
 .cs-viewer-open:hover { color: var(--accent-secondary); }
 .cs-viewer-stage { position: relative; height: clamp(460px, 78vh, 760px); background: var(--surface-page); }
@@ -234,3 +234,75 @@
 .cs-viewer-stage:not(.is-loading) .cs-viewer-loading { display: none; }
 .cs-viewer-stage iframe:not([src]) { visibility: hidden; }
 @media (max-width: 700px) { .cs-viewer-stage { height: 520px; } .cs-viewer-open { margin-left: auto; } }
+
+/* ---- Icon Studio v3: short showcase ---- */
+.cs-hero-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 22px; margin-top: 30px; }
+.btn-gh { display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; font-size: 17px; font-weight: 700; }
+.btn-gh .gh-mark { flex: none; }
+.btn-link { font-weight: 500; color: var(--text-body); padding: 10px 4px; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
+.btn-link:hover { color: var(--accent-secondary); border-color: var(--accent-secondary); }
+.cs-meta-top { margin-top: 44px; }
+.cs-wf { margin: 44px 0 0; }
+.cs-wf ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px 28px; }
+.cs-wf li { padding-left: 14px; border-left: 2px solid var(--border-card-hover); }
+.cs-wf li small { display: block; margin-bottom: 3px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+.cs-wf li span { display: block; font-size: 15px; font-weight: 500; line-height: 1.35; color: var(--text-primary); }
+.cs-wf li.is-gate { border-left-color: var(--accent); }
+.cs-wf li.is-gate small { color: var(--accent); }
+.cs-live { margin-top: 64px; scroll-margin-top: 90px; }
+.cs-live .cs-sub { margin-top: 0; }
+.cs-cta-card { margin-top: 36px; padding: clamp(28px, 4vw, 48px); text-align: center; border-radius: 28px; background: color-mix(in srgb, var(--accent) 9%, var(--surface-page)); border: 1.5px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+.cs-cta-card h3 { margin: 0 0 10px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; }
+.cs-cta-card p { max-width: 46ch; margin: 0 auto 24px; line-height: 1.55; color: var(--text-body); font-size: 17px; }
+.cs-cta-card small { display: block; margin-top: 16px; color: var(--text-muted); font-size: 13px; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  }
+@media (max-width: 900px) {
+  }
+
+/* ---- Icon Studio v4: problem, solution bento, one merged process module ---- */
+.cs-problem-2 { margin-top: 40px; max-width: 66ch; }
+.cs-problem-2 .cs-kicker { color: var(--accent-secondary); }
+.cs-problem-2 .cs-body { max-width: 66ch; }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+}
+@media (max-width: 800px) {
+  .cs-rules3 { grid-template-columns: 1fr; gap: 6px; }
+          }
+
+/* the one highlight style on the page: the dark band (also used for "The insight" on the other case studies) */
+.cs-hl { margin-top: 36px; }
+.cs-hl h2 { max-width: none; }
+.cs-rules3 { list-style: none; margin: 36px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 36px; }
+.cs-rules3 li { padding-top: 18px; border-top: 1px solid var(--border-subtle); }
+.cs-rules3 h3 { margin: 0 0 6px; font-size: 19px; letter-spacing: -0.01em; }
+.cs-rules3 p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--text-body); }
+.cs-cta-card { background: var(--text-primary); border: 0; color: var(--surface-page); }
+.cs-cta-card h3 { color: var(--surface-page); }
+.cs-cta-card p { color: rgba(255, 255, 255, 0.78); }
+.cs-cta-card small { color: rgba(255, 255, 255, 0.55); }
+@media (max-width: 900px) { .cs-wf ol { grid-template-columns: 1fr 1fr; } }
+
+/* ---- set cards that also switch the live preview below them (one section, not two) ---- */
+.cs-explore { margin-top: 30px; scroll-margin-top: 90px; }
+.cs-setcards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.cs-setcard { display: flex; flex-direction: column; overflow: hidden; background: var(--surface-card); border: 1px solid var(--border-card); border-radius: 24px; }
+.cs-setcard-img { display: block; aspect-ratio: 4 / 3; background: var(--surface-card-media); overflow: hidden; }
+.cs-setcard-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cs-setcard-body { display: flex; flex-direction: column; gap: 6px; padding: 18px 22px 22px; }
+.cs-setcard-name { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; color: var(--text-primary); }
+.cs-setcard-meta { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; font-weight: 500; color: var(--text-muted); }
+.cs-setcard-meta span:first-child { color: var(--accent); font-weight: 700; }
+.cs-setcard-line { margin-top: 6px; font-size: 15px; line-height: 1.55; color: var(--text-body); }
+.cs-viewer-attached { margin-top: 18px; }
+.cs-viewer-title { margin: 0; font-size: 14px; color: var(--text-muted); }
+.cs-viewer-title strong { color: var(--text-primary); font-weight: 700; }
+.cs-explore .cs-viewer-stage { height: clamp(460px, 74vh, 720px); }
+@media (max-width: 900px) {
+  .cs-setcards { grid-template-columns: 1fr; }
+  .cs-explore .cs-viewer-stage { height: 520px; }
+}
+
+.cs-feedback { max-width: 56ch; margin: 28px auto 0; text-align: center; font-size: 17px; line-height: 1.6; color: var(--text-body); }
+.cs-feedback a { font-weight: 700; white-space: nowrap; }
