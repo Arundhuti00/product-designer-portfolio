@@ -26,7 +26,7 @@
   position: relative; max-width: calc(1040px - 2 * var(--gutter)); height: clamp(300px, 52vw, 560px); margin: 44px auto 0; overflow: hidden;
   background: var(--surface-card-media); border: 1px solid var(--border-card); border-radius: 24px; width: calc(100% - 2 * var(--gutter));
 }
-.cs-cover img { position: absolute; top: 36px; left: 50%; width: min(70%, 520px); height: auto; transform: translateX(-50%); border-radius: 16px 16px 0 0; box-shadow: 0 -8px 40px -12px rgba(17, 17, 18, 0.35); }
+.cs-cover img { position: absolute; top: 36px; left: 50%; width: min(70%, 520px); height: auto; transform: translateX(-50%); filter: drop-shadow(0 -6px 22px rgba(17, 17, 18, 0.28)); }   /* no CSS radius: the PNG has its own rounded corners */
 
 /* tl;dr */
 .cs-tldr { padding: 30px 32px; background: var(--surface-card); border: 1px solid var(--border-card); border-radius: 24px; }
@@ -322,7 +322,7 @@
 .cs-split .cs-meta dd { white-space: normal; }
 .cs-split-media { position: relative; overflow: hidden; background: var(--surface-card-media); border: 1px solid var(--border-card); border-radius: 24px; }
 .cs-split-media::before { content: ""; display: block; padding-top: 50%; }   /* height comes from the width, so the crop is always the same */
-.cs-split-media img { position: absolute; top: 34px; left: 50%; width: min(70%, 520px); height: auto; transform: translateX(-50%); border-radius: 16px 16px 0 0; box-shadow: 0 -8px 40px -12px rgba(17, 17, 18, 0.35); transition: transform 0.45s cubic-bezier(.2,.8,.2,1); }
+.cs-split-media img { position: absolute; top: 34px; left: 50%; width: min(70%, 520px); height: auto; transform: translateX(-50%); filter: drop-shadow(0 -6px 22px rgba(17, 17, 18, 0.28)); transition: transform 0.45s cubic-bezier(.2,.8,.2,1); }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) { .cs-split-media:hover img { transform: translateX(-50%) translateY(-8px); } }
 @media (max-width: 700px) {
   .cs-split { padding-top: 12px; gap: 28px; }
@@ -331,19 +331,19 @@
 }
 
 /* ---- cinematic hero on the Photo Quality page ---- */
-.cs-split h1 .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.04em 0.12em; margin: 0 -0.04em -0.12em; }
-.cs-split h1 .wi { display: inline-block; position: relative; transform: translateY(115%) rotate(2deg); filter: blur(10px); opacity: 0; animation: word-in 1s cubic-bezier(.16, 1, .3, 1) forwards; animation-delay: calc(var(--i) * 85ms + 200ms); }
+.cs-split h1 .w, .cs-hero-full h1 .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.04em 0.12em; margin: 0 -0.04em -0.12em; }
+.cs-split h1 .wi, .cs-hero-full h1 .wi { display: inline-block; position: relative; transform: translateY(115%) rotate(2deg); filter: blur(10px); opacity: 0; animation: word-in 1s cubic-bezier(.16, 1, .3, 1) forwards; animation-delay: calc(var(--i) * 85ms + 200ms); }
 @keyframes word-in { to { transform: none; filter: blur(0); opacity: 1; } }
 
 /* "reactive": greyed out and struck through, as the thing being left behind */
-.cs-split h1 .hl-reactive { color: var(--text-muted); animation-name: word-in, fade-grey; animation-duration: 1s, 0.6s; animation-delay: calc(var(--i) * 85ms + 200ms), 1.5s; animation-fill-mode: forwards, forwards; animation-timing-function: cubic-bezier(.16, 1, .3, 1), ease; }
-.cs-split h1 .hl-reactive::after { content: ""; position: absolute; left: -2%; right: -2%; top: 54%; height: 0.07em; border-radius: 4px; background: var(--accent-secondary); transform: scaleX(0); transform-origin: left; animation: draw 0.7s cubic-bezier(.65, 0, .35, 1) 1.55s forwards; }
+.cs-split h1 .hl-reactive, .cs-hero-full h1 .hl-reactive { color: var(--text-muted); animation-name: word-in, fade-grey; animation-duration: 1s, 0.6s; animation-delay: calc(var(--i) * 85ms + 200ms), 1.5s; animation-fill-mode: forwards, forwards; animation-timing-function: cubic-bezier(.16, 1, .3, 1), ease; }
+.cs-split h1 .hl-reactive::after, .cs-hero-full h1 .hl-reactive::after { content: ""; position: absolute; left: -2%; right: -2%; top: 54%; height: 0.07em; border-radius: 4px; background: var(--accent-secondary); transform: scaleX(0); transform-origin: left; animation: draw 0.7s cubic-bezier(.65, 0, .35, 1) 1.55s forwards; }
 @keyframes draw { to { transform: scaleX(1); } }
 @keyframes fade-grey { from { color: var(--text-primary); } to { color: var(--text-muted); } }
 
 /* "built-in": the accent pair, with an underline that draws itself */
-.cs-split h1 .hl-builtin { background: linear-gradient(95deg, var(--accent-secondary), var(--accent)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--accent); }
-.cs-split h1 .hl-builtin::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0.02em; height: 0.07em; border-radius: 4px; background: linear-gradient(95deg, var(--accent-secondary), var(--accent)); transform: scaleX(0); transform-origin: left; animation: draw 0.8s cubic-bezier(.65, 0, .35, 1) 1.9s forwards; }
+.cs-split h1 .hl-builtin, .cs-hero-full h1 .hl-builtin { background: linear-gradient(95deg, var(--accent-secondary), var(--accent)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--accent); }
+.cs-split h1 .hl-builtin::after, .cs-hero-full h1 .hl-builtin::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0.02em; height: 0.07em; border-radius: 4px; background: linear-gradient(95deg, var(--accent-secondary), var(--accent)); transform: scaleX(0); transform-origin: left; animation: draw 0.8s cubic-bezier(.65, 0, .35, 1) 1.9s forwards; }
 
 .cs-rise { opacity: 0; transform: translateY(16px); animation: rise 0.9s cubic-bezier(.16, 1, .3, 1) forwards; animation-delay: var(--d, 0ms); }
 @keyframes rise { to { opacity: 1; transform: none; } }
@@ -360,7 +360,7 @@
 @keyframes img-in { from { transform: translateX(-50%) translateY(46px) scale(1.06); opacity: 0; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .cs-split h1 .wi, .cs-rise, .cs-split-media, .cs-split-media img, .cs-mark, .cs-dot { animation: none !important; opacity: 1; transform: none; filter: none; clip-path: none; }
+  .cs-split h1 .wi, .cs-hero-full h1 .wi, .cs-rise, .cs-split-media, .cs-split-media img, .cs-mark, .cs-dot { animation: none !important; opacity: 1; transform: none; filter: none; clip-path: none; }
   .cs-split-media img { transform: translateX(-50%); }
   .cs-split h1 .hl-reactive { color: var(--text-muted); }
   .cs-split h1 .hl-reactive::after, .cs-split h1 .hl-builtin::after { animation: none; transform: scaleX(1); }
@@ -472,7 +472,74 @@ img[data-lightbox] { cursor: zoom-in; }
 /* Present: three rule sheets side by side, same width each (their heights follow their own shape) */
 .cs-trio-imgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: start; margin-top: 8px; }
 .cs-trio-imgs .cs-frame { margin: 0; }
-.cs-trio-item { display: flex; flex-direction: column; gap: 14px; }
-.cs-trio-cap { display: flex; align-items: baseline; gap: 12px; margin: 0; font-size: 16px; line-height: 1.35; font-weight: 500; color: var(--text-primary); text-wrap: balance; }
+.cs-trio-item { display: contents; }   /* captions share row 1 and images share row 2, so every image starts at the same height however long its caption is */
+.cs-trio-imgs { grid-auto-flow: column; grid-template-rows: auto auto; row-gap: 14px; align-items: start; }
+.cs-trio-cap { display: flex; align-items: first baseline; gap: 12px; margin: 0; font-size: 16px; line-height: 1.35; font-weight: 500; color: var(--text-primary); text-wrap: balance; }
 .cs-trio-cap b { flex: none; font: normal 500 26px/1 var(--font-accent); color: var(--accent); }   /* the 1 / 2 / 3 */
-@media (max-width: 800px) { .cs-trio-imgs { grid-template-columns: 1fr; } }
+@media (max-width: 800px) { .cs-trio-imgs { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; row-gap: 14px; } .cs-trio-cap { margin-top: 10px; } }
+
+
+/* ---- full-bleed hero (alternative to the split hero; body.hero-full switches it on) ---- */
+.cs-hero-full, .cs-hero-facts { display: none; }
+body.hero-full .cs-hero-facts { display: block; max-width: 1040px; margin: 0 auto; padding: var(--space-block) var(--gutter) 0; }   /* same column and side padding as every .cs-section, so the left edges line up */
+body.hero-full .cs-hero-facts .cs-meta { width: auto; max-width: none; margin: 0; }
+body.hero-full .cs-split { display: none; }
+body.hero-full.cs-page main { padding-top: 0; }
+body.hero-full {
+  /* the Housing.com screens' own colours: header purple, button lilac, logo yellow */
+  --hs-purple: #3f1ea2; --hs-violet: #7323dc; --hs-lilac: #eae4ff; --hs-yellow: #ffdc00;
+}
+body.hero-full .cs-hero-full {
+  /* the Housing.com screens' own colours: header purple, button lilac, logo yellow */
+  /* hover glow: only slightly lighter shades of the hero's own purple, so it stays quiet */
+  --pixel-core: #6d52c4; --pixel-trail: #5b40b0; --pixel-hot: #9a84ea;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  position: relative; overflow: hidden; min-height: clamp(660px, 92svh, 820px);
+  background: radial-gradient(120% 100% at 85% 100%, color-mix(in srgb, var(--hs-violet) 55%, var(--hs-purple)), var(--hs-purple) 60%);   /* lighter glow at the bottom, so the top matches the solid menu bar */
+  color: #fff;
+}
+.cs-hero-full .grid-bg {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  -webkit-mask-image: none; mask-image: none;
+}
+.cs-hero-full .grid-lit { -webkit-mask-image: none; mask-image: none; }
+.cs-back-light { position: absolute; z-index: 2; top: 92px; left: clamp(20px, 4vw, 56px); color: rgba(255, 255, 255, 0.9); font-size: 18px; font-weight: 700; transition: color 0.2s, transform 0.2s; }
+.cs-back-light:hover { color: #fff; transform: translateX(-3px); }
+.cs-hf-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 0.9fr; gap: 32px clamp(32px, 5vw, 80px); align-items: stretch; flex: 1; padding: 0 clamp(20px, 4vw, 56px); pointer-events: none; }   /* fills the hero, so the picture can sit in its exact vertical middle */
+.cs-hf-left { align-self: end; padding-bottom: clamp(36px, 6vw, 72px); }
+.cs-hf-grid a { pointer-events: auto; }
+.cs-hero-full .cs-eyebrow { color: rgba(255, 255, 255, 0.7); margin-bottom: 18px; }
+.cs-hero-full .cs-dot { background: var(--hs-yellow); animation: none; }
+.cs-hero-full h1 { margin: 0; color: #fff; font-family: var(--font-accent); font-weight: 600; font-size: clamp(30px, 3.7vw, 54px); line-height: 1.1; letter-spacing: 0.005em; text-wrap: balance; max-width: 19ch; }
+.cs-hero-full h1 .hl-reactive { color: rgba(255, 255, 255, 0.5); animation-name: word-in, fade-grey-light; }
+.cs-hero-full h1 .hl-reactive::after { background: var(--hs-yellow); }
+.cs-hero-full h1 .hl-builtin { background: linear-gradient(95deg, #ffa8d0, var(--hs-yellow)); -webkit-background-clip: text; background-clip: text; }
+.cs-hero-full h1 .hl-builtin::after { background: linear-gradient(95deg, #ffa8d0, var(--hs-yellow)); }
+@keyframes fade-grey-light { from { color: #fff; } to { color: rgba(255, 255, 255, 0.5); } }
+.cs-hero-full .cs-lede { margin: 22px 0 0; max-width: 46ch; font-size: clamp(16px, 1.4vw, 19px); color: rgba(255, 255, 255, 0.85); text-align: left; }
+.cs-hero-full .cs-mark { background-image: linear-gradient(transparent 62%, rgba(255, 220, 0, 0.3) 62%); color: #fff; }
+.cs-hf-btn { margin-top: 26px; display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.12); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: #fff; font-size: 15px; font-weight: 500; transition: background 0.25s, color 0.25s, transform 0.25s; }
+.cs-hf-btn i { font-style: normal; transition: translate 0.25s; }
+.cs-hf-btn:hover { background: #fff; color: var(--hs-purple); transform: translateY(-2px); }
+.cs-hf-btn:hover i { translate: 0 3px; }
+/* the product, on the right of the hero, bleeding off the bottom edge */
+.cs-hf-media { align-self: center; margin: 84px 0; pointer-events: auto; }   /* centred vertically in the hero; 84px keeps it clear of the menu bar */
+.cs-hf-media img { display: block; width: 100%; max-width: 500px; margin-left: auto; height: auto; filter: drop-shadow(0 24px 36px rgba(10, 0, 50, 0.55));   /* no CSS radius or box-shadow: the PNG already has rounded device corners, and drop-shadow follows them */
+   animation: hf-img-in 1.5s cubic-bezier(.16, 1, .3, 1) 0.5s backwards; transition: transform 0.45s cubic-bezier(.2, .8, .2, 1); }
+@keyframes hf-img-in { from { transform: translateY(70px) scale(1.04); opacity: 0; } }
+@media (hover: hover) { .cs-hf-media:hover img { transform: translateY(-8px); } }
+@media (prefers-reduced-motion: reduce) { .cs-hf-media img { animation: none; } }
+@media (max-width: 900px) {
+  .cs-hf-grid { grid-template-columns: 1fr; padding-top: 150px; flex: none; }
+  .cs-hf-left { padding-bottom: 0; }
+  .cs-hf-media { align-self: auto; margin: 8px 0 clamp(36px, 8vw, 56px); }
+  .cs-hf-media img { max-width: none; margin: 0 auto; width: min(100%, 460px); }
+  body.hero-full .cs-hero-full { min-height: 0; }
+  .cs-hero-full h1 { max-width: none; }
+}
+
+/* the menu bar over the dark hero (js/hero-full.js toggles .nav-on-dark) */
+.nav.nav-on-dark { background: var(--hs-purple); -webkit-backdrop-filter: none; backdrop-filter: none; }   /* solid purple bar: the hover glow can't show behind the menu */
+.nav-on-dark .brand { color: #fff; }
+.nav-on-dark .menu-toggle span { background: #fff; }
+@media (min-width: 701px) { .nav-on-dark nav a { color: rgba(255, 255, 255, 0.8); } .nav-on-dark nav a:hover { color: #fff; } }

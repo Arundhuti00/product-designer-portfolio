@@ -66,11 +66,6 @@
   --pixel-core: var(--accent);                   /* bright core under the pointer */
   --pixel-trail: var(--accent-secondary);        /* soft afterglow left behind */
 
-  /* semantic: doodles (hand-drawn decorations) */
-  --doodle-stroke: var(--text-primary);
-  --doodle-orange: var(--accent);
-  --doodle-pink: var(--color-pink-300);
-  --doodle-blue: var(--color-blue-300);
 
   /* semantic: cat mascot */
   --cat-body: var(--color-neutral-900);
@@ -193,7 +188,7 @@ a { color: inherit; text-decoration: none; }
   transition: opacity 0.9s ease, transform 1.2s ease, top 1s cubic-bezier(.2,.8,.2,1), font-size 1s cubic-bezier(.2,.8,.2,1);
   pointer-events: none;
 }
-.reveal .body-copy { margin: 0; font-weight: 700; }
+.reveal .body-copy { margin: 0; font-family: var(--font-accent); font-weight: 500; letter-spacing: 0.005em; line-height: 1.25; }   /* Oswald, like the big headings */
 .reveal .actions {
   display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;
   margin-top: 30px; pointer-events: auto;
@@ -285,27 +280,6 @@ a { color: inherit; text-decoration: none; }
 .greeting, .tag { opacity: 0; transition: opacity 0.8s 0.2s; }
 .hero.ready .greeting, .hero.ready .tag { opacity: 1; }
 
-/* ---------- doodles ---------- */
-.doodles { position: absolute; inset: 0; pointer-events: none; }
-.doodle {
-  position: absolute; height: auto; overflow: visible;
-  stroke: var(--doodle-stroke); stroke-width: 2.2px; stroke-linecap: round; stroke-linejoin: round;
-  filter: url(#rough);   /* slight wobble so the lines look hand-drawn */
-  animation: doodle-bob 6s ease-in-out var(--d, 0s) infinite;
-}
-.dot-d { position: absolute; width: 9px; height: 9px; border: 2px solid var(--doodle-stroke); border-radius: 50%; }
-@keyframes doodle-bob {
-  0%, 100% { transform: translateY(0) rotate(-3deg); }
-  50% { transform: translateY(-7px) rotate(3deg); }
-}
-@media (prefers-reduced-motion: reduce) { .doodle { animation: none; } }
-@media (max-width: 900px) {
-  .doodle.minor, .dot-d { display: none; }
-  .doodle { scale: 0.5; }
-  .d-cloud { top: 38% !important; left: 2% !important; }     /* tucked beside the name, clear of the text below */
-  .d-heart { top: 38% !important; right: 2% !important; }
-}   /* `scale` is separate from the bobbing transform */
-
 /* ---------- work ---------- */
 .work { padding: 96px var(--gutter) 40px; max-width: 1280px; margin: 0 auto; scroll-margin-top: 20px; }
 .section-title { text-align: center; margin: 0 0 24px; font-family: var(--font-accent); font-size: clamp(32px, 5vw, 56px); font-weight: 600; letter-spacing: 0.005em; line-height: 1.1; }
@@ -343,7 +317,7 @@ a { color: inherit; text-decoration: none; }
 .card-media .mockup {
   position: absolute; top: 28px; left: 50%; width: 82%; max-width: 420px; height: auto;
   transform: translateX(-50%);
-  border-radius: 14px 14px 0 0; box-shadow: 0 -8px 30px -12px rgba(17, 17, 18, 0.35);
+  filter: drop-shadow(0 -6px 18px rgba(17, 17, 18, 0.28));   /* no CSS radius: the PNG has its own rounded corners */
   transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
 }
 .card:hover .card-media .mockup { transform: translateX(-50%) translateY(-8px); }

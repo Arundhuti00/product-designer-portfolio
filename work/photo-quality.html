@@ -8,12 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=17">
-  <link rel="stylesheet" href="../css/case-study.css?v=39">
+  <link rel="stylesheet" href="../css/style.css?v=20">
+  <link rel="stylesheet" href="../css/case-study.css?v=46">
   <script src="../js/transitions.js?v=1"></script>
   <script src="../js/countup.js?v=1"></script>
+  <script src="../js/hero-full.js?v=1" defer></script>
 </head>
-<body class="cs-page">
+<body class="cs-page hero-full">
   <header class="nav">
     <a class="brand" href="../index.html">Arundhuti</a>
     <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
@@ -25,7 +26,35 @@
   </header>
 
   <main>
-    <!-- 1. Hero: headline, facts and the product side by side, so the first screen tells the whole story -->
+    <!-- 1. Hero, full-bleed version: text bottom-left, product on the right, reactive pixel grid behind.
+         The earlier split hero is still below. To go back to it, remove class "hero-full" from <body>. -->
+    <section class="cs-hero-full" id="top">
+      <div class="grid-bg" aria-hidden="true"></div>
+      <canvas class="grid-lit" aria-hidden="true"></canvas>
+      <a class="cs-back-light" href="../index.html#work">&larr; My Work</a>
+      <div class="cs-hf-grid">
+        <div class="cs-hf-left">
+          <p class="cs-eyebrow cs-rise" style="--d:90ms"><i class="cs-dot" aria-hidden="true"></i>Housing.com <span>|</span> Jan 2026 &ndash; Jul 2026</p>
+          <h1 aria-label="From reactive to built-in: fixing image quality at Housing.com"><span aria-hidden="true"><span class="w" style="--i:0"><span class="wi">From</span></span> <span class="w" style="--i:1"><span class="wi hl-reactive">reactive</span></span> <span class="w" style="--i:2"><span class="wi">to</span></span> <span class="w" style="--i:3"><span class="wi hl-builtin">built&#8209;in:</span></span> <span class="w" style="--i:4"><span class="wi">fixing</span></span> <span class="w" style="--i:5"><span class="wi">image</span></span> <span class="w" style="--i:6"><span class="wi">quality</span></span> <span class="w" style="--i:7"><span class="wi">at</span></span> <span class="w" style="--i:8"><span class="wi">Housing.com</span></span></span></h1>
+          <p class="cs-lede cs-rise" style="--d:1000ms">An end-to-end audit of how a property photo travels from a broker's phone to a buyer's screen, and a strategy to <span class="cs-mark">build quality in</span> from the first upload.</p>
+          <a class="cs-hf-btn cs-rise" style="--d:1200ms" href="#setting">Read the story <i aria-hidden="true">&darr;</i></a>
+        </div>
+        <div class="cs-hf-media" data-cat="The seller's upload screen. Look at all those rooms.">
+          <img src="../assets/housing/hero-mockup.png" alt="Housing.com seller flow: the Add Photos screen with room coverage, uploaded images and upload tips" width="1556" height="1736">
+        </div>
+      </div>
+    </section>
+    <!-- project facts, now just under the hero (only shown with the full-bleed hero) -->
+    <section class="cs-hero-facts">
+      <dl class="cs-meta">
+        <div><dt>Role</dt><dd>Product Design Intern</dd></div>
+        <div><dt>Timeline</dt><dd>6 weeks</dd></div>
+        <div><dt>Worked with</dt><dd>Engineering, Data Quality, Product, Design</dd></div>
+        <div><dt>Scope</dt><dd>Research, systems audit, strategy, PRD, UI</dd></div>
+      </dl>
+    </section>
+
+    <!-- 1. Earlier hero (split version, hidden while body has class hero-full): headline, facts and the product side by side, so the first screen tells the whole story -->
     <section class="cs-split">
       <div class="cs-split-text">
         <a class="cs-back cs-rise" style="--d:0ms" href="../index.html#work">&larr; My Work</a>
@@ -45,7 +74,7 @@
     </section>
 
     <!-- The setting -->
-    <section class="cs-section">
+    <section class="cs-section" id="setting">
       <p class="cs-kicker cs-setting-label">The setting</p>
       <p class="cs-context">Every listing on Housing.com starts with photos that a broker or owner takes on their phone. Before a buyer sees them, they pass through four systems: upload, verification, optimisation and rendering, each looked after by a different team. This project follows that whole journey, not any single screen.</p>
     </section>
@@ -284,5 +313,6 @@
   </script>
   <script src="../js/lightbox.js?v=1" defer></script>
   <script type="module" src="../js/cat.js?v=3"></script>
+  <script type="module" src="../js/pixels.js?v=4"></script>
 </body>
 </html>

@@ -1,20 +1,24 @@
-// The hero's background grid, as pixels that light up under the cursor.
-// Each 28px cell remembers two "heats": a quick one (the bright orange core under the pointer)
-// and a slow one (a pink afterglow that trails behind it, like a light-painting exposure).
-// A tap or click sends a soft ripple through the grid. Colours come from the --pixel-* design tokens.
+// The background grid as pixels that light up under the cursor.
+// Each 28px cell remembers two "heats": a quick one (the bright core under the pointer)
+// and a slow one (an afterglow that trails behind it, like a light-painting exposure).
+// A tap or click sends a soft ripple through the grid.
+// Colours come from the --pixel-core / --pixel-trail custom properties on the canvas, so every
+// page (or hero) can set its own: the home page uses the accent pair, the Photo Quality page
+// uses the colours of the Housing.com screens.
 
-const hero = document.getElementById('hero');
-const canvas = document.querySelector('.grid-lit');
-if (hero && canvas && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+function initPixels(hero, canvas) {
+  if (!hero || !canvas) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const ctx = canvas.getContext('2d');
   const CELL = 28;                       // must match background-size of .grid-bg
   const dpr = Math.min(devicePixelRatio || 1, 2);
 
   // read the token colours once (works for hex, rgb(), named: the canvas normalises them)
   const probe = document.createElement('canvas').getContext('2d');
+  const cs = getComputedStyle(canvas);
   const token = (name, fallback) => {
     probe.fillStyle = fallback;
-    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    const v = cs.getPropertyValue(name).trim();
     if (v) probe.fillStyle = v;
     const hex = probe.fillStyle;
     const n = parseInt(hex.slice(1), 16);
@@ -22,6 +26,7 @@ if (hero && canvas && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   };
   const core = token('--pixel-core', '#e8610c');
   const trail = token('--pixel-trail', '#d93a7e');
+  const hot = token('--pixel-hot', '#ffffff');       // the small bright centre of the brightest pixels
   const rgba = (c, a) => `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${a})`;
 
   let w = 0, h = 0, cols = 0, rows = 0, fast = new Float32Array(0), slow = new Float32Array(0);
@@ -123,7 +128,7 @@ if (hero && canvas && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
         if (s > 0.01) { ctx.fillStyle = rgba(trail, s * 0.22); ctx.fillRect(x, y, size, size); }      // pink afterglow
         if (f > 0.01) {
           ctx.fillStyle = rgba(core, f * 0.62); ctx.fillRect(x, y, size, size);                        // orange core
-          if (f > 0.55) { ctx.fillStyle = rgba([255, 255, 255], (f - 0.55) * 0.9); ctx.fillRect(x + size * 0.3, y + size * 0.3, size * 0.4, size * 0.4); }   // hot centre
+          if (f > 0.55) { ctx.fillStyle = rgba(hot, (f - 0.55) * 0.9); ctx.fillRect(x + size * 0.3, y + size * 0.3, size * 0.4, size * 0.4); }   // hot centre
         }
         fast[i] = f * decayFast; slow[i] = s * decaySlow;
       }
@@ -132,3 +137,6 @@ if (hero && canvas && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     if (alive) requestAnimationFrame(frame); else { running = false; prev = 0; }
   }
 }
+
+initPixels(document.getElementById('hero'), document.querySelector('#hero .grid-lit'));
+initPixels(document.querySelector('.cs-hero-full'), document.querySelector('.cs-hero-full .grid-lit'));
