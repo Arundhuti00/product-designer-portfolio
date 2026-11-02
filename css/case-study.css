@@ -3,7 +3,8 @@
 .cs-section { max-width: 1040px; margin: 0 auto; padding: 72px var(--gutter) 0; }
 
 .cs-kicker { margin: 0 0 14px; font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
-.cs-section h2 { margin: 0 0 18px; font-size: clamp(28px, 4vw, 46px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; text-wrap: balance; max-width: 22ch; }
+.cs-section h2 { margin: 0 0 18px; font-size: max(22px, calc(clamp(28px, 4vw, 46px) - 20px));   /* old size minus 20px, never below 22px */
+   font-family: var(--font-accent); line-height: 1.15; letter-spacing: 0.005em; font-weight: 600; text-wrap: balance; max-width: 36ch; }
 .cs-body { max-width: 62ch; margin: 0; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.6; color: var(--text-body); }
 .cs-caption { margin: 14px 0 0; color: var(--text-muted); font-size: 15px; }
 
@@ -13,7 +14,7 @@
 .cs-back:hover { color: var(--accent-secondary); transform: translateX(-3px); }
 .cs-eyebrow { margin: 0 0 18px; font-size: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
 .cs-eyebrow span { margin: 0 8px; opacity: 0.5; }
-.cs-hero h1 { margin: 0; font-size: clamp(34px, 5.6vw, 66px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 700; text-wrap: balance; }
+.cs-hero h1 { margin: 0; font-family: var(--font-accent); font-size: clamp(34px, 5.6vw, 66px); line-height: 1.1; letter-spacing: 0.005em; font-weight: 600; text-wrap: balance; }
 .cs-lede { max-width: 58ch; margin: 22px auto 0; font-size: clamp(17px, 1.7vw, 21px); line-height: 1.55; color: var(--text-body); }
 /* project facts: plain text, no frame. Columns size to their content and spread edge to edge, so each value stays on one line. */
 .cs-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px 32px; width: calc(100% - 2 * var(--gutter)); max-width: calc(1040px - 2 * var(--gutter)); margin: 26px auto 0; padding: 0; text-align: left; }
@@ -43,21 +44,23 @@
 
 /* pipeline flow */
 .cs-flow { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: step; }
-.cs-flow li { position: relative; padding: 20px 18px; background: var(--surface-card); border: 1px solid var(--border-card); border-radius: 20px; }
-.cs-flow li:not(:last-child)::after { content: "\2192"; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); z-index: 1; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: var(--surface-page); border: 1px solid var(--border-card); font-size: 13px; color: var(--text-muted); }
+.cs-flow li { position: relative; padding: 4px 28px 4px 0; }   /* no frame: just the text and the arrows between steps */
+.cs-flow li:not(:last-child)::after { content: "\2192"; position: absolute; right: 4px; top: 12px; font-size: 20px; line-height: 1; color: var(--text-muted); }
 .cs-flow span { display: block; font-size: 19px; font-weight: 700; }
 .cs-flow small { display: block; margin-top: 6px; color: var(--text-muted); font-size: 14px; }
 
 /* stages */
-.cs-stages { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 32px; }
-.cs-stage { padding: 28px; background: var(--surface-card); border: 1px solid var(--border-card); border-radius: 24px; }
-.cs-num { margin: 0 0 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
-.cs-big { margin: 0 0 14px; font-size: clamp(30px, 3.4vw, 42px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
-.cs-big span { display: block; margin-top: 6px; font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--text-muted); }
-.cs-stage h3 { margin: 0 0 8px; font-size: 21px; line-height: 1.2; }
-.cs-stage p:last-child { margin: 0; color: var(--text-body); line-height: 1.5; }
+.cs-stages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }   /* compact cards, all four stages in one row */
+.cs-stage { padding: 20px 18px; background: var(--surface-card); border: 1px solid var(--border-card); border-radius: 20px; }
+.cs-num { margin: 0 0 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+.cs-big { margin: 0 0 12px; min-height: calc(2.1em + 26px); font-size: clamp(22px, 2.3vw, 30px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; text-wrap: balance; }   /* room for two lines, so the four cards line up */
+.cs-big span { display: block; margin-top: 6px; font-size: 13px; font-weight: 500; letter-spacing: 0; color: var(--text-muted); }
+.cs-stage h3 { margin: 0 0 6px; font-size: 17px; line-height: 1.2; }
+.cs-stage p:last-child { margin: 0; color: var(--text-body); font-size: 14px; line-height: 1.5; }
+@media (max-width: 1000px) { .cs-stages { grid-template-columns: repeat(2, 1fr); } .cs-big { min-height: 0; } }
 
 /* insight: a dark band for contrast */
+.cs-stages + .cs-insight { margin-top: var(--space-block); }   /* same gap as around the other big blocks */
 .cs-insight { padding: clamp(32px, 5vw, 60px); background: var(--text-primary); color: var(--surface-page); border-radius: 32px; text-align: center; }
 .cs-insight h2 { max-width: 20ch; margin: 0 auto 18px; color: var(--surface-page); }
 .cs-insight p:last-child { max-width: 62ch; margin: 0 auto; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.6; color: rgba(255, 255, 255, 0.78); }
@@ -88,7 +91,7 @@
 
 /* up next */
 .cs-next { max-width: 780px; margin: 0 auto; padding: 84px var(--gutter) 72px; text-align: center; }
-.cs-next-card { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 26px 28px; text-align: left; font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; letter-spacing: -0.02em; background: var(--surface-card); border: 1px solid var(--border-card); border-radius: 24px; transition: transform 0.3s, box-shadow 0.3s; }
+.cs-next-card { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 26px 28px; text-align: left; font-family: var(--font-accent); font-size: clamp(22px, 2.6vw, 30px); font-weight: 600; letter-spacing: 0.005em; background: var(--surface-card); border: 1px solid var(--border-card); border-radius: 24px; transition: transform 0.3s, box-shadow 0.3s; }
 .cs-next-card:hover { transform: translateY(-4px); box-shadow: 0 22px 36px -24px rgba(17, 17, 18, 0.35); }
 .cs-next-card svg { flex: none; transition: transform 0.3s, color 0.3s; }
 .cs-next-card:hover svg { transform: translate(3px, -3px); color: var(--accent-secondary); }
@@ -306,3 +309,170 @@
 
 .cs-feedback { max-width: 56ch; margin: 28px auto 0; text-align: center; font-size: 17px; line-height: 1.6; color: var(--text-body); }
 .cs-feedback a { font-weight: 700; white-space: nowrap; }
+
+/* ---- first viewport (Photo Quality): centred text, with the product underneath ---- */
+.cs-split { display: grid; grid-template-columns: 1fr; gap: 40px; max-width: 1040px; margin: 0 auto; padding: 24px var(--gutter) 0; }
+.cs-split-text { text-align: center; max-width: 900px; margin: 0 auto; }
+.cs-split .cs-back { margin-bottom: 22px; }
+.cs-split .cs-eyebrow { margin-bottom: 14px; }
+/* same size as the old centred heading, minus 20px */
+.cs-split h1 { margin: 0; font-family: var(--font-accent); font-size: max(28px, calc(clamp(34px, 5.6vw, 66px) - 20px)); line-height: 1.15; letter-spacing: 0.005em; font-weight: 600; text-wrap: balance; }
+.cs-split .cs-lede { margin: 18px auto 0; max-width: 58ch; font-size: clamp(16px, 1.5vw, 19px); text-align: center; }
+.cs-split .cs-meta { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px 40px; width: auto; max-width: none; margin: 28px auto 0; padding-top: 22px; border-top: 1px solid var(--border-subtle); text-align: center; }
+.cs-split .cs-meta dd { white-space: normal; }
+.cs-split-media { position: relative; overflow: hidden; background: var(--surface-card-media); border: 1px solid var(--border-card); border-radius: 24px; }
+.cs-split-media::before { content: ""; display: block; padding-top: 50%; }   /* height comes from the width, so the crop is always the same */
+.cs-split-media img { position: absolute; top: 34px; left: 50%; width: min(70%, 520px); height: auto; transform: translateX(-50%); border-radius: 16px 16px 0 0; box-shadow: 0 -8px 40px -12px rgba(17, 17, 18, 0.35); transition: transform 0.45s cubic-bezier(.2,.8,.2,1); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) { .cs-split-media:hover img { transform: translateX(-50%) translateY(-8px); } }
+@media (max-width: 700px) {
+  .cs-split { padding-top: 12px; gap: 28px; }
+  .cs-split-media::before { padding-top: 78%; }
+  .cs-split-media img { width: 78%; }
+}
+
+/* ---- cinematic hero on the Photo Quality page ---- */
+.cs-split h1 .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.04em 0.12em; margin: 0 -0.04em -0.12em; }
+.cs-split h1 .wi { display: inline-block; position: relative; transform: translateY(115%) rotate(2deg); filter: blur(10px); opacity: 0; animation: word-in 1s cubic-bezier(.16, 1, .3, 1) forwards; animation-delay: calc(var(--i) * 85ms + 200ms); }
+@keyframes word-in { to { transform: none; filter: blur(0); opacity: 1; } }
+
+/* "reactive": greyed out and struck through, as the thing being left behind */
+.cs-split h1 .hl-reactive { color: var(--text-muted); animation-name: word-in, fade-grey; animation-duration: 1s, 0.6s; animation-delay: calc(var(--i) * 85ms + 200ms), 1.5s; animation-fill-mode: forwards, forwards; animation-timing-function: cubic-bezier(.16, 1, .3, 1), ease; }
+.cs-split h1 .hl-reactive::after { content: ""; position: absolute; left: -2%; right: -2%; top: 54%; height: 0.07em; border-radius: 4px; background: var(--accent-secondary); transform: scaleX(0); transform-origin: left; animation: draw 0.7s cubic-bezier(.65, 0, .35, 1) 1.55s forwards; }
+@keyframes draw { to { transform: scaleX(1); } }
+@keyframes fade-grey { from { color: var(--text-primary); } to { color: var(--text-muted); } }
+
+/* "built-in": the accent pair, with an underline that draws itself */
+.cs-split h1 .hl-builtin { background: linear-gradient(95deg, var(--accent-secondary), var(--accent)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--accent); }
+.cs-split h1 .hl-builtin::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0.02em; height: 0.07em; border-radius: 4px; background: linear-gradient(95deg, var(--accent-secondary), var(--accent)); transform: scaleX(0); transform-origin: left; animation: draw 0.8s cubic-bezier(.65, 0, .35, 1) 1.9s forwards; }
+
+.cs-rise { opacity: 0; transform: translateY(16px); animation: rise 0.9s cubic-bezier(.16, 1, .3, 1) forwards; animation-delay: var(--d, 0ms); }
+@keyframes rise { to { opacity: 1; transform: none; } }
+.cs-dot { display: inline-block; width: 7px; height: 7px; margin-right: 10px; border-radius: 50%; background: var(--accent); vertical-align: 1px; animation: pulse 2.4s ease-in-out 1.6s 2; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(232, 97, 12, 0.5); } 50% { box-shadow: 0 0 0 8px rgba(232, 97, 12, 0); } }
+.cs-mark { background: linear-gradient(transparent 62%, color-mix(in srgb, var(--accent) 24%, transparent) 62%) no-repeat; background-size: 0% 100%; animation: mark 0.9s cubic-bezier(.65, 0, .35, 1) 1.9s forwards; padding: 0 2px; }
+@keyframes mark { to { background-size: 100% 100%; } }
+.cs-split .cs-meta dt { color: var(--accent); }
+
+/* the product reveals like a curtain lifting */
+.cs-split-media { clip-path: inset(0 0 100% 0 round 24px); animation: curtain 1.2s cubic-bezier(.77, 0, .175, 1) 0.35s forwards; }
+@keyframes curtain { to { clip-path: inset(0 0 0 0 round 24px); } }
+.cs-split-media img { animation: img-in 1.6s cubic-bezier(.16, 1, .3, 1) 0.55s backwards; }
+@keyframes img-in { from { transform: translateX(-50%) translateY(46px) scale(1.06); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-split h1 .wi, .cs-rise, .cs-split-media, .cs-split-media img, .cs-mark, .cs-dot { animation: none !important; opacity: 1; transform: none; filter: none; clip-path: none; }
+  .cs-split-media img { transform: translateX(-50%); }
+  .cs-split h1 .hl-reactive { color: var(--text-muted); }
+  .cs-split h1 .hl-reactive::after, .cs-split h1 .hl-builtin::after { animation: none; transform: scaleX(1); }
+  .cs-mark { background-size: 100% 100%; }
+}
+
+/* ---- expected outcomes: the expectation is the headline of each row ---- */
+.cs-hyp { list-style: none; margin: 26px 0 0; padding: 0; }
+.cs-hyp-row { display: grid; grid-template-columns: 0.8fr 2fr; gap: 12px 40px; padding: 26px 0; border-top: 1px solid var(--border-subtle); align-items: start; }
+.cs-hyp-row:last-child { border-bottom: 1px solid var(--border-subtle); }
+.cs-hyp-meta { display: flex; flex-direction: column; gap: 4px; }
+.cs-hyp-tag { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.cs-hyp-meta h3 { margin: 0; font-size: 19px; line-height: 1.25; letter-spacing: -0.01em; }
+.cs-hyp-phase { font-size: 13px; color: var(--text-muted); }
+.cs-hyp-expect { margin: 0; font-size: clamp(21px, 2.3vw, 28px); font-weight: 700; line-height: 1.22; letter-spacing: -0.02em; color: var(--text-primary); text-wrap: balance; }
+.cs-hyp-expect small { display: block; margin-bottom: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-secondary); }
+.cs-hyp-expect mark { color: inherit; background: linear-gradient(transparent 60%, color-mix(in srgb, var(--accent-secondary) 26%, transparent) 60%); padding: 0 2px; }
+.cs-hyp-why { margin: 10px 0 0; max-width: 58ch; font-size: 15px; line-height: 1.55; color: var(--text-body); }
+.cs-hyp-signals { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.cs-hyp-signals li { padding: 5px 12px; border-radius: 999px; background: var(--surface-card-media); font-size: 13px; font-weight: 500; color: var(--text-body); }
+.cs-hyp-signals .cs-hyp-label { padding: 0 4px 0 0; background: none; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+@media (max-width: 800px) { .cs-hyp-row { grid-template-columns: 1fr; } }
+
+/* ---- context paragraph + the four-part short version ---- */
+.cs-context { max-width: 58ch; margin: 0; font: normal 500 clamp(22px, 2.4vw, 30px)/1.45 var(--font-accent); letter-spacing: 0.01em; color: var(--text-body); }   /* Oswald Medium, upright */
+/* "The setting" label: a soft accent pill */
+.cs-setting-label { display: inline-block; margin-bottom: 18px; padding: 7px 14px; border-radius: 999px; background: var(--accent-soft); }
+/* the short version: four cards that jump to the four chapters below */
+.cs-quick { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 4px; }
+.cs-q { position: relative; display: flex; flex-direction: column; padding: 22px 22px 20px; border-top: 2px solid var(--text-primary); border-radius: 4px 4px 18px 18px; background: linear-gradient(180deg, color-mix(in srgb, var(--text-primary) 4%, transparent), transparent 70%); transition: translate 0.4s cubic-bezier(.22, 1, .36, 1), border-color 0.3s, background 0.3s; }
+.cs-q:last-child { border-top-color: var(--accent); }
+.cs-q-n { font: normal 500 clamp(38px, 4.2vw, 54px)/1 var(--font-accent); letter-spacing: 0.01em; color: var(--accent); }
+.cs-q h3 { margin: 10px 0 8px; min-height: 2.2em; font-size: clamp(20px, 2vw, 26px); line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance; }   /* titles read as a four-line summary; the min-height keeps the bodies aligned */
+.cs-q p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--text-body); }
+.cs-q strong { color: var(--text-primary); }
+.cs-q-go { margin-top: auto; padding-top: 18px; display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); transition: color 0.3s; }
+.cs-q-go i { font-style: normal; display: inline-block; transition: translate 0.3s cubic-bezier(.22, 1, .36, 1); }
+@media (hover: hover) {
+  .cs-q:hover { translate: 0 -5px; border-top-color: var(--accent); background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%); }
+  .cs-q:hover .cs-q-go { color: var(--accent); }
+  .cs-q:hover .cs-q-go i { translate: 0 3px; }
+}
+.cs-q:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.cs-quick + .cs-sub { margin-top: 56px; }
+@media (max-width: 900px) { .cs-quick { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .cs-quick { grid-template-columns: 1fr; } }
+
+/* chapters: bigger headings and a lead paragraph, so the page has a clear rhythm of big and small */
+.cs-chapter { scroll-margin-top: 70px; padding-top: 104px; }
+.cs-chapter > h2 { font-size: clamp(30px, 3.2vw, 40px); line-height: 1.12; letter-spacing: 0.005em; max-width: 20ch; margin-bottom: 22px; }
+.cs-chapter > .cs-body:first-of-type { max-width: 54ch; font-size: clamp(19px, 1.9vw, 24px); line-height: 1.5; color: var(--text-primary); }
+
+/* ---- image frames + lightbox (the rule for every image: thick soft border, generous corners, opens full width) ---- */
+/* image frames: generous rounded corners on the image itself, no outline */
+.cs-frame { margin: 0; background: none; border: var(--frame-border-width) solid var(--frame-border-color); }
+.cs-frame img { display: block; width: 100%; height: auto; border-radius: var(--frame-radius); }
+.cs-frame img.baked { border-radius: 0; }   /* S1 / S2 have their four corners rounded inside the PNG itself (the right side of the picture is an annotation strip, so a CSS radius would only round the left corners) */
+.cs-process { margin: var(--space-block) 0; }
+.cs-frame figcaption { padding: 14px 6px 0; font-size: 13px; font-weight: 500; color: var(--text-muted); }
+.cs-frame figcaption b { margin-right: 8px; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; font-size: 12px; }
+.cs-problem-pair { display: flex; gap: 18px; align-items: flex-start; margin-top: 32px; }
+.cs-problem-pair .cs-frame:nth-child(1) { flex: 1 1 0; }   /* both screenshots now share one aspect ratio (1512 x 829), so they sit side by side at equal size */
+.cs-problem-pair .cs-frame:nth-child(2) { flex: 1 1 0; }
+img[data-lightbox] { cursor: zoom-in; }
+/* lightbox: a translucent overlay, with space on every side of the image */
+.lightbox { position: fixed; inset: 0; z-index: 100; overflow-y: auto; padding: clamp(16px, 4vw, 56px); background: rgba(17, 17, 18, 0.72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.22s ease; cursor: zoom-out; overscroll-behavior: contain; }
+.lightbox[hidden] { display: none; }
+.lightbox.is-open { opacity: 1; }
+.lightbox-img { display: block; width: 100%; height: auto; margin: 0; border-radius: 20px; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.5); }   /* fills the width inside the padding; tall images scroll */
+.lightbox-close { position: fixed; top: 16px; right: 18px; z-index: 2; width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--surface-page); color: var(--text-primary); font-size: 26px; line-height: 1; cursor: pointer; box-shadow: 0 6px 20px -6px rgba(0, 0, 0, 0.5); }
+.lightbox-close:hover { background: var(--accent); color: var(--on-accent); }
+@media (max-width: 800px) {
+  .cs-problem-pair { flex-direction: column; }
+  .cs-problem-pair .cs-frame { width: 100%; flex: none !important; }
+}
+
+/* ---- Prevent / Preserve / Present hang off point 02 on a vertical line ---- */
+.cs-branch { --branch-pad: clamp(24px, 3.6vw, 52px); position: relative; margin: 30px 0 0 14px; padding-left: var(--branch-pad); border-left: 2px solid var(--border-card-hover); }
+.cs-branch .cs-pillar { position: relative; margin-top: 0; padding: 6px 0 60px; border-top: 0; }
+.cs-branch .cs-pillar:last-child { padding-bottom: 0; }
+.cs-branch .cs-pillar::before { content: ""; box-sizing: border-box; position: absolute; left: calc(-1 * var(--branch-pad) - 8px); top: 10px; width: 14px; height: 14px; border-radius: 50%; background: var(--surface-page); border: 3px solid var(--accent); }
+@media (max-width: 800px) { .cs-branch { margin-left: 8px; --branch-pad: 22px; } }
+
+/* three problem photos: identical 16:9 frames, whatever the original shape */
+.cs-pains-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
+.cs-pains-photos img { aspect-ratio: 16 / 9; object-fit: cover; }
+.cs-pains-photos img.is-portrait { object-position: 50% 45%; }
+.cs-pains-photos figcaption { font-size: 15px; font-weight: 500; color: var(--text-body); }
+@media (max-width: 800px) { .cs-pains-photos { grid-template-columns: 1fr; } }
+
+/* ---- Prevent: before / after columns ---- */
+.cs-pillar-stack { grid-template-columns: 1fr !important; align-items: start !important; }
+.cs-ba { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 26px; align-items: start; }   /* each column is only as tall as its own images */
+.cs-ba-col { display: flex; flex-direction: column; gap: 14px; }
+.cs-ba-col .cs-frame { margin: 0; }
+.cs-ba-tag { align-self: flex-start; padding: 6px 14px; border-radius: 999px; background: var(--surface-card-media); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+.cs-ba-tag-after { background: var(--accent); color: var(--on-accent); }
+@media (max-width: 800px) { .cs-ba { grid-template-columns: 1fr; } }
+
+/* the dots sit on the line at the height of each label (PREVENT / PRESERVE / PRESENT), whatever sits beside the text */
+.cs-branch .cs-pillar { align-items: start; }
+.cs-branch .cs-pillar-text .cs-num { margin: 0 0 10px; line-height: 20px; }
+.cs-branch .cs-pillar::before { top: 9px; }    /* 6px padding + half the 20px label line - half the 14px dot */
+.cs-branch .cs-pillar::after { top: 15px; }
+
+/* a very tall image (the guidelines sheet) shows its top part in the layout; the lightbox shows all of it */
+.cs-tallcrop img { height: clamp(420px, 52vw, 640px); object-fit: cover; object-position: top; }
+
+/* Present: three rule sheets side by side, same width each (their heights follow their own shape) */
+.cs-trio-imgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: start; margin-top: 8px; }
+.cs-trio-imgs .cs-frame { margin: 0; }
+.cs-trio-item { display: flex; flex-direction: column; gap: 14px; }
+.cs-trio-cap { display: flex; align-items: baseline; gap: 12px; margin: 0; font-size: 16px; line-height: 1.35; font-weight: 500; color: var(--text-primary); text-wrap: balance; }
+.cs-trio-cap b { flex: none; font: normal 500 26px/1 var(--font-accent); color: var(--accent); }   /* the 1 / 2 / 3 */
+@media (max-width: 800px) { .cs-trio-imgs { grid-template-columns: 1fr; } }

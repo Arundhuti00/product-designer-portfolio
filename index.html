@@ -7,8 +7,9 @@
   <meta name="description" content="Portfolio of Arundhuti.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=17">
+  <script src="js/transitions.js?v=1"></script>
 
   <!-- No build step: three.js is vendored in /vendor so GitHub Pages can serve it as-is -->
   <script type="importmap">
@@ -34,6 +35,8 @@
   <main>
     <section class="hero" id="hero">
       <div class="grid-bg" aria-hidden="true"></div>
+      <!-- the grid as pixels: lights up under the cursor (js/pixels.js) -->
+      <canvas class="grid-lit" aria-hidden="true"></canvas>
       <!-- Tagline docked under the name -->
       <div class="reveal show docked" id="reveal"><p class="body-copy" data-cat="I read all the notes too. Mostly the ones about fish.">I make sense of messy things with AI assisted workflows!</p>
         <!-- key phrases -->
@@ -90,7 +93,7 @@
         </a>
         <a class="card" href="work/snapp.html" data-cat="News, but immersive. Go on, click it. I dare you.">
           <div class="card-top"><span class="card-kind">Project</span><svg class="card-arrow" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></div>
-          <div class="card-head"><h3 class="card-title">Snapp: An Immersive News Companion</h3></div>
+          <div class="card-head"><h3 class="card-title">Snapp: An Immersive<br>News Companion</h3></div>
           <ul class="card-tags"><li>Media app</li></ul>
           <!-- Replace this placeholder with the mockup: <img class="card-media" src="assets/work/NAME.png" alt=""> -->
           <div class="card-media" role="img" aria-label="Mockup image placeholder"><span>Mockup image</span></div>
@@ -105,7 +108,7 @@
         </a>
         <a class="card" href="work/splitshare.html" data-cat="Splitting bills without the awkward maths. Open me!">
           <div class="card-top"><span class="card-kind">Case study</span><svg class="card-arrow" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></div>
-          <div class="card-head"><h3 class="card-title">Splitshare (Quick Design Sprint)</h3></div>
+          <div class="card-head"><h3 class="card-title">Splitshare (Quick<br>Design Sprint)</h3></div>
           <ul class="card-tags"><li>Fintech</li><li>App</li></ul>
           <!-- Replace this placeholder with the mockup: <img class="card-media" src="assets/work/NAME.png" alt=""> -->
           <div class="card-media" role="img" aria-label="Mockup image placeholder"><span>Mockup image</span></div>
@@ -179,5 +182,6 @@
   </script>
   <script type="module" src="js/main.js?v=7"></script>
   <script type="module" src="js/cat.js?v=3"></script>
+  <script type="module" src="js/pixels.js?v=1"></script>
 </body>
 </html>

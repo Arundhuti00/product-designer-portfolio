@@ -45,6 +45,9 @@
   --surface-card-media: rgba(17, 17, 18, 0.045);   /* mockup placeholder fill */
   --border-card: rgba(17, 17, 18, 0.08);
   --border-card-hover: rgba(17, 17, 18, 0.2);      /* card outline while hovered */
+  --frame-border-width: 0px;                        /* image frames have no outline (set a width here to bring one back) */
+  --frame-border-color: var(--color-neutral-900);
+  --frame-radius: 28px;                             /* ...and generously rounded corners */
   --shadow-lift: 0 18px 30px -22px rgba(17, 17, 18, 0.4);   /* soft shadow under a lifted card */
 
   /* semantic: text */
@@ -55,8 +58,13 @@
   /* semantic: accent */
   --accent: var(--color-orange-500);             /* main brand accent (role label, primary button) */
   --accent-hover: var(--color-orange-600);
+  --accent-soft: color-mix(in srgb, var(--accent) 13%, var(--surface-page));   /* pale accent wash, e.g. pill backgrounds */
   --accent-secondary: var(--color-pink-500);     /* partner accent, not used yet */
   --on-accent: var(--color-white);               /* text/icons placed on --accent */
+
+  /* semantic: lit pixels (the hero grid glowing under the cursor) */
+  --pixel-core: var(--accent);                   /* bright core under the pointer */
+  --pixel-trail: var(--accent-secondary);        /* soft afterglow left behind */
 
   /* semantic: doodles (hand-drawn decorations) */
   --doodle-stroke: var(--text-primary);
@@ -88,8 +96,11 @@
 
   /* type + layout */
   --font-sans: "Satoshi", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-accent: "Oswald", "Satoshi", Impact, sans-serif;   /* accent face: big headings and the context-setting text */
   --font-serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-  --gutter: clamp(16px, 4vw, 48px);
+  --gutter: 12px;                                   /* page side padding: 40px less than before on desktop, so content gets more width */
+  --space-block: 36px;                              /* standard gap between big blocks (images, card rows, the black insight box) */
+  --nav-gutter: clamp(16px, 4vw, 48px);             /* the header keeps its own, roomier padding */
 }
 
 * { box-sizing: border-box; }
@@ -108,7 +119,7 @@ a { color: inherit; text-decoration: none; }
 .nav {
   position: fixed; inset: 0 0 auto 0; z-index: 10;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 18px var(--gutter);
+  padding: 18px var(--nav-gutter);
   pointer-events: none;
 }
 .nav > * { pointer-events: auto; }
@@ -120,7 +131,7 @@ a { color: inherit; text-decoration: none; }
 /* hamburger: hidden on desktop */
 .menu-toggle { display: none; }
 @media (max-width: 700px) {
-  .nav { padding: 10px var(--gutter); }
+  .nav { padding: 10px var(--nav-gutter); }
   .brand { font-size: 15px; }
   .menu-toggle {
     display: grid; align-content: center; justify-items: end; gap: 5px; width: 36px; height: 36px; margin-right: -6px;
@@ -132,7 +143,7 @@ a { color: inherit; text-decoration: none; }
   /* the links become a dropdown sheet under the header */
   .nav nav {
     position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
-    padding: 6px var(--gutter) 14px; font-size: 22px; font-weight: 500;
+    padding: 6px var(--nav-gutter) 14px; font-size: 22px; font-weight: 500;
     background: var(--surface-page); border-bottom: 1px solid var(--border-subtle);
     box-shadow: 0 20px 30px -20px rgba(17, 17, 18, 0.25);
     opacity: 0; transform: translateY(-8px); visibility: hidden;
@@ -161,6 +172,12 @@ a { color: inherit; text-decoration: none; }
     linear-gradient(var(--border-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--border-grid) 1px, transparent 1px);
   background-size: 28px 28px;
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent 85%);
+          mask-image: linear-gradient(180deg, #000, transparent 85%);
+}
+/* lit pixels: same size + fade as the grid, drawn on a canvas by js/pixels.js */
+.grid-lit {
+  position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;
   -webkit-mask-image: linear-gradient(180deg, #000, transparent 85%);
           mask-image: linear-gradient(180deg, #000, transparent 85%);
 }
@@ -291,7 +308,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- work ---------- */
 .work { padding: 96px var(--gutter) 40px; max-width: 1280px; margin: 0 auto; scroll-margin-top: 20px; }
-.section-title { text-align: center; margin: 0 0 24px; font-size: clamp(32px, 5vw, 56px); font-weight: 700; letter-spacing: -0.02em; }
+.section-title { text-align: center; margin: 0 0 24px; font-family: var(--font-accent); font-size: clamp(32px, 5vw, 56px); font-weight: 600; letter-spacing: 0.005em; line-height: 1.1; }
 .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }   /* two per row */
 .card {
   position: relative; overflow: hidden;
@@ -307,7 +324,7 @@ a { color: inherit; text-decoration: none; }
 .card:hover .card-arrow { transform: translate(3px, -3px); color: var(--accent-secondary); }   /* pink on hover */
 .card-head { padding-top: 30px; min-height: 120px; }   /* room for a 2-line title (or logo + 1 line), so the rows line up across cards */
 .card-logo { display: block; width: 28px; height: 28px; margin: 0 auto 14px; border-radius: 7px; box-shadow: 0 8px 18px -8px rgba(17, 17, 18, 0.4); }
-.card-title { margin: 0; font-size: clamp(24px, 2.3vw, 32px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; text-wrap: balance; }
+.card-title { margin: 0; font-family: var(--font-accent); font-size: clamp(26px, 2.5vw, 34px); line-height: 1.15; letter-spacing: 0.005em; font-weight: 600; text-wrap: balance; }
 .card-tags { list-style: none; margin: 12px 0 28px; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; color: var(--text-muted); font-size: 15px; }
 .card-tags li { padding: 0 12px; }
 .card-tags li + li { border-left: 1px solid var(--border-subtle); }
@@ -413,13 +430,12 @@ img.card-media { display: block; width: calc(100% + 44px); height: auto; min-hei
 @media (prefers-reduced-motion: reduce) { .cat, .cat-sclera { transition: none; animation: none; } }
 
 /* ---------- subtle hover interactions (mouse only) ---------- */
-.chips li, .fact, .cs-stat, .cs-stage, .cs-flow li, .cs-pains li, .cs-tldr, .cs-ph, .cs-rules li, .cs-landed li {
+.chips li, .fact, .cs-stat, .cs-stage, .cs-pains li, .cs-tldr, .cs-ph, .cs-rules li, .cs-landed li {
   transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s, border-color 0.3s, background 0.3s, color 0.3s;
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .chips li:hover { transform: translateY(-2px); border-color: var(--border-card-hover); background: var(--surface-card); }
   .fact:hover, .cs-stat:hover, .cs-stage:hover, .cs-tldr:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); border-color: var(--border-card-hover); }
-  .cs-flow li:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); border-color: var(--border-card-hover); }
   .cs-pains li:hover { transform: translateY(-2px); background: var(--surface-card); border-color: var(--border-card-hover); }
   .cs-ph:hover { background: rgba(17, 17, 18, 0.07); border-color: var(--border-card-hover); }
   .cs-rules li:hover { transform: translateX(5px); border-color: var(--border-card-hover); }
@@ -431,3 +447,8 @@ img.card-media { display: block; width: calc(100% + 44px); height: auto; min-hei
 }
 .cs-cover img { transition: transform 0.45s cubic-bezier(.2,.8,.2,1); }
 .cs-stage .cs-big, .cs-stat strong, .cs-landed strong { transition: color 0.3s; }
+
+/* ---- page side padding (smaller on desktop = wider content) and Oswald on every title ---- */
+@media (min-width: 1100px) { :root { --gutter: 8px; } }
+@media (max-width: 700px) { :root { --gutter: 16px; } }
+h1, h2, h3, h4 { font-family: var(--font-accent); font-weight: 600; }

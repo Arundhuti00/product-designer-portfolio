@@ -7,9 +7,11 @@
   <meta name="description" content="An end-to-end audit of how a property photo travels from a broker's phone to a buyer's screen, and a strategy to build quality in from the first upload.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=8">
-  <link rel="stylesheet" href="../css/case-study.css?v=17">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=17">
+  <link rel="stylesheet" href="../css/case-study.css?v=39">
+  <script src="../js/transitions.js?v=1"></script>
+  <script src="../js/countup.js?v=1"></script>
 </head>
 <body class="cs-page">
   <header class="nav">
@@ -23,44 +25,75 @@
   </header>
 
   <main>
-    <!-- 1. Hero: what it is, in one glance -->
-    <section class="cs-hero">
-      <a class="cs-back" href="../index.html#work">&larr; My Work</a>
-      <p class="cs-eyebrow">Housing.com <span>|</span> Jan 2026 &ndash; Jul 2026</p>
-      <h1>From reactive to built&#8209;in: fixing image quality at Housing.com</h1>
-      <p class="cs-lede">An end-to-end audit of how a property photo travels from a broker's phone to a buyer's screen, and a strategy to build quality in from the first upload.</p>
-
-    </section>
-
-    <div class="cs-cover" data-cat="The seller's upload screen. Look at all those rooms.">
-      <img src="../assets/housing/hero-mockup.png" alt="Housing.com seller flow: the Add Photos screen with room coverage, uploaded images and upload tips" width="1556" height="1736">
-    </div>
-    <dl class="cs-meta">
-        <div><dt>Role</dt><dd>Product Design Intern</dd></div>
-        <div><dt>Timeline</dt><dd>6 weeks</dd></div>
-        <div><dt>Worked with</dt><dd>Engineering, Data Quality, Product, Design</dd></div>
-        <div><dt>Scope</dt><dd>Research, systems audit, strategy, PRD, UI</dd></div>
-      </dl>
-
-    <!-- 2. TL;DR -->
-    <section class="cs-section">
-      <div class="cs-tldr" data-cat="The 30-second version. I approve.">
-        <p class="cs-kicker">TL;DR</p>
-        <p>Buyers judge a listing by its photos first, and on Housing.com those photos were often dark, blurry or awkwardly cropped. I traced a single image through the whole pipeline (upload, verification, optimisation and rendering) and found that quality was only checked at the very end. My three-part strategy, <strong>Prevent, Preserve, Present</strong>, proposed to build quality in from the start. Two recommendations, a guided upload flow with guardrails and standardised rendering ratios, were prioritised to be picked up first.</p>
+    <!-- 1. Hero: headline, facts and the product side by side, so the first screen tells the whole story -->
+    <section class="cs-split">
+      <div class="cs-split-text">
+        <a class="cs-back cs-rise" style="--d:0ms" href="../index.html#work">&larr; My Work</a>
+        <p class="cs-eyebrow cs-rise" style="--d:90ms"><i class="cs-dot" aria-hidden="true"></i>Housing.com <span>|</span> Jan 2026 &ndash; Jul 2026</p>
+        <h1 aria-label="From reactive to built-in: fixing image quality at Housing.com"><span aria-hidden="true"><span class="w" style="--i:0"><span class="wi">From</span></span> <span class="w" style="--i:1"><span class="wi hl-reactive">reactive</span></span> <span class="w" style="--i:2"><span class="wi">to</span></span> <span class="w" style="--i:3"><span class="wi hl-builtin">built&#8209;in:</span></span> <span class="w" style="--i:4"><span class="wi">fixing</span></span> <span class="w" style="--i:5"><span class="wi">image</span></span> <span class="w" style="--i:6"><span class="wi">quality</span></span> <span class="w" style="--i:7"><span class="wi">at</span></span> <span class="w" style="--i:8"><span class="wi">Housing.com</span></span></span></h1>
+        <p class="cs-lede cs-rise" style="--d:1000ms">An end-to-end audit of how a property photo travels from a broker's phone to a buyer's screen, and a strategy to <span class="cs-mark">build quality in</span> from the first upload.</p>
+        <dl class="cs-meta cs-rise" style="--d:1180ms">
+          <div><dt>Role</dt><dd>Product Design Intern</dd></div>
+          <div><dt>Timeline</dt><dd>6 weeks</dd></div>
+          <div><dt>Worked with</dt><dd>Engineering, Data Quality, Product, Design</dd></div>
+          <div><dt>Scope</dt><dd>Research, systems audit, strategy, PRD, UI</dd></div>
+        </dl>
+      </div>
+      <div class="cs-split-media" data-cat="The seller's upload screen. Look at all those rooms.">
+        <img src="../assets/housing/hero-mockup.png" alt="Housing.com seller flow: the Add Photos screen with room coverage, uploaded images and upload tips" width="1556" height="1736">
       </div>
     </section>
 
-    <!-- 3. The problem -->
+    <!-- The setting -->
     <section class="cs-section">
-      <p class="cs-kicker">The problem</p>
+      <p class="cs-kicker cs-setting-label">The setting</p>
+      <p class="cs-context">Every listing on Housing.com starts with photos that a broker or owner takes on their phone. Before a buyer sees them, they pass through four systems: upload, verification, optimisation and rendering, each looked after by a different team. This project follows that whole journey, not any single screen.</p>
+    </section>
+
+    <!-- The short version -->
+    <section class="cs-section">
+      <p class="cs-kicker">The short version</p>
+      <div class="cs-quick" data-cat="The short version. Tap a card to jump to that chapter.">
+        <a class="cs-q" href="#gap"><span class="cs-q-n" aria-hidden="true">01</span><h3>Poor photos lost buyers.</h3><p>Buyers judge a listing by its photos first, and many Housing.com photos were dark, blurry or awkwardly cropped.</p><span class="cs-q-go">The gap <i aria-hidden="true">&darr;</i></span></a>
+        <a class="cs-q" href="#answer"><span class="cs-q-n" aria-hidden="true">02</span><h3>Find why, fix it for good.</h3><p>Find out why it keeps happening, and propose a strategy that fixes it for good.</p><span class="cs-q-go">The answer <i aria-hidden="true">&darr;</i></span></a>
+        <a class="cs-q" href="#how"><span class="cs-q-n" aria-hidden="true">03</span><h3>Quality was checked too late.</h3><p>I traced one image through the whole pipeline and found quality was only checked at the very end. My answer: <strong>Prevent, Preserve, Present</strong>.</p><span class="cs-q-go">How I got there <i aria-hidden="true">&darr;</i></span></a>
+        <a class="cs-q" href="#expect"><span class="cs-q-n" aria-hidden="true">04</span><h3>Two fixes went first.</h3><p>Two recommendations, a guided upload flow with guardrails and standardised rendering ratios, were picked up first.</p><span class="cs-q-go">What I expect <i aria-hidden="true">&darr;</i></span></a>
+      </div>
+    </section>
+
+    <!-- Chapter 01: the gap (problem) -->
+    <section class="cs-section cs-chapter" id="gap">
+      <p class="cs-kicker">01 &middot; The gap</p>
       <h2>In real estate, the photo is the first site visit.</h2>
       <p class="cs-body">Before a buyer requests a call, they scroll. A listing gets a few seconds of attention, and the photos do most of the talking in that time. Many Housing.com listings were losing that moment.</p>
 
-      <ul class="cs-pains">
-        <li>Too dark to read the room</li>
-        <li>Blurred after compression</li>
-        <li>Cropped out completely</li>
-      </ul>
+      <!-- one real example per problem; all three share the same 16:9 frame. Click to open full width. -->
+      <div class="cs-pains-photos">
+        <figure class="cs-frame" data-cat="Can you tell what room this is? Neither can I.">
+          <img src="../assets/housing/image 236.png" alt="A bathroom photo that is far too dark to make out the room" width="853" height="480" loading="lazy">
+          <figcaption><b>/</b>Too dark to read the room</figcaption>
+        </figure>
+        <figure class="cs-frame">
+          <img src="../assets/housing/image 238.png" alt="A bedroom photo that looks soft and blurred after compression" width="853" height="480" loading="lazy">
+          <figcaption><b>/</b>Blurred after compression</figcaption>
+        </figure>
+        <figure class="cs-frame">
+          <img class="is-portrait" src="../assets/housing/image 174.png" alt="A balcony photo cropped so that part of the room is cut out" width="550" height="733" loading="lazy">
+          <figcaption><b>/</b>Cropped out completely</figcaption>
+        </figure>
+      </div>
+
+      <!-- Click either image to open it full width -->
+      <div class="cs-problem-pair">
+        <figure class="cs-frame" data-cat="The listing page. See the cover photo? It's mostly blur.">
+          <img src="../assets/housing/P1a.png" alt="Housing.com property detail page (PDP): the photo gallery with the cover image and a 'more' tile, marked 1" width="1512" height="829" loading="lazy">
+          <figcaption><b>PDP</b>Property detail page</figcaption>
+        </figure>
+        <figure class="cs-frame" data-cat="The search results. Lots of photos, lots of different crops.">
+          <img src="../assets/housing/P2a.png?v=2" alt="Housing.com search results page (SRP): a list of property cards with differently cropped photos, marked 2" width="1512" height="829" loading="lazy">
+          <figcaption><b>SRP</b>Search results page</figcaption>
+        </figure>
+      </div>
 
       <div class="cs-stats">
         <div class="cs-stat"><strong>#1</strong><p>Photos rank as the most useful feature in property search, ahead of price, location and description.</p><small>NAR, 2024</small></div>
@@ -69,11 +102,82 @@
       </div>
     </section>
 
-    <!-- 4. The reframe -->
-    <section class="cs-section">
-      <p class="cs-kicker">The reframe</p>
+    <!-- Chapter 02: the answer (solution) -->
+    <section class="cs-section cs-chapter" id="answer">
+      <p class="cs-kicker">02 &middot; The answer</p>
+      <h2>Build quality in, starting at the first upload.</h2>
+      <p class="cs-body">Stop bad photos at the source, protect good ones on their way through and show every photo the way it deserves to be seen: <strong>Prevent, Preserve, Present</strong>.</p>
+
+      <!-- the three moves hang off point 02 on a vertical line -->
+      <div class="cs-branch">
+        <div class="cs-pillar cs-pillar-stack">
+          <div class="cs-pillar-text">
+            <p class="cs-num">Prevent</p>
+            <h3>The guided upload</h3>
+            <p>Instead of finding out after review, brokers now get guidance right beside the upload box and feedback the moment a photo lands. A dark photo is flagged on the spot, along with how to fix it.</p>
+            <ul class="cs-steps">
+              <li><strong>Step 1</strong> Room coverage, clear limits, instant feedback, do/avoid panel, missing room nudge.</li>
+              <li><strong>Step 2</strong> The checklist, the quality meter, the live listing-card preview.</li>
+            </ul>
+          </div>
+          <!-- before / after; click any image to open it full width -->
+          <div class="cs-ba">
+            <div class="cs-ba-col">
+              <span class="cs-ba-tag">Before</span>
+              <figure class="cs-frame"><img src="../assets/housing/Before1.png" alt="Before: the old Add Photos screen on the seller dashboard, where uploaded photos are all marked Others, with no guidance beside the upload box" width="1512" height="1112" loading="lazy"></figure>
+            </div>
+            <div class="cs-ba-col">
+              <span class="cs-ba-tag cs-ba-tag-after">After</span>
+              <figure class="cs-frame"><img class="baked" src="../assets/housing/S1.png?v=2" alt="After: the guided upload screen, with room coverage, a do and avoid panel, an instant 'image too dark' flag and a missing-rooms nudge" width="1606" height="1692" loading="lazy"></figure>
+              <figure class="cs-frame"><img class="baked" src="../assets/housing/S2.png?v=2" alt="After: the review screen, with the gallery checklist, the image quality meter and a live listing-card preview" width="1600" height="1271" loading="lazy"></figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-pillar cs-pillar-stack">
+          <div class="cs-pillar-text">
+            <p class="cs-num">Preserve</p>
+            <h3>The variant rules</h3>
+            <p>A clear rule for which variant serves which slot, so compression stops softening photos that started out sharp.</p>
+            <p class="cs-badge">Recommended for a later phase</p>
+          </div>
+        </div>
+
+        <div class="cs-pillar cs-pillar-stack">
+          <div class="cs-pillar-text">
+            <p class="cs-num">Present</p>
+            <h3>The rendering rulebook</h3>
+            <p>I wrote the rules for how every listing photo is framed: three standard ratios, crop rules that protect what buyers look for, and a cover photo that stays put from search results to the property page.</p>
+          </div>
+          <!-- three rule sheets, equal width; click any to open it full width -->
+          <div class="cs-trio-imgs">
+            <div class="cs-trio-item">
+              <p class="cs-trio-cap"><b>1</b>Three ratios. No ad-hoc exceptions.</p>
+              <figure class="cs-frame"><img src="../assets/housing/S3a.jpg" alt="The rendering rules, part 1: the three canonical ratios (4:3, 16:9, 3:4) and a table of which module uses which ratio" width="1316" height="1642" loading="lazy"></figure>
+            </div>
+            <div class="cs-trio-item">
+              <p class="cs-trio-cap"><b>2</b>Never crop the roofline. Keep the floor and ceiling in frame.</p>
+              <figure class="cs-frame"><img src="../assets/housing/S3b.jpg" alt="The rendering rules, part 2: crop rules, with safe areas and right and wrong crops for exteriors (never crop the roofline) and interiors (keep floor and ceiling)" width="1368" height="1614" loading="lazy"></figure>
+            </div>
+            <div class="cs-trio-item">
+              <p class="cs-trio-cap"><b>3</b>Three ratios. No ad-hoc exceptions.</p>
+              <figure class="cs-frame"><img src="../assets/housing/S3c.jpg" alt="The rendering rules, part 3: thumb continuity, where the primary image stays the same from the search results page to the property page" width="1364" height="1220" loading="lazy"></figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapter 03: how I got there (research and synthesis) -->
+    <section class="cs-section cs-chapter" id="how">
+      <p class="cs-kicker">03 &middot; How I got there</p>
       <h2>It wasn't a photo problem. It was a pipeline problem.</h2>
       <p class="cs-body">Picture a broker in an empty flat, carefully clicking every room. Before those photos reach a buyer, four different systems check, compress, resize and crop them, and any one of them can quietly undo that effort. So I stopped judging photos and followed one all the way through.</p>
+
+      <!-- the journey of one listing photo, click to open full width -->
+      <figure class="cs-frame cs-process" data-cat="One broker, one upload, four systems. Follow the numbers.">
+        <img src="../assets/housing/Process.png" alt="Process map: a broker uploads a listing, then either uploads already-clicked photos or opts in for self verification and clicks live photos (1). The image is processed and uploaded to the database (2), verification runs for approval, rejection and tags, optimisation happens on the fly (3), and the image is rendered across listings (4)." width="1920" height="958" loading="lazy">
+      </figure>
 
       <ol class="cs-flow" aria-label="The four stages a photo passes through">
         <li><span>Upload</span><small>Owner / broker, Design</small></li>
@@ -82,12 +186,8 @@
         <li><span>Rendering</span><small>Product / Design</small></li>
       </ol>
       <p class="cs-caption">4 stages, 4 user groups. No single owner of the end-to-end experience.</p>
-    </section>
 
-    <!-- 5. Following the image -->
-    <section class="cs-section">
-      <p class="cs-kicker">Following the image</p>
-      <h2>Four stages, four different sets of rules.</h2>
+      <h3 class="cs-sub">Following one image through four stages</h3>
       <div class="cs-stages">
         <article class="cs-stage" data-cat="Five ways in. Cats only need one door.">
           <p class="cs-num">01 &middot; Upload</p>
@@ -113,10 +213,7 @@
           <p>Up to five on the home page alone. The same photo looked different everywhere.</p>
         </article>
       </div>
-    </section>
 
-    <!-- 6. The insight -->
-    <section class="cs-section">
       <div class="cs-insight" data-cat="This is the bit that matters.">
         <p class="cs-kicker">The insight</p>
         <h2>Quality was checked at the end, not built in at the start.</h2>
@@ -124,62 +221,40 @@
       </div>
     </section>
 
-    <!-- 7. The strategy -->
-    <section class="cs-section">
-      <p class="cs-kicker">The strategy</p>
-      <h2>Prevent. Preserve. Present.</h2>
-      <p class="cs-body">Stop bad photos at the source, protect good ones on their way through and show every photo the way it deserves to be seen.</p>
+    <!-- Chapter 04: what I expect (hypotheses, no measured results yet) -->
+    <section class="cs-section cs-chapter" id="expect">
+      <p class="cs-kicker">04 &middot; What I expect</p>
+      <h2>What I expect this to change.</h2>
+      <p class="cs-body">Hypotheses, not measured results. Each one names the signal I'd watch.</p>
+      <ol class="cs-hyp" data-cat="Hypotheses. Science, but with fewer cats.">
+        <li class="cs-hyp-row">
+          <div class="cs-hyp-meta"><span class="cs-hyp-tag">Prevent</span><h3>Guided upload flow</h3><span class="cs-hyp-phase">Picked up first</span></div>
+          <div class="cs-hyp-body">
+            <p class="cs-hyp-expect"><small>I expect</small><mark>Fewer poor photos</mark> reach review.</p>
+            <p class="cs-hyp-why">Guidance beside the upload box and instant flags mean brokers fix a bad photo while still in the room.</p>
+            <ul class="cs-hyp-signals" aria-label="Signal I would watch"><li class="cs-hyp-label">Signal</li><li>Rejection rate at audit</li><li>Review time per listing</li></ul>
+          </div>
+        </li>
+        <li class="cs-hyp-row">
+          <div class="cs-hyp-meta"><span class="cs-hyp-tag">Present</span><h3>Standardised rendering ratios</h3><span class="cs-hyp-phase">Picked up first</span></div>
+          <div class="cs-hyp-body">
+            <p class="cs-hyp-expect"><small>I expect</small>Every photo looks the same everywhere, so <mark>more buyers enquire</mark>.</p>
+            <p class="cs-hyp-why">Three ratios and crop rules that protect the roofline, floor and ceiling, with a cover photo that stays put.</p>
+            <ul class="cs-hyp-signals" aria-label="Signal I would watch"><li class="cs-hyp-label">Signal</li><li>Enquiries per listing</li></ul>
+          </div>
+        </li>
+        <li class="cs-hyp-row">
+          <div class="cs-hyp-meta"><span class="cs-hyp-tag">Preserve</span><h3>Variant rules</h3><span class="cs-hyp-phase">Later phase</span></div>
+          <div class="cs-hyp-body">
+            <p class="cs-hyp-expect"><small>I expect</small><mark>Sharp originals stay sharp</mark> for buyers.</p>
+            <p class="cs-hyp-why">One rule for which variant serves which slot, so compression stops softening good photos.</p>
+            <ul class="cs-hyp-signals" aria-label="Signal I would watch"><li class="cs-hyp-label">Signal</li><li>Share of listings with blurred photos</li></ul>
+          </div>
+        </li>
+      </ol>
 
-      <div class="cs-pillar">
-        <div class="cs-pillar-text">
-          <p class="cs-num">Prevent</p>
-          <h3>The guided upload</h3>
-          <p>Instead of finding out after review, brokers now get guidance right beside the upload box and feedback the moment a photo lands. A dark photo is flagged on the spot, along with how to fix it.</p>
-          <ul class="cs-steps">
-            <li><strong>Step 1</strong> Room coverage, clear limits, instant feedback, do/avoid panel, missing room nudge.</li>
-            <li><strong>Step 2</strong> The checklist, the quality meter, the live listing-card preview.</li>
-          </ul>
-        </div>
-        <div class="cs-pair">
-          <div class="cs-ph" role="img" aria-label="Image placeholder: upload flow, step 1"><span>Upload flow, step 1</span></div>
-          <div class="cs-ph" role="img" aria-label="Image placeholder: upload flow, step 2"><span>Upload flow, step 2</span></div>
-        </div>
-      </div>
-
-      <div class="cs-pillar">
-        <div class="cs-pillar-text">
-          <p class="cs-num">Preserve</p>
-          <h3>The variant rules</h3>
-          <p>A clear rule for which variant serves which slot, so compression stops softening photos that started out sharp.</p>
-          <p class="cs-badge">Recommended for a later phase</p>
-        </div>
-        <div class="cs-ph" role="img" aria-label="Image placeholder: variant rules"><span>Variant rules</span></div>
-      </div>
-
-      <div class="cs-pillar">
-        <div class="cs-pillar-text">
-          <p class="cs-num">Present</p>
-          <h3>The rendering rulebook</h3>
-          <p>I wrote the rules for how every listing photo is framed: three standard ratios, crop rules that protect what buyers look for, and a cover photo that stays put from search results to the property page.</p>
-          <ul class="cs-rules">
-            <li>Three ratios. No ad-hoc exceptions.</li>
-            <li>Never crop the roofline. Keep the floor and ceiling in frame.</li>
-          </ul>
-        </div>
-        <div class="cs-ph" role="img" aria-label="Image placeholder: the three standard ratios"><span>The three ratios</span></div>
-      </div>
     </section>
 
-    <!-- 8. Where it landed -->
-    <section class="cs-section">
-      <p class="cs-kicker">Where it landed</p>
-      <h2>Two recommendations went first.</h2>
-      <ul class="cs-landed">
-        <li><strong>Guided upload flow with guardrails</strong> Prioritised to be picked up first.</li>
-        <li><strong>Standardised rendering ratios</strong> Prioritised to be picked up first.</li>
-        <li><strong>Variant rules</strong> Recommended for a later phase.</li>
-      </ul>
-    </section>
 
     <!-- 9. What next -->
     <section class="cs-next">
@@ -207,6 +282,7 @@
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
     })();
   </script>
+  <script src="../js/lightbox.js?v=1" defer></script>
   <script type="module" src="../js/cat.js?v=3"></script>
 </body>
 </html>
