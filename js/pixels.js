@@ -1,5 +1,5 @@
 // The background grid as pixels that light up under the cursor.
-// Each 28px cell remembers two "heats": a quick one (the bright core under the pointer)
+// Each 14px cell remembers two "heats": a quick one (the bright core under the pointer)
 // and a slow one (an afterglow that trails behind it, like a light-painting exposure).
 // A tap or click sends a soft ripple through the grid.
 // Colours come from the --pixel-core / --pixel-trail custom properties on the canvas, so every
@@ -10,7 +10,7 @@ function initPixels(hero, canvas) {
   if (!hero || !canvas) return;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const ctx = canvas.getContext('2d');
-  const CELL = 28;                       // must match background-size of .grid-bg
+  const CELL = 14;                       // must match background-size of .grid-bg
   const dpr = Math.min(devicePixelRatio || 1, 2);
 
   // read the token colours once (works for hex, rgb(), named: the canvas normalises them)
@@ -44,6 +44,7 @@ function initPixels(hero, canvas) {
   resize();
 
   function light(x, y, radiusCells, strength) {
+    radiusCells *= 2;                                   // radii are written for the old 28px cell; the cells are half that now
     const cx = x / CELL, cy = y / CELL;
     const c0 = Math.max(0, Math.floor(cx - radiusCells)), c1 = Math.min(cols - 1, Math.ceil(cx + radiusCells));
     const r0 = Math.max(0, Math.floor(cy - radiusCells)), r1 = Math.min(rows - 1, Math.ceil(cy + radiusCells));
@@ -66,7 +67,7 @@ function initPixels(hero, canvas) {
     const x = e.clientX - rect.left, y = e.clientY - rect.top;
     const speed = last ? Math.hypot(x - last.x, y - last.y) : 0;
     // fill in between samples so a fast sweep leaves a continuous streak, not dots
-    const steps = Math.max(1, Math.ceil(speed / (CELL * 0.6)));
+    const steps = Math.max(1, Math.ceil(speed / (CELL * 1.2)));
     for (let s = 1; s <= steps; s++) {
       const px = last ? last.x + ((x - last.x) * s) / steps : x;
       const py = last ? last.y + ((y - last.y) * s) / steps : y;
@@ -124,7 +125,7 @@ function initPixels(hero, canvas) {
         let f = fast[i], s = slow[i];
         if (f < 0.01 && s < 0.01) { fast[i] = 0; slow[i] = 0; continue; }
         alive = true;
-        const x = c * CELL + 1.5, y = r * CELL + 1.5, size = CELL - 2.5;
+        const x = c * CELL + 0.75, y = r * CELL + 0.75, size = CELL - 1.25;
         if (s > 0.01) { ctx.fillStyle = rgba(trail, s * 0.22); ctx.fillRect(x, y, size, size); }      // pink afterglow
         if (f > 0.01) {
           ctx.fillStyle = rgba(core, f * 0.62); ctx.fillRect(x, y, size, size);                        // orange core

@@ -16,6 +16,9 @@
 
   function open(src, alt, from) {
     last = from; big.src = src; big.alt = alt || '';
+    // a phone screen (clearly taller than wide) is fitted to the window's height instead of filling the width
+    var w = from && from.naturalWidth, hgt = from && from.naturalHeight;
+    big.classList.toggle('is-fit', !!(w && hgt / w >= 1.5));
     box.hidden = false; box.scrollTop = 0;
     requestAnimationFrame(function () { box.classList.add('is-open'); });
     document.documentElement.style.overflow = 'hidden';

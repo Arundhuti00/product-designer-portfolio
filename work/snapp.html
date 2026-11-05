@@ -8,12 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20">
-  <link rel="stylesheet" href="../css/case-study.css?v=46">
+  <link rel="stylesheet" href="../css/style.css?v=32">
+  <link rel="stylesheet" href="../css/case-study.css?v=83">
   <script src="../js/transitions.js?v=1"></script>
   <script src="../js/countup.js?v=1"></script>
+  <script src="../js/hero-full.js?v=1" defer></script>
 </head>
-<body class="cs-page">
+<body class="cs-page hero-full hero-snapp">
   <header class="nav">
     <a class="brand" href="../index.html">Arundhuti</a>
     <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
@@ -25,7 +26,34 @@
   </header>
 
   <main>
-    <!-- 1. Hero -->
+    <!-- 1. Hero, full-bleed version (same build as Photo Quality): text bottom-left, phone on the right, reactive pixel grid behind.
+         The earlier hero is kept below; to go back to it, remove classes "hero-full hero-snapp" from <body>. -->
+    <section class="cs-hero-full" id="top">
+      <div class="grid-bg" aria-hidden="true"></div>
+      <canvas class="grid-lit" aria-hidden="true"></canvas>
+      <a class="cs-back-light" href="../index.html#work">&larr; My Work</a>
+      <div class="cs-hf-grid">
+        <div class="cs-hf-left">
+          <p class="cs-eyebrow cs-rise" style="--d:90ms"><i class="cs-dot" aria-hidden="true"></i>Media app <span>|</span> Project <span>|</span> Mixed reality</p>
+          <h1 class="cs-rise" style="--d:260ms">Redefining News:<br>Personalized, Context&#8209;Aware, Engaging</h1>
+          <p class="cs-lede cs-rise" style="--d:620ms">Endless headlines at 2 AM. World-changing events that feel flat. Important stories buried under clickbait.</p>
+          <a class="cs-hf-btn cs-rise" style="--d:820ms" href="#setting">Read the story <i aria-hidden="true">&darr;</i></a>
+        </div>
+        <div class="cs-hf-media" data-cat="Good morning, Rita! Today's curated snippets, one tap away.">
+          <img src="../assets/snapp/snapp-phone.png?v=2" alt="The Snapp home screen on a phone: a greeting for Rita, daily story circles and a purple featured card titled The Vanishing Forests" width="1019" height="1700">
+        </div>
+      </div>
+    </section>
+    <!-- project facts, just under the hero (only shown with the full-bleed hero) -->
+    <section class="cs-hero-facts">
+      <dl class="cs-meta">
+        <div><dt>Scope</dt><dd>Product Design, UI Design</dd></div>
+        <div><dt>Timeline</dt><dd>1 month</dd></div>
+        <div><dt>Team</dt><dd>Individual</dd></div>
+      </dl>
+    </section>
+
+    <!-- 1. Earlier hero (hidden while body has class hero-full) -->
     <section class="cs-hero">
       <a class="cs-back" href="../index.html#work">&larr; My Work</a>
       <p class="cs-eyebrow">Media app <span>|</span> Project <span>|</span> Mixed reality</p>
@@ -42,18 +70,25 @@
       <div><dt>Team</dt><dd>Individual</dd></div>
     </dl>
 
-    <!-- 2. The 30-second version -->
+    <!-- The setting: where the project started -->
+    <section class="cs-section" id="setting">
+      <p class="cs-context" data-cat="The spark. Also my 2 AM thoughts.">&ldquo;Why is the most important stuff in the world&hellip; so boring to read?&rdquo;</p>
+    </section>
+
+    <!-- The short version: four cards that jump to the four chapters -->
     <section class="cs-section">
-      <div class="cs-tldr cs-tldr-rows" data-cat="The 30-second version. I approve.">
-        <div><p class="cs-kicker">The spark</p><p class="cs-spark">&ldquo;Why is the most important stuff in the world&hellip; so boring to read?&rdquo;</p></div>
-        <div><p class="cs-kicker">Problem</p><p>News apps serve the same static headlines across scattered platforms, whether you have 30 seconds or 30 minutes.</p></div>
-        <div><p class="cs-kicker">Solution</p><p>I redesigned news as an adaptive AI experience that learns what you care about and adapts to where you are: commute, lunch break, or couch.</p></div>
+      <p class="cs-kicker">The short version</p>
+      <div class="cs-quick" data-cat="The short version. Tap a card to jump to that chapter.">
+        <a class="cs-q" href="#gap"><span class="cs-q-n" aria-hidden="true">01</span><h3>News is clickbaity and not engaging.</h3><p>Endless headlines, flat stories and clickbait bury what matters, so people skim, switch off or avoid the news altogether.</p><span class="cs-q-go">The gap <i aria-hidden="true">&darr;</i></span></a>
+        <a class="cs-q" href="#answer"><span class="cs-q-n" aria-hidden="true">02</span><h3>A companion that fits your day.</h3><p>I redesigned news as an adaptive AI experience that learns what you care about and adapts to where you are: commute, lunch break, or couch.</p><span class="cs-q-go">The answer <i aria-hidden="true">&darr;</i></span></a>
+        <a class="cs-q" href="#how"><span class="cs-q-n" aria-hidden="true">03</span><h3>Breadth or depth. Nobody did context.</h3><p>How might we deliver just enough personalised news, in whatever mode the moment calls for?</p><span class="cs-q-go">How I got there <i aria-hidden="true">&darr;</i></span></a>
+        <a class="cs-q" href="#earn"><span class="cs-q-n" aria-hidden="true">04</span><h3>Free to skim, paid for depth.</h3><p>Daily news stays free. AR stories and deep dives sit behind a subscription, with opt-in personalisation and light sponsors.</p><span class="cs-q-go">What pays for it <i aria-hidden="true">&darr;</i></span></a>
       </div>
     </section>
 
-    <!-- 3. Why rethink news -->
-    <section class="cs-section">
-      <p class="cs-kicker">Why rethink news?</p>
+    <!-- Chapter 01: the gap (research and pain points) -->
+    <section class="cs-section cs-chapter" id="gap">
+      <p class="cs-kicker">01 &middot; The gap</p>
       <h2>Few people pay for news, and many avoid it.</h2>
       <p class="cs-body">10 interviews &middot; 30 surveys &middot; industry reports</p>
       <div class="cs-stats">
@@ -61,18 +96,29 @@
         <div class="cs-stat"><strong>39%</strong><p>avoid news because it's boring or negative, up 3 points year-on-year.</p><small>Source [2]</small></div>
         <div class="cs-stat"><strong>Only 10%</strong><p>News apps hold just 10% of India's digital news market.</p><small>Industry reports</small></div>
       </div>
-    </section>
 
-    <!-- 4. Mapping pain points -->
-    <section class="cs-section">
-      <p class="cs-kicker">Mapping pain points</p>
-      <h2>Meet Aarav.</h2>
+      <div class="cs-evidence">
+        <figure class="cs-frame">
+          <img data-no-lightbox src="../assets/snapp/problem-format.png" alt="A news site laid out like a printed newspaper: flat, busy and outdated" width="471" height="479" loading="lazy">
+        </figure>
+        <figure class="cs-frame" data-cat="Close the pop-up. Another pop-up.">
+          <img data-no-lightbox src="../assets/snapp/problem-ads.png" alt="A full-screen ad interrupting an article: heavy on ads and intrusive" width="471" height="480" loading="lazy">
+        </figure>
+      </div>
+
+      <h3 class="cs-sub">Mapping pain points: meet Aarav</h3>
       <div class="cs-persona" data-cat="Aarav scrolls at 2 AM. Relatable.">
         <div class="cs-persona-head">
           <p class="cs-persona-name">Aarav, 27</p>
           <p class="cs-persona-sub">Digital Marketing Associate &middot; Delhi</p>
           <p class="cs-persona-quote">&ldquo;I don't get a lot of time to read news. I mostly scan through Inshorts and keep up with social media news bits.&rdquo;</p>
           <ul class="cs-tagrow"><li>Busy on-the-go</li><li>Tech savvy</li></ul>
+          <p class="cs-apps-label">Apps he uses</p>
+          <div class="cs-apps">
+            <img data-no-lightbox src="../assets/snapp/app-1.png" alt="A red app icon with a grid of white dots" width="68" height="68" loading="lazy">
+            <img data-no-lightbox src="../assets/snapp/app-2.png" alt="The Instagram app icon" width="68" height="68" loading="lazy">
+            <img data-no-lightbox src="../assets/snapp/app-3.png" alt="The Blinkit app icon" width="70" height="68" loading="lazy">
+          </div>
         </div>
         <dl class="cs-persona-facts">
           <div><dt>Tech comfort level</dt><dd>High. Early adopter of new technology (owns an AR-capable smartphone and uses wearables).</dd></div>
@@ -82,6 +128,11 @@
         </dl>
       </div>
 
+      <h3 class="cs-sub">Where Aarav's day goes wrong</h3>
+      <figure class="cs-frame cs-journey" data-cat="Confused, frustrated, bored. A full emotional range.">
+        <img src="../assets/snapp/journey-map.png" alt="Aarav's user journey map across opening the app, exploring categories and viewing an article, with his actions, thoughts, emotions, and the needs and opportunities each stage reveals" width="1500" height="1414" loading="lazy">
+      </figure>
+
       <h3 class="cs-sub">What I learned</h3>
       <ul class="cs-learned">
         <li>Users don't know what they want to read until they see it.</li>
@@ -90,21 +141,109 @@
       </ul>
     </section>
 
-    <!-- 5. Competitors and the question -->
-    <section class="cs-section">
-      <p class="cs-kicker">Competitor analysis</p>
+    <!-- Chapter 02: the answer (final solution) -->
+    <section class="cs-section cs-chapter" id="answer">
+      <p class="cs-kicker">02 &middot; The answer</p>
+      <h2 class="cs-two">Not just news.<br>A companion that fits your day.</h2>
+      <p class="cs-body">Three modes, shaped by context, plus a community loop that keeps curiosity alive.</p>
+      <div class="cs-modes" data-cat="Pick a mode. Any mode. Aarav does.">
+        <div class="cs-tabs" role="tablist" aria-label="Snapp modes">
+          <button type="button" role="tab" aria-selected="true" data-panel="glance">Glance <small>Commute</small></button>
+          <button type="button" role="tab" aria-selected="false" data-panel="experience">Experience <small>Immersive</small></button>
+          <button type="button" role="tab" aria-selected="false" data-panel="listen">Listen <small>Voice</small></button>
+          <button type="button" role="tab" aria-selected="false" data-panel="community">Community <small>Loop</small></button>
+        </div>
+        <div class="cs-mode-panel" id="mode-glance">
+          <img class="cs-screen" src="../assets/snapp/S2.png" alt="Snapp's Glance screen: a news article with a summary button and Read More" width="802" height="1748">
+          <div class="cs-mode-text">
+            <p class="cs-kicker">Scenario &middot; The commuter</p>
+            <p class="cs-mode-lede">Aarav has 8 minutes on the bus and no time for long reads. Snapp gives him the full story in under a minute, as a 60-second read or a 30-second voice clip, with bullet points and visual cues.</p>
+            <div class="cs-spark" data-cat="Idea spark. Lightbulb not included.">
+              <p class="cs-kicker">Idea spark</p>
+              <p>A glanceable, AI-summarised mode. Bullet-point news that floats at eye level. Swipeable. Smart. No noise.</p>
+            </div>
+            <dl class="cs-mode-facts">
+              <div><dt>Best for</dt><dd>Breaking news, daily updates and business stories when you're alert but rushed.</dd></div>
+              <div><dt>Designed for</dt><dd>Moments of urgency, commuting, or quick information checks.</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="cs-mode-panel" id="mode-experience" hidden>
+          <div class="cs-screens" data-cat="Tap Experience. The story opens up around you.">
+            <img class="cs-screen" src="../assets/snapp/S2.png" alt="The article screen, with the Experience button in the top bar" width="802" height="1748" loading="lazy">
+            <img class="cs-screen cs-screen-low" src="../assets/snapp/S3.png" alt="The same story as an immersive map you can explore" width="802" height="1748" loading="lazy">
+            <svg class="cs-screens-arrow" viewBox="0 0 100 118.1" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M42 13.4C60 11 76 11.5 77.5 19.4" vector-effect="non-scaling-stroke"/><path d="M74.6 16.4L77.5 19.7L80.4 16.4" vector-effect="non-scaling-stroke"/></svg>
+          </div>
+          <div class="cs-mode-text">
+            <p class="cs-kicker">Scenario &middot; The deep dive</p>
+            <p class="cs-mode-lede">It's 9 PM and Aarav is on his sofa with time to think. He's curious about the Russia-Ukraine conflict but finds text articles overwhelming. The story opens like a scene, where he can walk through characters, events and locations in 3D.</p>
+            <div class="cs-spark" data-cat="Idea spark. Now in 3D.">
+              <p class="cs-kicker">Idea spark</p>
+              <p>Reimagine long-form stories as immersive experiences. Explore data, characters and maps at your own pace. Not flat, not passive, but spatial and interactive.</p>
+            </div>
+            <dl class="cs-mode-facts cs-mode-facts-one">
+              <div><dt>Best for</dt><dd>Geopolitics, climate and investigative stories, when you're contemplative and have time to explore.</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="cs-mode-panel" id="mode-listen" hidden>
+          <div class="cs-screens" data-cat="Hands full. Ears free.">
+            <img class="cs-screen" src="../assets/snapp/S4.png" alt="The Listen button opens a choice of narration styles" width="802" height="1748" loading="lazy">
+            <img class="cs-screen cs-screen-low" src="../assets/snapp/S5.png" alt="The story narrated aloud, with a voice player and live transcript" width="802" height="1748" loading="lazy">
+            <svg class="cs-screens-arrow" viewBox="0 0 100 118.1" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M29 13.4C54 11 76 11.5 77.5 19.4" vector-effect="non-scaling-stroke"/><path d="M74.6 16.4L77.5 19.7L80.4 16.4" vector-effect="non-scaling-stroke"/></svg>
+          </div>
+          <div class="cs-mode-text">
+            <p class="cs-kicker">Scenario &middot; The multitasker</p>
+            <p class="cs-mode-lede">Aarav is cooking dinner, hands busy and eyes tired. Snapp carries on his story in a natural AI voice, picking up exactly where he left off reading, with smart transitions and optional ambient effects.</p>
+            <div class="cs-spark" data-cat="Idea spark. Now with sound.">
+              <p class="cs-kicker">Idea spark</p>
+              <p>A seamless switch to voice narration. Not a separate app. Just one tap, and the news follows you, ambiently.</p>
+            </div>
+            <dl class="cs-mode-facts">
+              <div><dt>Best for</dt><dd>Human interest, features and editorials, when you need passive, ambient consumption.</dd></div>
+              <div><dt>Designed for</dt><dd>Multitasking or eyes-free moments, when you're tired but still curious.</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="cs-mode-panel" id="mode-community" hidden>
+          <div class="cs-screens cs-screens-community" data-cat="Ding! Your streak is in danger.">
+            <div class="cs-phone">
+              <img class="cs-screen" src="../assets/snapp/S6.png" alt="Snapp's leaderboard: friends ranked by articles read, quizzes and streaks" width="802" height="1748" loading="lazy">
+              <div class="cs-notif-clip" aria-hidden="true"><img class="cs-notif" src="../assets/snapp/notif.png" alt="" width="752" height="246" data-no-lightbox></div>
+            </div>
+            <img class="cs-nudge" src="../assets/snapp/S7.png" alt="A personalised nudge card: something just happened in a story you care about, with a Catch Up button" width="281" height="224" loading="lazy">
+          </div>
+          <div class="cs-mode-text">
+            <p class="cs-kicker">Community &middot; The loop</p>
+            <p class="cs-mode-lede">Community, not just competition. See what friends are reading, compare curiosities and rise together.</p>
+            <div class="cs-spark" data-cat="Idea spark. Your streak says hi.">
+              <p class="cs-kicker">A personalised loop</p>
+              <p>Snapp evolves with you: your pace, your interests, your modes.</p>
+            </div>
+            <dl class="cs-mode-facts cs-mode-facts-one">
+              <div><dt>Achievements that matter</dt><dd>Earn badges and collect tokens for free subscriptions by keeping reading streaks, sharing insights or exploring AR stories.</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapter 03: how I got there (competitors, the question, early exploration) -->
+    <section class="cs-section cs-chapter" id="how">
+      <p class="cs-kicker">03 &middot; How I got there</p>
       <h2>Breadth or depth. Nobody did context.</h2>
       <p class="cs-body">Existing news apps optimised for either breadth (InShorts, Google News) or depth (DailyHunt, The Hindu). None optimised for context: switching modes between commute, work break, and bedtime. That gap became the core of Snapp.</p>
+
+      <figure class="cs-frame cs-compete" data-cat="Five apps, one gap. Circled in green.">
+        <img src="../assets/snapp/competitor-analysis.png" alt="Competitor analysis table comparing InShorts, Dailyhunt, Google News, The Hindu and Time Magazine on audience, product, interface, experience, visual design, content, strengths and opportunities" width="1147" height="734" loading="lazy">
+      </figure>
+
       <div class="cs-insight cs-hmw" data-cat="The big question.">
         <p class="cs-kicker">How might we</p>
         <h2>&hellip;deliver just enough personalised news, in whatever mode the moment calls for?</h2>
       </div>
-    </section>
 
-    <!-- 6. Early exploration -->
-    <section class="cs-section">
-      <p class="cs-kicker">Early exploration</p>
-      <h2>The first idea worked. For one moment.</h2>
+      <h3 class="cs-sub">Early exploration: the first idea worked. For one moment.</h3>
       <div class="cs-duo">
         <article class="cs-stage">
           <p class="cs-num">First idea</p>
@@ -117,6 +256,11 @@
         </article>
       </div>
 
+      <figure class="cs-frame cs-frame-bleed" data-cat="Lorem ipsum, but make it news.">
+        <img src="../assets/snapp/wireframes-first-idea.png" alt="Wireframes of the first idea: a reading mode in three states, and a spatial living-room layer around the article" width="1800" height="2151" loading="lazy">
+        <figcaption><b>/</b>The first idea, wireframed: reading mode, and news spread around the room</figcaption>
+      </figure>
+
       <h3 class="cs-sub">The ideation</h3>
       <ul class="cs-questions">
         <li>What if the news knew what I needed, before I did?</li>
@@ -126,34 +270,10 @@
       </ul>
     </section>
 
-    <!-- 7. Final solution -->
-    <section class="cs-section">
-      <p class="cs-kicker">Final solution</p>
-      <h2>Not just news. A companion that fits your day.</h2>
-      <p class="cs-body">Three modes, shaped by context.</p>
-      <div class="cs-trio">
-        <div class="cs-ph" role="img" aria-label="Image placeholder: mode 1"><span>Mode 1</span></div>
-        <div class="cs-ph" role="img" aria-label="Image placeholder: mode 2"><span>Mode 2</span></div>
-        <div class="cs-ph" role="img" aria-label="Image placeholder: mode 3"><span>Mode 3</span></div>
-      </div>
-
-      <div class="cs-duo cs-gap">
-        <article class="cs-stage">
-          <p class="cs-num">Personalised</p>
-          <h3>Smart, social, and a little addictive.</h3>
-          <p>Meanwhile, the AI learns preferences and patterns to personalise news for the user.</p>
-        </article>
-        <article class="cs-stage">
-          <p class="cs-num">Keeping curiosity alive</p>
-          <ul class="cs-tagrow cs-tagrow-left"><li>Cooking &middot; Voice</li><li>Social &middot; Leaderboard</li></ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- 8. Business model -->
-    <section class="cs-section">
-      <p class="cs-kicker">How it would monetise</p>
-      <h2>Freemium, privacy-first, and light on ads.</h2>
+    <!-- Chapter 04: how it would monetise -->
+    <section class="cs-section cs-chapter" id="earn">
+      <p class="cs-kicker">04 &middot; What pays for it</p>
+      <h2>Free to skim, paid for depth.</h2>
       <ul class="cs-landed">
         <li><strong>Freemium</strong> AR stories and deep dives behind a subscription.</li>
         <li><strong>Opt-in personalisation</strong> Privacy-first.</li>
@@ -187,7 +307,21 @@
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
     })();
   </script>
-  <script src="../js/lightbox.js?v=1" defer></script>
+  <script>
+    // the tabs in "The answer" swap the screen shown; the other screens are preloaded
+    (function () {
+      var panels = {}; [].slice.call(document.querySelectorAll('.cs-mode-panel')).forEach(function (p) { panels[p.id.replace('mode-', '')] = p; });
+      var tabs = [].slice.call(document.querySelectorAll('.cs-modes .cs-tabs button'));
+      tabs.forEach(function (t) {
+        t.addEventListener('click', function () {
+          tabs.forEach(function (o) { o.setAttribute('aria-selected', o === t); });
+          Object.keys(panels).forEach(function (k) { panels[k].hidden = k !== t.dataset.panel; });
+        });
+      });
+    })();
+  </script>
+  <script src="../js/lightbox.js?v=2" defer></script>
   <script type="module" src="../js/cat.js?v=3"></script>
+  <script type="module" src="../js/pixels.js?v=6"></script>
 </body>
 </html>

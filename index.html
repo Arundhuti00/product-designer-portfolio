@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20">
+  <link rel="stylesheet" href="css/style.css?v=32">
   <script src="js/transitions.js?v=1"></script>
 
   <!-- No build step: three.js is vendored in /vendor so GitHub Pages can serve it as-is -->
@@ -71,7 +71,7 @@
     <section class="work" id="work" data-cat-section="Pick a card. Any card. Click it.">
       <h2 class="section-title">My Work</h2>
       <div class="cards">
-        <a class="card" href="work/photo-quality.html" data-cat="Psst… this one untangles blurry listing photos. Open it?">
+        <a class="card card--housing" href="work/photo-quality.html" data-cat="Psst… this one untangles blurry listing photos. Open it?">
           <div class="card-top"><span class="card-kind">Case study</span><svg class="card-arrow" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></div>
           <div class="card-head"><img class="card-logo" src="assets/housing/Logo.png" alt="Housing.com" width="179" height="179"><h3 class="card-title">Photo Quality Pipeline</h3></div>
           <ul class="card-tags"><li>Proptech</li><li>Systems thinking</li></ul>
@@ -79,27 +79,35 @@
             <img class="mockup" src="assets/housing/hero-mockup.png" alt="Housing.com seller flow: the Add Photos screen with room coverage, uploaded images and upload tips" loading="lazy" width="1556" height="1736">
           </div>
         </a>
-        <a class="card" href="work/snapp.html" data-cat="News, but immersive. Go on, click it. I dare you.">
+        <a class="card card--snapp" href="work/snapp.html" data-cat="News, but immersive. Go on, click it. I dare you.">
           <div class="card-top"><span class="card-kind">Project</span><svg class="card-arrow" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></div>
           <div class="card-head"><h3 class="card-title">Snapp: An Immersive<br>News Companion</h3></div>
           <ul class="card-tags"><li>Media app</li></ul>
-          <!-- Replace this placeholder with the mockup: <img class="card-media" src="assets/work/NAME.png" alt=""> -->
+          <div class="card-media has-image">
+            <div class="mockup mockup-pair">
+          <img src="assets/snapp/snapp-card.png" alt="The Snapp home screen on a phone: a greeting for Rita, daily story circles and a purple featured news card" loading="lazy" width="761" height="1500">
+          <img src="assets/snapp/snapp-card-2.png" alt="A second Snapp home screen in portrait" loading="lazy" width="761" height="1500">
+        </div>
+          </div>
+        </a>
+        <a class="card card--zinara" href="work/zinara.html" data-cat="Zinara. The case study is still being written.">
+          <div class="card-top"><span class="card-kind">Case study</span><svg class="card-arrow" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></div>
+          <div class="card-head"><h3 class="card-title">Zinara</h3></div>
+          <ul class="card-tags"><li>UX / UI</li><li>Freelance</li></ul>
+          <!-- Replace this placeholder with the mockup: <img class="mockup" src="assets/zinara/NAME.png" alt=""> -->
           <div class="card-media" role="img" aria-label="Mockup image placeholder"><span>Mockup image</span></div>
         </a>
-        <!-- Link: add the real URL (case study page, GitHub or the skill itself) when you have it -->
-        <a class="card" href="work/icon-studio.html" data-cat="She taught Claude to draw icons. I'm only mildly jealous.">
+        <a class="card card--icon" href="work/icon-studio.html" data-cat="She taught Claude to draw icons. I'm only mildly jealous.">
           <div class="card-top"><span class="card-kind">Claude skill</span><svg class="card-arrow" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></div>
           <div class="card-head"><h3 class="card-title">Icon Studio: A Skill That Builds Icon Libraries</h3></div>
           <ul class="card-tags"><li>AI workflow</li><li>Design systems</li></ul>
-          <!-- Replace this placeholder with the mockup: <img class="card-media" src="assets/work/NAME.png" alt=""> -->
-          <div class="card-media" role="img" aria-label="Mockup image placeholder"><span>Mockup image</span></div>
-        </a>
-        <a class="card" href="work/splitshare.html" data-cat="Splitting bills without the awkward maths. Open me!">
-          <div class="card-top"><span class="card-kind">Case study</span><svg class="card-arrow" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></div>
-          <div class="card-head"><h3 class="card-title">Splitshare (Quick<br>Design Sprint)</h3></div>
-          <ul class="card-tags"><li>Fintech</li><li>App</li></ul>
-          <!-- Replace this placeholder with the mockup: <img class="card-media" src="assets/work/NAME.png" alt=""> -->
-          <div class="card-media" role="img" aria-label="Mockup image placeholder"><span>Mockup image</span></div>
+          <div class="card-media has-image">
+            <div class="mockup mockup-icons">
+              <p class="mi-big">282 icons</p>
+              <p class="mi-sub">3 styles, each locked to one rules file</p>
+              <img src="assets/icon-studio/tiles.png" alt="Six icon tiles from the three styles: a burger and a cocktail, a compass and a camera, a ringed planet and a rocket" loading="lazy" width="1124" height="221">
+            </div>
+          </div>
         </a>
       </div>
     </section>
@@ -109,14 +117,13 @@
       <p class="quote" data-cat="Less noise, more signal. Unlike my 5am meowing.">"Good design is as minimal design as possible." <span>Dieter Rams</span></p>
 
       <div class="facts">
-        <div class="fact" data-cat="Five internships and counting. Hire her already!">
+        <div class="fact" data-cat="Interns, freelancers, one very supervised cat. Hire her already!">
           <h3>Experience</h3>
           <ul>
-            <li><strong>Housing.com</strong><span>Product Design Intern</span><time>Jan 2026 – Jul 2026</time></li>
+            <li><strong>Housing.com (REA India)</strong><span>Product Design Intern</span><time>Jan 2026 – Jul 2026</time></li>
+            <li><strong>Zinara</strong><span>UX/UI Designer &middot; Freelance</span><time>Jul 2026 – Aug 2026</time></li>
+            <li><strong>Termin4me</strong><span>Product Designer &middot; Freelance</span><time>Jun 2026 – Aug 2026</time></li>
             <li><strong>Edmo</strong><span>UX Design Intern</span><time>Jun 2025 – Aug 2025</time></li>
-            <li><strong>Broomling Technologies</strong><span>UI/UX Designer</span><time>Oct 2024 – Dec 2024</time></li>
-            <li><strong>Havells India Pvt. Ltd</strong><span>Thesis Intern</span><time>Jan 2024 – May 2024</time></li>
-            <li><strong>Selco Solar Light Pvt. Ltd.</strong><span>Design Intern</span><time>Jun 2023 – Jul 2023</time></li>
           </ul>
         </div>
         <div class="fact" data-cat="Straight-A in naps. She's done a bit better than that.">
@@ -124,9 +131,12 @@
           <ul>
             <li><strong>Delhi Technological University (DTU)</strong><span>M.Des, Interaction Design</span><time>2024 – 2026</time></li>
             <li><strong>Srishti Manipal Institute</strong><span>Industrial Arts &amp; Design Practices</span><time>2020 – 2024</time></li>
+            <li><strong>Thesis: Havells India Pvt. Ltd.</strong><span>Speculative product design for GenZ (2030)</span><time>Jan 2024 – May 2024</time></li>
             <li><strong>Delhi Public School, Bhilai</strong><span>12th</span></li>
           </ul>
-          <h3 class="fact-gap">Achievements</h3>
+        </div>
+        <div class="fact fact-wide">
+          <h3>Achievements</h3>
           <ul>
             <li><strong>Mercedes-Benz Innovation Contest '23</strong><span>Speculative Retail Experience Design, Winner</span><time>May 2023</time></li>
           </ul>
@@ -170,6 +180,6 @@
   </script>
   <script type="module" src="js/main.js?v=7"></script>
   <script type="module" src="js/cat.js?v=3"></script>
-  <script type="module" src="js/pixels.js?v=4"></script>
+  <script type="module" src="js/pixels.js?v=6"></script>
 </body>
 </html>

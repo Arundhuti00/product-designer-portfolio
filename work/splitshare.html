@@ -8,11 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20">
-  <link rel="stylesheet" href="../css/case-study.css?v=46">
+  <link rel="stylesheet" href="../css/style.css?v=32">
+  <link rel="stylesheet" href="../css/case-study.css?v=83">
   <script src="../js/transitions.js?v=1"></script>
+  <script src="../js/countup.js?v=1"></script>
+  <script src="../js/hero-full.js?v=1" defer></script>
 </head>
-<body class="cs-page">
+<body class="cs-page hero-full hero-splitshare">
   <header class="nav">
     <a class="brand" href="../index.html">Arundhuti</a>
     <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
@@ -24,7 +26,34 @@
   </header>
 
   <main>
-    <!-- 1. Hero -->
+    <!-- 1. Hero, full-bleed version (same build as Snapp / Photo Quality): text bottom-left, screen on the right, reactive pixel grid behind.
+         The earlier hero is kept below; to go back to it, remove classes "hero-full hero-splitshare" from <body>. -->
+    <section class="cs-hero-full" id="top">
+      <div class="grid-bg" aria-hidden="true"></div>
+      <canvas class="grid-lit" aria-hidden="true"></canvas>
+      <a class="cs-back-light" href="../index.html#work">&larr; My Work</a>
+      <div class="cs-hf-grid">
+        <div class="cs-hf-left">
+          <p class="cs-eyebrow cs-rise" style="--d:90ms"><i class="cs-dot" aria-hidden="true"></i>Fintech <span>|</span> App <span>|</span> Easy budgeting solution</p>
+          <h1 class="cs-rise" style="--d:260ms">Your neighbourhood budgeting app: Swift. Short. Simple.</h1>
+          <p class="cs-lede cs-rise" style="--d:620ms">Living with flatmates is all fun and games, until the bills show up. Money quickly becomes the awkward elephant in the room.</p>
+          <a class="cs-hf-btn cs-rise" style="--d:820ms" href="#setting">Read the story <i aria-hidden="true">&darr;</i></a>
+        </div>
+        <div class="cs-hf-media" data-cat="Splitshare's cover. Split the bill, not the friendship.">
+          <div class="cs-hf-ph" role="img" aria-label="Image placeholder: Splitshare hero mockup"><span>Splitshare hero mockup</span></div>
+        </div>
+      </div>
+    </section>
+    <!-- project facts, just under the hero (only shown with the full-bleed hero) -->
+    <section class="cs-hero-facts">
+      <dl class="cs-meta">
+        <div><dt>Scope</dt><dd>UX Design, UI Design</dd></div>
+        <div><dt>Timeline</dt><dd>1 day design sprint</dd></div>
+        <div><dt>Team</dt><dd>Individual</dd></div>
+      </dl>
+    </section>
+
+    <!-- 1. Earlier hero (hidden while body has class hero-full) -->
     <section class="cs-hero">
       <a class="cs-back" href="../index.html#work">&larr; My Work</a>
       <p class="cs-eyebrow">Fintech <span>|</span> App <span>|</span> Easy budgeting solution</p>
@@ -42,26 +71,34 @@
       <div><dt>Team</dt><dd>Individual</dd></div>
     </dl>
 
-    <!-- 2. The 30-second version -->
+    <!-- The setting: where the project started -->
+    <section class="cs-section" id="setting">
+      <p class="cs-context" data-cat="The spark. Also my group chat.">&ldquo;Everyone has their own budget style, but keeping track without stepping on each other's toes? Not so easy.&rdquo;</p>
+    </section>
+
+    <!-- The short version: four cards that jump to the four chapters -->
     <section class="cs-section">
-      <div class="cs-tldr cs-tldr-rows" data-cat="The 30-second version. I approve.">
-        <div><p class="cs-kicker">The challenge</p><p>Create a budgeting app that makes personal finance simple, keeps shared expenses fair and transparent, and turns household money management into a fun, accountable experience.</p></div>
-        <div><p class="cs-kicker">Problem</p><p>Flatmates struggle with money due to overspending, splitting confusion, awkward conversations about uneven budgets, and lack of simple tools for transparent, balanced shared finances.</p></div>
-        <div><p class="cs-kicker">Solution</p><p>I designed an app that makes flatmate budgeting transparent, fair, and fun. It auto-tracks behaviours and uses AI to scan bills for instant splitting, with positive nudges that make it stress-free.</p></div>
+      <p class="cs-kicker">The short version</p>
+      <div class="cs-quick" data-cat="The short version. Tap a card to jump to that chapter.">
+        <a class="cs-q" href="#gap"><span class="cs-q-n" aria-hidden="true">01</span><h3>Shared money gets awkward fast.</h3><p>Flatmates struggle with overspending, splitting confusion and uneven budgets, with no simple tool to keep it transparent and balanced.</p><span class="cs-q-go">The gap <i aria-hidden="true">&darr;</i></span></a>
+        <a class="cs-q" href="#answer"><span class="cs-q-n" aria-hidden="true">02</span><h3>A no-brainer budgeting app.</h3><p>It auto-tracks behaviours and uses AI to scan bills for instant splitting, with positive nudges that make it stress-free.</p><span class="cs-q-go">The answer <i aria-hidden="true">&darr;</i></span></a>
+        <a class="cs-q" href="#how"><span class="cs-q-n" aria-hidden="true">03</span><h3>One day, so no primary research.</h3><p>A directionally-correct concept built from lived experience, quick conversations and fast visual exploration.</p><span class="cs-q-go">How I got there <i aria-hidden="true">&darr;</i></span></a>
+        <a class="cs-q" href="#revisit"><span class="cs-q-n" aria-hidden="true">04</span><h3>What I'd revisit with more time.</h3><p>Gamified nudges, onboarding that builds trust, and testing bill-scanning with real receipts.</p><span class="cs-q-go">What I'd revisit <i aria-hidden="true">&darr;</i></span></a>
       </div>
     </section>
 
-    <!-- 3. Constraints -->
-    <section class="cs-section">
-      <p class="cs-kicker">Constraints &amp; trade-offs</p>
-      <h2>One day, so no primary research.</h2>
-      <p class="cs-body">A 1-day sprint meant skipping primary research and working from my own experience as a flatmate plus 2&ndash;3 quick conversations. The goal was a directionally-correct concept, not a production-ready spec. Decisions I'd revisit with more time are noted at the end.</p>
-    </section>
+    <!-- Chapter 01: the gap (challenge, problem, persona) -->
+    <section class="cs-section cs-chapter" id="gap">
+      <p class="cs-kicker">01 &middot; The gap</p>
+      <h2>Shared money gets awkward fast.</h2>
+      <p class="cs-body">Create a budgeting app that makes personal finance simple, keeps shared expenses fair and transparent, and turns household money management into a fun, accountable experience.</p>
+      <ul class="cs-learned">
+        <li>Flatmates overspend and lose track of who paid for what.</li>
+        <li>Splitting is confusing when budgets and incomes are uneven.</li>
+        <li>There is no simple tool for transparent, balanced shared finances.</li>
+      </ul>
 
-    <!-- 4. Who needs this -->
-    <section class="cs-section">
-      <p class="cs-kicker">Who needs this?</p>
-      <h2>Meet Akash.</h2>
+      <h3 class="cs-sub">Who needs this: meet Akash</h3>
       <div class="cs-persona" data-cat="Akash. Three flatmates, one WhatsApp group of doom.">
         <div class="cs-persona-head">
           <p class="cs-persona-name">Akash Mehta, 26</p>
@@ -77,10 +114,37 @@
       </div>
     </section>
 
-    <!-- 5. Exploration -->
-    <section class="cs-section">
-      <p class="cs-kicker">Key pain points</p>
-      <h2>Where the money gets awkward.</h2>
+    <!-- Chapter 02: the answer (final solution) -->
+    <section class="cs-section cs-chapter" id="answer">
+      <p class="cs-kicker">02 &middot; The answer</p>
+      <h2>A no-brainer budgeting app.</h2>
+      <p class="cs-body">An app that covers all bases, from scanning bills and calculating shares to friendly reminders which don't feel awkward anymore.</p>
+      <div class="cs-trio">
+        <div class="cs-ph" role="img" aria-label="Image placeholder: Final screen 1"><span>Final screen 1</span></div>
+        <div class="cs-ph" role="img" aria-label="Image placeholder: Final screen 2"><span>Final screen 2</span></div>
+        <div class="cs-ph" role="img" aria-label="Image placeholder: Final screen 3"><span>Final screen 3</span></div>
+      </div>
+
+      <div class="cs-duo cs-gap">
+        <article class="cs-stage">
+          <p class="cs-num">Transparent</p>
+          <h3>Fair, visible, and a little fun.</h3>
+          <p>It auto-tracks behaviours and uses AI to scan bills for instant splitting.</p>
+        </article>
+        <article class="cs-stage">
+          <p class="cs-num">Stress-free</p>
+          <ul class="cs-tagrow cs-tagrow-left"><li>Bill scan &middot; AI</li><li>Positive nudges</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Chapter 03: how I got there (constraints, exploration, decisions) -->
+    <section class="cs-section cs-chapter" id="how">
+      <p class="cs-kicker">03 &middot; How I got there</p>
+      <h2>One day, so no primary research.</h2>
+      <p class="cs-body">A 1-day sprint meant skipping primary research and working from my own experience as a flatmate plus 2&ndash;3 quick conversations. The goal was a directionally-correct concept, not a production-ready spec.</p>
+
+      <h3 class="cs-sub">Key pain points</h3>
       <div class="cs-ph cs-wide" role="img" aria-label="Image placeholder: Key pain points"><span>Key pain points</span></div>
 
       <h3 class="cs-sub">Early exploration</h3>
@@ -88,37 +152,18 @@
 
       <h3 class="cs-sub">Key feature ideation</h3>
       <div class="cs-ph cs-wide" role="img" aria-label="Image placeholder: Key feature ideation"><span>Key feature ideation</span></div>
-    </section>
 
-    <!-- 6. Design decisions -->
-    <section class="cs-section">
-      <p class="cs-kicker">Design decisions</p>
-      <h2>Visualising how the app works.</h2>
-      <p class="cs-body">I figured out the main functioning of the app by visualising it.</p>
+      <h3 class="cs-sub">Design decisions: visualising how the app works</h3>
       <div class="cs-trio">
-        <div class="cs-ph " role="img" aria-label="Image placeholder: Decision 1"><span>Decision 1</span></div>
-        <div class="cs-ph " role="img" aria-label="Image placeholder: Decision 2"><span>Decision 2</span></div>
-        <div class="cs-ph " role="img" aria-label="Image placeholder: Decision 3"><span>Decision 3</span></div>
+        <div class="cs-ph" role="img" aria-label="Image placeholder: Decision 1"><span>Decision 1</span></div>
+        <div class="cs-ph" role="img" aria-label="Image placeholder: Decision 2"><span>Decision 2</span></div>
+        <div class="cs-ph" role="img" aria-label="Image placeholder: Decision 3"><span>Decision 3</span></div>
       </div>
     </section>
 
-    <!-- 7. Final solution -->
-    <section class="cs-section">
-      <div class="cs-insight" data-cat="A no-brainer. My favourite kind of brain.">
-        <p class="cs-kicker">The final solution</p>
-        <h2>A no-brainer budgeting app.</h2>
-        <p>An app that covers all bases, from scanning bills and calculating shares to friendly reminders which don't feel awkward anymore.</p>
-      </div>
-      <div class="cs-trio">
-        <div class="cs-ph " role="img" aria-label="Image placeholder: Final screen 1"><span>Final screen 1</span></div>
-        <div class="cs-ph " role="img" aria-label="Image placeholder: Final screen 2"><span>Final screen 2</span></div>
-        <div class="cs-ph " role="img" aria-label="Image placeholder: Final screen 3"><span>Final screen 3</span></div>
-      </div>
-    </section>
-
-    <!-- 8. What I'd revisit -->
-    <section class="cs-section">
-      <p class="cs-kicker">What I'd revisit</p>
+    <!-- Chapter 04: what I'd revisit -->
+    <section class="cs-section cs-chapter" id="revisit">
+      <p class="cs-kicker">04 &middot; What I'd revisit</p>
       <h2>With more time.</h2>
       <ul class="cs-learned">
         <li>The &lsquo;gamified nudges&rsquo; angle deserved a separate exploration.</li>
@@ -127,7 +172,7 @@
       </ul>
     </section>
 
-    <!-- 9. Up next -->
+    <!-- Up next -->
     <section class="cs-next">
       <p class="cs-kicker">Up next</p>
       <a class="cs-next-card" href="photo-quality.html" data-cat="Back to the start: blurry photos.">
@@ -153,7 +198,8 @@
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
     })();
   </script>
-  <script src="../js/lightbox.js?v=1" defer></script>
+  <script src="../js/lightbox.js?v=2" defer></script>
   <script type="module" src="../js/cat.js?v=3"></script>
+  <script type="module" src="../js/pixels.js?v=6"></script>
 </body>
 </html>

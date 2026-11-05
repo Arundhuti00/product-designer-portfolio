@@ -8,11 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20">
-  <link rel="stylesheet" href="../css/case-study.css?v=46">
+  <link rel="stylesheet" href="../css/style.css?v=32">
+  <link rel="stylesheet" href="../css/case-study.css?v=83">
   <script src="../js/transitions.js?v=1"></script>
+  <script src="../js/hero-full.js?v=1" defer></script>
 </head>
-<body class="cs-page">
+<body class="cs-page hero-full hero-icon">
   <header class="nav">
     <a class="brand" href="../index.html">Arundhuti</a>
     <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
@@ -24,29 +25,58 @@
   </header>
 
   <main>
-    <!-- Hero -->
-    <section class="cs-hero">
-      <a class="cs-back" href="../index.html#work">&larr; My Work</a>
-      <p class="cs-eyebrow">Claude skill <span>&middot;</span> AI workflow <span>&middot;</span> Design systems</p>
-      <h1>Icon Studio: A Skill That Builds Icon Libraries</h1>
-      <p class="cs-lede">I built a Claude skill that turns a style and an icon list into a consistent icon set, then used it to make three libraries in three very different styles.</p>
-      <div class="cs-hero-actions">
-        <a class="btn btn-primary btn-gh" href="https://github.com/Arundhuti00/icon-studio" target="_blank" rel="noopener" data-cat="The skill itself. Open source. I checked: no fish."><svg class="gh-mark" viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> Get the skill on GitHub</a>
-        <a class="btn-link" href="#live">Browse the libraries &darr;</a>
+    <!-- Hero: full-bleed, same build as the Housing.com and Snapp pages; the three libraries fan out on the right -->
+    <section class="cs-hero-full" id="top">
+      <div class="grid-bg" aria-hidden="true"></div>
+      <canvas class="grid-lit" aria-hidden="true"></canvas>
+      <a class="cs-back-light" href="../index.html#work">&larr; My Work</a>
+      <div class="cs-hf-grid">
+        <div class="cs-hf-left">
+          <p class="cs-eyebrow cs-rise" style="--d:90ms"><i class="cs-dot" aria-hidden="true"></i>Claude skill <span>|</span> AI workflow <span>|</span> Design systems</p>
+          <h1 class="cs-rise" style="--d:260ms">Icon Studio: A Skill That Builds Icon Libraries</h1>
+          <p class="cs-lede cs-rise" style="--d:620ms">I built a Claude skill that turns a style and an icon list into a consistent icon set, then used it to make three libraries in three very different styles.</p>
+          <div class="cs-hf-actions cs-rise" style="--d:820ms">
+            <a class="cs-hf-btn" href="#setting">Read the story <i aria-hidden="true">&darr;</i></a>
+            <a class="cs-hf-btn" href="https://github.com/Arundhuti00/icon-studio" target="_blank" rel="noopener" data-cat="The skill itself. Open source. I checked: no fish."><svg class="gh-mark" viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>View on GitHub</a>
+          </div>
+        </div>
+        <div class="cs-hf-media cs-hf-stack" data-cat="Three libraries, one skill. Same rules file, different styles.">
+          <img class="cs-stack-1" src="../assets/icon-studio/hero-celestial.png" alt="Celestial Glass: soft gradient icons in brown and blue" width="1000" height="392">
+          <img class="cs-stack-2" src="../assets/icon-studio/hero-travel.png" alt="Travel Ink: hand-drawn ink line icons" width="1000" height="392">
+          <img class="cs-stack-3" src="../assets/icon-studio/hero-restaurant.png" alt="Restaurant Folk: flat two-tone folk icons" width="1000" height="392">
+        </div>
+      </div>
+    </section>
+    <!-- project facts, just under the hero -->
+    <section class="cs-hero-facts">
+      <dl class="cs-meta">
+        <div><dt>Role</dt><dd>Solo</dd></div>
+        <div><dt>Timeline</dt><dd>4 days, Oct 2026</dd></div>
+        <div><dt>Tools</dt><dd>Claude, Node, Figma, GitHub</dd></div>
+        <div><dt>Output</dt><dd>282 icons, 3 libraries</dd></div>
+      </dl>
+    </section>
+
+    <!-- The setting: where the project started -->
+    <section class="cs-section" id="setting">
+      <p class="cs-context" data-cat="The tenth icon. Always the tenth.">&ldquo;By the tenth icon, the family no longer looks like one person drew it.&rdquo;</p>
+    </section>
+
+    <!-- The short version: four cards that jump to the four chapters -->
+    <section class="cs-section">
+      <p class="cs-kicker">The short version</p>
+      <div class="cs-quick" data-cat="The short version. Tap a card to jump to that chapter.">
+        <a class="cs-q" href="#problem"><span class="cs-q-n" aria-hidden="true">01</span><h3>Icons never match, and AI makes it worse.</h3><p>Packs, plugins and stock sites each draw differently, and AI invents a new stroke and size with every icon.</p><span class="cs-q-go">The problem <i aria-hidden="true">&darr;</i></span></a>
+        <a class="cs-q" href="#solution"><span class="cs-q-n" aria-hidden="true">02</span><h3>Make the rules the product.</h3><p>A Claude skill locks every style decision in one rules file and checks each icon against it before it ships.</p><span class="cs-q-go">The solution <i aria-hidden="true">&darr;</i></span></a>
+        <a class="cs-q" href="#process"><span class="cs-q-n" aria-hidden="true">03</span><h3>Three styles to stress-test it.</h3><p>Folk, ink and glass: 282 icons, each style pushing me to fix the system, not just the icons.</p><span class="cs-q-go">The process <i aria-hidden="true">&darr;</i></span></a>
+        <a class="cs-q" href="#outcome"><span class="cs-q-n" aria-hidden="true">04</span><h3>One skill, as many libraries as you like.</h3><p>Only the rules file changes between sets. It's open source, with install steps and all three sets as examples.</p><span class="cs-q-go">The outcome <i aria-hidden="true">&darr;</i></span></a>
       </div>
     </section>
 
-    <dl class="cs-meta cs-meta-top">
-      <div><dt>Role</dt><dd>Solo</dd></div>
-      <div><dt>Timeline</dt><dd>4 days, Oct 2026</dd></div>
-      <div><dt>Tools</dt><dd>Claude, Node, Figma, GitHub</dd></div>
-      <div><dt>Output</dt><dd>282 icons, 3 libraries</dd></div>
-    </dl>
-
     <!-- 01 Problem -->
-    <section class="cs-section">
+    <section class="cs-section cs-chapter" id="problem">
       <p class="cs-kicker">01 &middot; Problem</p>
-      <h2>Designers need icons that match. Almost nothing on offer does.</h2>
+      <h2 class="cs-two">Designers need icons that match.<br>Almost nothing on offer does.</h2>
       <p class="cs-body">A designer pulls icons from many places: packs, plugins, stock sites, one-off downloads. Put together, they never match: different strokes, different detail, different sizes. Only a few open-source libraries get this right, and they rarely fit the style of your own product.</p>
 
       <div class="cs-problem-2" data-cat="Hallucinated icons. I once hallucinated a mouse. It was a sock.">
@@ -56,9 +86,9 @@
     </section>
 
     <!-- 02 Solution -->
-    <section class="cs-section">
+    <section class="cs-section cs-chapter" id="solution">
       <p class="cs-kicker">02 &middot; Solution</p>
-      <h2>Make the rules the product.</h2>
+      <h2 class="cs-one">Make the rules the product.</h2>
       <p class="cs-body">icon-studio is a Claude skill that writes every style decision into one locked rules file and checks each icon against it before it ships, so the AI can't improvise its way off-style.</p>
 
       <div class="cs-insight cs-hl" data-cat="The one rule that holds the whole library up.">
@@ -89,9 +119,9 @@
     </section>
 
     <!-- 03 Process -->
-    <section class="cs-section">
+    <section class="cs-section cs-chapter" id="process">
       <p class="cs-kicker">03 &middot; Process</p>
-      <h2>Three styles to stress-test it.</h2>
+      <h2 class="cs-one">Three styles to stress-test it.</h2>
       <p class="cs-body">I ran the skill on three very different styles. Each one pushed me to fix the system, not just the icons.</p>
       <div class="cs-explore" id="live" data-cat="Three libraries, one view. Scroll it. I dare you.">
         <div class="cs-setcards">
@@ -146,7 +176,7 @@
     </section>
 
     <!-- 04 Outcome -->
-    <section class="cs-section">
+    <section class="cs-section cs-chapter" id="outcome">
       <p class="cs-kicker">04 &middot; Outcome</p>
       <h2>One skill, as many libraries as you want to build.</h2>
       <p class="cs-body">All three libraries here came from the same skill; only the rules file changed between them. Give it a different style and it builds a different library, as many as you need. The skill is open source, with a README, install steps and the three sets as examples.</p>
@@ -154,6 +184,7 @@
       <aside class="cs-cta-card" data-cat="Go on. Install it. Make me an icon of a fish.">
         <h3>Use icon-studio in your own Claude</h3>
         <p>Give it a style and an icon list, and it builds a consistent set you can paste into Figma.</p>
+        <p class="cs-psst"><b>Psst&hellip;</b> you know that one perfect icon you found, with nothing else in its style? Hand it over and icon-studio draws the rest of the set to match.</p>
         <a class="btn btn-primary btn-gh" href="https://github.com/Arundhuti00/icon-studio" target="_blank" rel="noopener"><svg class="gh-mark" viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> Get the skill on GitHub</a>
         <small>MIT licence &middot; Works in Claude.ai and Claude Code</small>
       </aside>
@@ -164,8 +195,8 @@
     <!-- Up next -->
     <section class="cs-next">
       <p class="cs-kicker">Up next</p>
-      <a class="cs-next-card" href="splitshare.html" data-cat="Next: splitting bills without the maths.">
-        <span>Splitshare (Quick Design Sprint)</span>
+      <a class="cs-next-card" href="zinara.html" data-cat="Next: the Zinara case study. Work in progress.">
+        <span>Zinara</span>
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
       </a>
       <div class="cs-cta">
@@ -205,7 +236,8 @@
       }, { rootMargin: '300px' }).observe(document.querySelector('.cs-explore'));
     })();
   </script>
-  <script src="../js/lightbox.js?v=1" defer></script>
+  <script src="../js/lightbox.js?v=2" defer></script>
   <script type="module" src="../js/cat.js?v=3"></script>
+  <script type="module" src="../js/pixels.js?v=6"></script>
 </body>
 </html>
