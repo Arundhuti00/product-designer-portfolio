@@ -117,6 +117,21 @@ cat.addEventListener('click', () => {
   say(LINES.pet[petCount++ % LINES.pet.length], 1800);
 });
 
+// a card that isn't live yet: clicking (or pressing Enter) just makes the cat say so, and nothing opens
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('[data-cat-click]');
+  if (!el) return;
+  e.preventDefault();
+  say(el.dataset.catClick, 2600);
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const el = e.target.closest && e.target.closest('[data-cat-click]');
+  if (!el) return;
+  e.preventDefault();
+  say(el.dataset.catClick, 2600);
+});
+
 // idle chatter
 setInterval(() => {
   if (up && !hoverEl && Date.now() - lastActivity > 22000 && !bubble.classList.contains('show')) {

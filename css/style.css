@@ -456,3 +456,10 @@ h1, h2, h3, h4 { font-family: var(--font-accent); font-weight: 600; }
   .card-tags li { padding: 0 9px; }
   .card-media { margin: auto 0 -1px -15px; width: calc(100% + 30px); }
 }
+
+/* Zinara: a card that isn't a link yet. It still looks like the others, wears a "Coming soon" label, and the cat does the talking */
+.card--soon { cursor: default; }
+.card-soon { padding: 3px 10px; border-radius: 999px; background: rgba(155, 58, 98, 0.1); color: #8a2f55; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.card-media .mockup-wide { top: 11cqw; width: 80%; max-width: 440px; }   /* a wide desktop-and-phone mockup, bleeding off the bottom */
+.card--soon:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (min-width: 901px) { .card-soon { font-size: 11px; padding: 2px 9px; } }
